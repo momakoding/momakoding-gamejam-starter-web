@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-game-border: #475569;
+  --color-scrollbar-thumb: #334155;
+}
+
+@layer components {
+  .scrollable {
+    @apply overflow-y-auto;
+    scrollbar-gutter: stable;
+  }
+
+  .scrollable::-webkit-scrollbar {
+    @apply w-2 h-1.5;
+  }
+
+  .scrollable::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollable::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    @apply rounded-full;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .scrollable::-webkit-scrollbar-thumb:hover {
+    @apply bg-game-border;
+  }
+
+  .scrollable::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
