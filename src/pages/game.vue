@@ -1,6 +1,6 @@
 <template>
   <div class="game-page">
-    <!-- 游戏主体 -->
+    <!-- 游戏主体，到时候需要改成GameContainer或者是别的 -->
     <GameDemo ref="gameDemoRef" />
 
     <!-- 暂停遮罩 -->
@@ -28,9 +28,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import GameDemo from './game-demo/index.vue'
-import { eventBus } from './game-demo/event-bus'
-import { EVENT_KEYS } from './game-demo/constants'
+import { useEventBus } from '@/runtime'
+import { EVENT_KEYS } from '@/contents'
 
+const eventBus = useEventBus()
 const isPaused = ref(false)
 
 const pauseGame = () => {
