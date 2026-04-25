@@ -1,26 +1,17 @@
 <template>
-  <div class="relative min-h-screen bg-gray-900">
+  <div class="game-page">
     <!-- 游戏主体 -->
     <GameDemo ref="gameDemoRef" />
 
     <!-- 暂停遮罩 -->
     <Transition name="fade">
-      <div
-        v-if="isPaused"
-        class="absolute inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-      >
-        <div class="flex flex-col items-center gap-4 p-8 rounded-xl bg-gray-800/90 text-white">
-          <h2 class="text-2xl font-bold">⏸ 游戏暂停</h2>
-          <button
-            class="px-6 py-2 bg-green-600 rounded-lg hover:bg-green-500 transition text-lg"
-            @click="resumeGame"
-          >
+      <div v-if="isPaused" class="game-page__overlay">
+        <div class="game-page__pause-panel">
+          <h2 class="game-page__pause-title">⏸ 游戏暂停</h2>
+          <button class="game-page__resume-btn" @click="resumeGame">
             继续游戏
           </button>
-          <RouterLink
-            to="/"
-            class="px-6 py-2 bg-gray-600 rounded-lg hover:bg-gray-500 transition text-sm"
-          >
+          <RouterLink to="/" class="game-page__exit-btn">
             退出到主页
           </RouterLink>
         </div>
@@ -28,11 +19,7 @@
     </Transition>
 
     <!-- 暂停按钮（游戏进行中显示） -->
-    <button
-      v-if="!isPaused"
-      class="absolute top-4 right-4 z-10 px-3 py-1.5 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-lg transition text-sm"
-      @click="pauseGame"
-    >
+    <button v-if="!isPaused" class="game-page__pause-trigger" @click="pauseGame">
       ⏸ 暂停
     </button>
   </div>
@@ -73,11 +60,42 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="css" scoped>
+@reference "@/style.css";
+
+.game-page {
+  @apply relative min-h-screen bg-gray-900;
+}
+
+.game-page__overlay {
+  @apply absolute inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-sm;
+}
+
+.game-page__pause-panel {
+  @apply flex flex-col items-center gap-4 rounded-xl bg-gray-800/90 p-8 text-white;
+}
+
+.game-page__pause-title {
+  @apply text-2xl font-bold;
+}
+
+.game-page__resume-btn {
+  @apply rounded-lg bg-green-600 px-6 py-2 text-lg transition hover:bg-green-500;
+}
+
+.game-page__exit-btn {
+  @apply rounded-lg bg-gray-600 px-6 py-2 text-sm transition hover:bg-gray-500;
+}
+
+.game-page__pause-trigger {
+  @apply absolute top-4 right-4 z-10 rounded-lg bg-white/10 px-3 py-1.5 text-sm text-white/70 transition hover:bg-white/20 hover:text-white;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

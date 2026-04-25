@@ -38,14 +38,30 @@ const menuItems: MenuItem[] = [
 </script>
 
 <template>
-	<div class="flex min-h-screen flex-col items-center justify-center gap-12">
-		<h1 class="text-5xl font-bold tracking-widest text-amber-400">
+	<div class="home-page">
+		<h1 class="home-page__title">
 			[请输入文本]
 		</h1>
 
-		<nav class="flex flex-col items-center gap-4">
+		<nav class="home-page__nav">
 			<GameButton v-for="item in menuItems" :key="item.label" :label="item.label" :variant="item.variant"
 				@click="item.onClick" />
 		</nav>
 	</div>
 </template>
+
+<style lang="css" scoped>
+@reference "@/style.css";
+
+.home-page {
+	@apply flex min-h-screen flex-col items-center justify-center gap-12;
+}
+
+.home-page__title {
+	@apply text-5xl font-bold tracking-widest text-amber-400;
+}
+
+.home-page__nav {
+	@apply flex flex-col items-center gap-4;
+}
+</style>

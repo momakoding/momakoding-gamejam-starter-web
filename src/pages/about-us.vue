@@ -10,19 +10,41 @@ function goHome() {
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col items-center justify-center gap-10 px-6 py-10">
-    <h2 class="text-4xl font-bold text-amber-400">关于我们</h2>
+  <div class="about-us">
+    <h2 class="about-us__title">关于我们</h2>
 
-    <div class="max-w-lg text-center leading-relaxed text-slate-300 flex-1">
+    <div class="about-us__content">
       <p>Momakoding</p>
-      <p class="mt-4">这里是团队介绍和项目信息的占位文本。</p>
-
-
+      <p class="about-us__placeholder-text">这里是团队介绍和项目信息的占位文本。</p>
     </div>
-    <footer class="flex flex-col items-center">
-      <blockquote>使用Mamokoding GameJam Starter Web构建</blockquote>
 
+    <footer class="about-us__footer">
+      <blockquote>使用Momakoding GameJam Starter Web构建</blockquote>
       <GameButton label="返回主页" @click="goHome" />
     </footer>
   </div>
 </template>
+
+<style lang="css" scoped>
+@reference "@/style.css";
+
+.about-us {
+  @apply flex min-h-screen flex-col items-center justify-center gap-10 px-6 py-10;
+}
+
+.about-us__title {
+  @apply text-4xl font-bold text-amber-400;
+}
+
+.about-us__content {
+  @apply max-w-lg flex-1 text-center leading-relaxed text-slate-300;
+}
+
+.about-us__placeholder-text {
+  @apply mt-4;
+}
+
+.about-us__footer {
+  @apply flex flex-col items-center;
+}
+</style>
