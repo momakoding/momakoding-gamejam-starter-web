@@ -10,6 +10,7 @@ Project conventions **and shared codebase state** for AI coding agents working o
 ## 0. Multi-agent collaboration protocol
 
 ### The contract
+
 1. **Before coding**, skim §1–§12 once per session, then read the §13 subsection(s) relevant to your task.
 2. **While coding**, treat §13 tables as the authoritative list. If you need a new scene key / event / asset key / route / store, register it in §13 **before** wiring it up so other agents don't collide.
 3. **After coding**, do all of:
@@ -19,6 +20,7 @@ Project conventions **and shared codebase state** for AI coding agents working o
    - If you introduced a non-obvious trade-off (physics engine swap, asset pipeline change, etc.), add a row to §13.10 (Decision Log). Never silently re-decide past choices.
 
 ### Conflict-avoidance rules
+
 - **Namespaces are unique.** Scene keys, event keys, asset keys, and route paths must be unique globally. Check §13.3 / §13.5 / §13.6 / §13.2 before adding.
 - **One owner per feature.** When you start a multi-turn feature, add a `WIP` row to §13.9 with owner = your session id / agent name / date. When done, remove or mark `DONE`.
 - **No silent deletes.** If you delete code, move the registry row to a `~~strikethrough~~` line at the end of the table rather than removing it, so reviewers see history.
@@ -26,6 +28,7 @@ Project conventions **and shared codebase state** for AI coding agents working o
 - **Atomic updates.** One feature → one coherent §13 + §14 edit. Don't batch unrelated refactors into the same doc patch.
 
 ### Read-before-write checklist (copy into your plan)
+
 - [ ] Read §13.1 (directory map) to locate the right folder.
 - [ ] Read the registry table(s) for the layer I'm touching (scenes? events? assets?).
 - [ ] Confirm my new keys don't already exist.
@@ -156,15 +159,18 @@ The current `src/pages/game-demo/` is a **reference implementation** (platformer
 ## 10. CSS (Tailwind CSS v4)
 
 ### Atomic-first
+
 - Write utilities directly in templates.
 - Reach for `@apply` inside `<style scoped>` only when the **same** complex combination repeats across multiple elements within the same component. Avoid premature abstraction.
 - In scoped blocks that use `@apply`, start with `@reference "@/style.css";` so v4 can resolve theme tokens. See `App.vue` and `components/game-button.vue`.
 
 ### Theme tokens
+
 - Shared colors and tokens live in `src/style.css` under `@theme { … }` (v4 idiom). Examples: `--color-game-border`, `--color-scrollbar-thumb`.
 - Component-level color roles (player, enemy, danger) should be added to `@theme` when reused across ≥ 2 components.
 
 ### Custom classes
+
 - Custom class names follow **BEM** (`game-button`, `game-button--primary`, `game-button--secondary`).
 - Declare reusable custom utilities with `@utility` in `style.css` before `@apply`-ing them elsewhere (v4 rule).
 
@@ -172,11 +178,24 @@ The current `src/pages/game-demo/` is a **reference implementation** (platformer
 
 ## 11. Component organization
 
-- `src/components/` — globally reusable primitives (buttons, tags, panels, HUD widgets).
-- `src/pages/` — route-level components. If a page grows complex, split its sub-modules into a subdirectory named after the page (the current `pages/game-demo/` is an example).
-- `src/composables/` — `useXxx()` helpers for shared reactive logic.
-- `src/core/` — framework-agnostic game logic (pure TS, no Vue imports). Good for entity behaviors, math utilities, save format, event bus (once promoted out of `game-demo/`).
+The project is split into four non-overlapping layers. **Import direction is one-way: `pages → runtime/contents → engine`.**
+
+分层的判据是**"另一个 Phaser jam 游戏能不能复用"**，而不是"是否引用 Phaser"：engine/ 和 contents/ 都允许 import Phaser，只是抽象层级不同。
+
+- `src/engine/` — **引擎层**。UI 无关、**具体游戏**无关的 Phaser 薄封装（`GameShell`、`GameEventBus`、`SHELL_DEFAULTS`、`EventCallback`）。换游戏不改。**不 import 任何项目内模块**。
+- `src/contents/` — **游戏内容层**。UI 无关、**与 Phaser 耦合**（scenes 继承 `Phaser.Scene`、用 physics/input）但与 Vue/DOM 解耦的游戏世界：`constants.ts` 场景/事件/数值、`types.ts`、`scenes/`、未来的 `entities/`、`systems/`、`data/`。全项目**唯一**的 SCENE_KEYS / EVENT_KEYS / GAME_CONFIG 源头。
+- `src/runtime/` — **运行时胶水层**。Vue 侧模块级单例（`useGame()` / `useEventBus()`），把 engine 的类实例包装成应用生命周期内的全局服务。不持有游戏数据。
+- `src/composables/` — **真·Vue composables**。`useXxx()` 返回 `Ref` / `Reactive` 或依赖组件生命周期的 hook；不是 `useXxx()` 的单例服务请放到 `runtime/`。
+- `src/components/` — 全局可复用的 UI 原语（按钮、标签、面板、HUD widget）。
+- `src/pages/` — 路由级组件。page 变复杂时，按 page 名建子目录（`pages/game-demo/` 即示例）。
 - All `props` typed with TypeScript; all events typed with `defineEmits<...>()`.
+
+**依赖方向禁忌：**
+- `engine/` 不能 import `contents/` / `runtime/` / `pages/`。
+- `contents/` 不能 import `pages/`（但可以 import `engine/` 和 `runtime/`）。
+- 出现反向依赖说明分层错了。
+
+**`runtime/` → `contents/` 必须走深路径。** runtime 文件只能写 `import ... from "@/contents/constants"` / `"@/contents/types"`，**禁止走 `@/contents` 桶导出**。原因：`contents/scenes/*` 顶层有 `const eventBus = useEventBus()` / `const game = useGame()` 这类模块副作用，经 `@/contents` 桶会把 scenes 顺带加载进来；而 scenes 又反向 import `@/runtime`，于是 runtime 尚未初始化完成时 scenes 已经在调 `useGame()`，触发 ES 模块循环启动。现用范例：`src/runtime/game.ts`。
 
 ---
 
@@ -198,13 +217,13 @@ Full troubleshooting catalog: `.clinerules/02-trouble-shoot.md`.
 > Update discipline: every row below must point to a real file/symbol in `src/`. If you rename or delete it, update the row *in the same turn*. Do not remove rows — mark them `~~deprecated~~` at the bottom of the table.
 
 **Current scaffold status:** *Reference demo in place, real game not yet started.*
-**Scaffold last updated:** 2026-04-25;00:01
+**Scaffold last updated:** 2026-04-26;01:35
 
 ---
 
 ## 13.1 Directory map
 
-*Last updated: 2026-04-25;00:01*
+*Last updated: 2026-04-26;01:20*
 
 ```
 momakoding-gamejam-starter-web/
@@ -220,24 +239,45 @@ momakoding-gamejam-starter-web/
 │   ├── style.css              # Tailwind v4 entry + @theme tokens + scrollbar utilities
 │   ├── router/
 │   │   └── index.ts           # Hash-history routes
-│   ├── pages/
-│   │   ├── home-page.vue      # Home menu
-│   │   ├── how-to-play.vue    # Instructions
-│   │   ├── about-us.vue       # Credits
-│   │   ├── game.vue           # Game shell: pause overlay, ESC, exit
-│   │   └── game-demo/         # ⚠ Reference demo — slated for replacement
-│   │       ├── index.vue      # Mounts Phaser.Game + HUD
-│   │       ├── constants.ts   # SCENE_KEYS, EVENT_KEYS, GAME_CONFIG
-│   │       ├── event-bus.ts   # Singleton EventTarget wrapper
-│   │       └── scenes/
-│   │           ├── boot-scene.ts  # Generates placeholder textures
-│   │           └── game-scene.ts  # Platformer + star collection
+│   │
+│   ├── engine/                # ① 引擎层 (UI 无关 + 游戏无关，不 import 任何项目模块)
+│   │   ├── game-shell/
+│   │   │   ├── game-shell.ts  # Phaser.Game 生命周期薄封装
+│   │   │   ├── defaults.ts    # SHELL_DEFAULTS (engine 内部 fallback，不是游戏常量)
+│   │   │   └── index.ts
+│   │   ├── event-bus/
+│   │   │   ├── event-bus.ts   # GameEventBus (Map+Set 实现)
+│   │   │   └── index.ts
+│   │   ├── types.ts           # EventCallback 等引擎级类型
+│   │   └── index.ts
+│   │
+│   ├── contents/              # ② 游戏内容层 (UI 无关，与 Phaser 耦合，但换 UI 不改)
+│   │   ├── constants.ts       # ★ SCENE_KEYS / EVENT_KEYS / GAME_CONFIG 全项目唯一源
+│   │   ├── types.ts           # IGameSceneData 等内容层类型
+│   │   ├── scenes/
+│   │   │   ├── boot-scene.ts  # 生成占位纹理 → 切到 GameScene
+│   │   │   └── game-scene.ts  # 平台跳跃 + 星星收集
+│   │   └── index.ts
+│   │   # 未来按需扩：entities/ systems/ data/
+│   │
+│   ├── runtime/               # ③ 运行时胶水层 (Vue 侧模块级单例)
+│   │   ├── event-bus.ts       # useEventBus() 单例
+│   │   ├── game.ts            # useGame() 单例 (包装 GameShell)
+│   │   └── index.ts
+│   │
+│   ├── composables/           # ④ 真·Vue composables (暂空)
+│   │   └── index.ts
+│   │
 │   ├── components/
 │   │   └── game-button.vue    # BEM-styled button, primary/secondary variants
-│   ├── composables/
-│   │   └── index.ts           # (empty — stub for useXxx() helpers)
-│   └── core/
-│       └── index.ts           # (empty — stub for engine-agnostic game logic)
+│   │
+│   └── pages/
+│       ├── home-page.vue      # Home menu
+│       ├── how-to-play.vue    # Instructions
+│       ├── about-us.vue       # Credits
+│       ├── game.vue           # Game shell: pause overlay, ESC, exit
+│       └── game-demo/
+│           └── index.vue      # ⚠ 参考示范：Vue 侧如何挂载 contents 里的 scenes
 ├── AGENTS.md                  # ← this file
 ├── README.md
 ├── index.html
@@ -247,7 +287,7 @@ momakoding-gamejam-starter-web/
 └── pnpm-lock.yaml
 ```
 
-Folders that currently exist as **empty stubs** (`composables/`, `core/`) are intentional placeholders — populate them as real utilities emerge, following §11.
+`composables/` 目前是空 stub；新的 `useXxx()` hook（返回 `Ref` 或依赖组件生命周期）放这里，全局单例服务放 `runtime/`。
 
 ---
 
@@ -268,14 +308,14 @@ History mode: **hash** (`createWebHashHistory`).
 
 ## 13.3 Phaser scenes
 
-*Last updated: 2026-04-25;00:03. Source of truth: `src/pages/game-demo/scenes/` and `constants.ts` → `SCENE_KEYS`.*
+*Last updated: 2026-04-26;01:20. Source of truth: `src/contents/scenes/` and `src/contents/constants.ts` → `SCENE_KEYS`.*
 
 | Key (string) | Class | File | Role | Init data |
 |---|---|---|---|---|
-| `BootScene` | `BootScene` | `src/pages/game-demo/scenes/boot-scene.ts` | Load / generate placeholder textures, show progress bar, then `scene.start(GameScene)` | none |
-| `GameScene` | `GameScene` | `src/pages/game-demo/scenes/game-scene.ts` | Platformer gameplay: player, platforms, stars, score | `IGameSceneData = { startScore?: number }` |
+| `BootScene` | `BootScene` | `src/contents/scenes/boot-scene.ts` | 生成占位纹理 + 加载进度条 → `game.switchToScene(GameScene)` | none |
+| `GameScene` | `GameScene` | `src/contents/scenes/game-scene.ts` | 平台跳跃 + 收集星星 | `IGameSceneData = { startScore?: number }` |
 
-Scene boot order is declared in `src/pages/game-demo/index.vue` → `new Phaser.Game({ scene: [BootScene, GameScene] })`.
+场景装载顺序在 `src/pages/game-demo/index.vue` → `useGame().initGame(container, BootScene)` + `addScene(GameScene)`。
 
 ---
 
@@ -374,6 +414,12 @@ Record non-obvious architectural choices so future agents don't re-litigate them
 | 2026-04-25;00:01 | Router uses hash history | Works for `file://` and static hosting without server config |
 | 2026-04-25;00:01 | Pinia + persisted-state installed but unused | Reserved for real-game save data; no stub stores until needed |
 | 2026-04-25;00:01 | `game-demo/` is reference-only and will be deleted | New game code should live at `src/pages/game/` (or similar) and import from `src/core/` — not extend the demo in place |
+| 2026-04-26;01:20 | 分层重构：`core/` → `engine/`（引擎基建） + 新增 `contents/`（游戏内容层）+ `composables/runtime/` → `runtime/`（Vue 单例胶水） | `core` 名字暧昧、常量跟 shell 混在同一目录；现在四层职责正交：engine 换游戏不改、contents 换 UI 不改、runtime 仅做 Vue 胶水、pages 仅 UI。`GAME_CONFIG.WIDTH/HEIGHT` 从 shell 里拿掉，改为 `SHELL_DEFAULTS` 引擎内部兜底，彻底切断 engine → contents 的反向依赖 |
+| 2026-04-26;01:20 | `createGameShell(container, initialScene)` 签名不接受 config 对象 | 避免 Java-style 构造参数爆炸；游戏要覆盖画幅/物理就在 `BootScene.init()` 里用 Phaser 原生 API（`this.scale.resize(...)`），shell 永远只管生命周期 |
+| 2026-04-26;01:20 | `src/pages/game-demo/` 只保留 `index.vue`，场景/常量/event-bus 的副本全部清除 | Vue 侧"如何挂载一个 Phaser 游戏"是 page 层的职责；场景本身是游戏内容，住 `contents/`。单一事实源 |
+| 2026-04-26;01:35 | `contents/` 的定位改成"UI 无关 + 与 Phaser 耦合"（原先误标为"引擎无关"） | scenes 继承 `Phaser.Scene`、用 physics/input，天然跟 Phaser 耦合。分层判据是"另一个 Phaser jam 游戏能不能复用"而不是"是否碰 Phaser"；engine 能复用、contents 不能复用，两边都可用 Phaser |
+| 2026-04-26;01:35 | scenes 留在 `contents/scenes/`，不单拎为顶层 `src/scenes/` | scenes 高度依赖 `contents/constants` / `types` / 未来的 `entities`，拆开只会增加跨目录 import；jam 节奏下内容层向内生长（contents/entities, contents/systems）而不是向外膨胀 |
+| 2026-04-26;01:35 | `runtime/` 引用 `contents/` 一律走深路径（`@/contents/constants` / `@/contents/types`），禁止走桶 | `contents/scenes/*` 顶层有 `useGame()` / `useEventBus()` 的模块级副作用；桶导出 `@/contents` 会把 scenes 拖进来，而 scenes 反向 import `@/runtime`，造成 runtime 初始化未完成时 scenes 已经在调 runtime → 循环启动死锁 |
 
 ---
 
@@ -381,4 +427,6 @@ Record non-obvious architectural choices so future agents don't re-litigate them
 
 One line per change that touches §13. Newest at the top. Keep it short.
 
+- **2026-04-26;01:35** — 修正 `contents/` 分层描述（"UI 无关 + 与 Phaser 耦合"，不是"引擎无关"）；确认 scenes 留在 `contents/scenes/` 不外拎；新增"runtime → contents 必须走深路径"规则到 §11；同步 §13.10 决策日志（三条新决策）。
+- **2026-04-26;01:20** — 分层重构：`core` → `engine`；新增 `contents` 作为游戏内容层（场景/常量/类型的唯一源）；`composables/runtime` → `runtime`（提升到顶级）；`game-demo` 只保留 Vue 挂载示范。同步 §11 / §13.1 / §13.3 / §13.10；engine 不再依赖 `GAME_CONFIG`，改用内部 `SHELL_DEFAULTS`。
 - **2026-04-25;00:01** — Initial AGENTS.md rewrite: removed Nuxt / PrimeVue / portal sections irrelevant to this project; added §13 Codebase State registries (routes, scenes, entities, events, assets, types, stores, WIP, decisions) and §0 multi-agent protocol.
