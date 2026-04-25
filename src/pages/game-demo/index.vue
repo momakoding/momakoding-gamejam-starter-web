@@ -1,34 +1,27 @@
 <template>
-  <div class="relative flex items-center justify-center min-h-screen bg-gray-900">
+  <div class="game-demo">
     <!-- Phaser 画布挂载点 -->
-    <div ref="gameContainer" class="relative">
+    <div ref="gameContainer" class="game-demo__canvas">
       <!-- Vue HUD 层：叠在 Phaser 画布上方 -->
-      <div class="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-4 py-2 pointer-events-none">
-        <span class="text-yellow-300 text-lg font-bold">⭐ 分数: {{ score }}</span>
-        <button
-          class="pointer-events-auto px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-500 transition"
-          @click="restartGame"
-        >
+      <div class="game-demo__hud">
+        <span class="game-demo__score">⭐ 分数: {{ score }}</span>
+        <button class="game-demo__restart-btn" @click="restartGame">
           重新开始
         </button>
       </div>
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import * as Phaser from 'phaser'
-import { BootScene } from './scenes/boot-scene'
-import { GameScene } from './scenes/game-scene'
-import { GAME_CONFIG, EVENT_KEYS } from './constants'
-import { eventBus } from './event-bus'
+import { EVENT_KEYS, BootScene, GameScene } from '@/contents'
+import { useEventBus, useGame } from '@/runtime'
 
 const gameContainer = ref<HTMLDivElement>()
 const score = ref(0)
-
-let game: Phaser.Game | null = null
+const eventBus = useEventBus()
+const game = useGame()
 
 /** 监听 Phaser 发来的分数更新 */
 const onScoreUpdate = (newScore: unknown) => {
@@ -47,39 +40,39 @@ onMounted(() => {
   // 监听事件
   eventBus.on(EVENT_KEYS.SCORE_UPDATE, onScoreUpdate)
 
-  // 创建 Phaser 实例
-  game = new Phaser.Game({
-    type: Phaser.AUTO,
-    width: GAME_CONFIG.WIDTH,
-    height: GAME_CONFIG.HEIGHT,
-    parent: gameContainer.value,
-    physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { x: 0, y: 0 }, // 重力在玩家 body 上单独设置
-        debug: false,
-      },
-    },
-    scene: [BootScene, GameScene],
-    // 让 canvas 不抢焦点导致页面滚动
-    input: {
-      keyboard: true,
-    },
-  })
+  // 创建 Phaser 实例：BootScene 作为初始场景，GameScene 后续动态加入
+  game.initGame(gameContainer.value, BootScene)
+  game.addScene(GameScene)
 })
 
 onUnmounted(() => {
-  // 清理：销毁 Phaser 实例 + 事件监听
+  // 精确 off，而非 clear()：避免误清 pages/game.vue 挂的 pause/resume 监听
   eventBus.off(EVENT_KEYS.SCORE_UPDATE, onScoreUpdate)
-  eventBus.clear()
 
-  if (game) {
-    game.destroy(true)
-    game = null
-  }
+  game.destroyGame(true)
 })
 </script>
 
-<style scoped>
-/* Phaser canvas 自动插入到 gameContainer 内，无需额外样式 */
+<style lang="css" scoped>
+@reference "@/style.css";
+
+.game-demo {
+  @apply relative flex min-h-screen items-center justify-center bg-gray-900;
+}
+
+.game-demo__canvas {
+  @apply relative;
+}
+
+.game-demo__hud {
+  @apply pointer-events-none absolute top-0 right-0 left-0 z-10 flex items-center justify-between px-4 py-2;
+}
+
+.game-demo__score {
+  @apply text-lg font-bold text-yellow-300;
+}
+
+.game-demo__restart-btn {
+  @apply pointer-events-auto rounded bg-red-600 px-3 py-1 text-sm text-white transition hover:bg-red-500;
+}
 </style>

@@ -1,6 +1,8 @@
 import * as Phaser from 'phaser'
 import { SCENE_KEYS, GAME_CONFIG } from '../constants'
+import { useGame } from '@/runtime'
 
+const game = useGame()
 /**
  * 启动场景 - 用占位图形生成纹理，无需外部素材文件
  *
@@ -8,6 +10,7 @@ import { SCENE_KEYS, GAME_CONFIG } from '../constants'
  * 1. Phaser.Scene 的 Class 结构
  * 2. preload / create 生命周期
  * 3. 用 Graphics 生成纹理 (generateTexture) 替代真实图片
+ * 4. 若游戏需要覆盖 shell 缺省画幅，在这里调 this.scale.resize() 即可
  */
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -15,6 +18,9 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload(): void {
+    // demo 与 shell 默认画幅一致 (800x600)，若需自定义：
+    // this.scale.resize(GAME_CONFIG.WIDTH, GAME_CONFIG.HEIGHT)
+
     // 显示加载进度（demo 里瞬间完成，但结构要有）
     const { WIDTH: width, HEIGHT: height } = GAME_CONFIG
     const progressBar = this.add.graphics()
@@ -59,6 +65,6 @@ export class BootScene extends Phaser.Scene {
     platformGfx.destroy()
 
     // 跳转到主游戏场景
-    this.scene.start(SCENE_KEYS.GAME)
+    game.switchToScene(SCENE_KEYS.GAME)
   }
 }

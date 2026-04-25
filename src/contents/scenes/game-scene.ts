@@ -1,7 +1,9 @@
 import * as Phaser from 'phaser'
 import { SCENE_KEYS, GAME_CONFIG, EVENT_KEYS } from '../constants'
-import { eventBus } from '../event-bus'
+import type { IGameSceneData } from '../types'
+import { useEventBus } from '@/runtime'
 
+const eventBus = useEventBus()
 /**
  * 主游戏场景 - 平台跳跃 + 收集星星
  *
@@ -12,12 +14,6 @@ import { eventBus } from '../event-bus'
  * 4. EventBus 与 Vue HUD 通信
  * 5. shutdown 事件中清理监听器
  */
-
-/** 场景初始化数据接口 */
-interface IGameSceneData {
-  startScore?: number
-}
-
 export class GameScene extends Phaser.Scene {
   // ---- 类型声明 ----
   private player!: Phaser.Physics.Arcade.Sprite
@@ -40,7 +36,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    const { WIDTH, HEIGHT, STAR_COUNT, GRAVITY, PLAYER_SPEED } = GAME_CONFIG
+    const { WIDTH, HEIGHT, STAR_COUNT, GRAVITY } = GAME_CONFIG
 
     // ---- 背景 ----
     this.cameras.main.setBackgroundColor('#1a1a2e')
