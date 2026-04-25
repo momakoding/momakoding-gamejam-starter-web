@@ -34,6 +34,7 @@ export const GAME_CONFIG = { WIDTH: 800, HEIGHT: 600, ... } as const
 ```
 
 为什么这样做：
+
 - 场景 Key 用字符串容易拼错，常量化后 TS 会帮你检查
 - 游戏参数集中管理，调参时只改一个地方
 - `as const` 让 TS 推断出字面量类型，更精确
@@ -43,6 +44,7 @@ export const GAME_CONFIG = { WIDTH: 800, HEIGHT: 600, ... } as const
 基于浏览器原生 `EventTarget`，零依赖实现发布/订阅模式。
 
 关键设计：
+
 - `on(event, callback)` — 注册监听
 - `off(event, callback)` — 移除监听
 - `emit(event, ...args)` — 触发事件
@@ -55,6 +57,7 @@ export const GAME_CONFIG = { WIDTH: 800, HEIGHT: 600, ... } as const
 学习要点：
 
 1. **Scene 的 Class 结构**
+
    ```ts
    export class BootScene extends Phaser.Scene {
      constructor() { super({ key: 'BootScene' }) }
@@ -64,6 +67,7 @@ export const GAME_CONFIG = { WIDTH: 800, HEIGHT: 600, ... } as const
    ```
 
 2. **用 Graphics 生成占位纹理**（无需真实图片）
+
    ```ts
    const gfx = this.make.graphics({ x: 0, y: 0 })
    gfx.fillStyle(0x4488ff, 1)
@@ -71,9 +75,11 @@ export const GAME_CONFIG = { WIDTH: 800, HEIGHT: 600, ... } as const
    gfx.generateTexture('player', 32, 48)  // 生成名为 'player' 的纹理
    gfx.destroy()  // 用完即销毁 Graphics 对象
    ```
+
    这是 Game Jam 的利器——先用色块跑通逻辑，后期再替换美术素材。
 
 3. **场景跳转**
+
    ```ts
    this.scene.start(SCENE_KEYS.GAME)  // 切换到游戏场景
    ```
@@ -154,6 +160,7 @@ this.events.on('shutdown', () => {
 ### 2.5 `index.vue` — Vue 容器
 
 关键职责：
+
 1. 提供 `<div ref="gameContainer">` 作为 Phaser canvas 的挂载点
 2. HUD 层用 `absolute + z-10 + pointer-events-none` 叠在 canvas 上方
 3. `onMounted` 中创建 `new Phaser.Game({ parent: gameContainer })`
@@ -173,15 +180,19 @@ game = new Phaser.Game({
 ## 3. 常见问题
 
 ### Q: 为什么重力设为 0，玩家还会掉下来？
+
 A: 全局重力为 0，但在 GameScene 中给玩家 body 单独设了 `setGravityY(800)`。这样星星不会受重力影响（它们有 bounce 但不会一直往下掉）。
 
 ### Q: 为什么用 `generateTexture` 而不是加载图片？
+
 A: Game Jam 快速原型阶段，逻辑先行。用色块占位可以立即跑起来，不用等美术。后期替换只需改 `preload` 里的加载逻辑。
 
 ### Q: EventBus 为什么不用 Pinia？
+
 A: Pinia 是 Vue 的状态管理，Phaser 场景里拿不到 Vue 的响应式上下文。EventBus 是框架无关的，两边都能用。
 
 ### Q: 场景切换时为什么要手动清理事件？
+
 A: Phaser 的 `shutdown` 会销毁场景内的游戏对象，但不会自动清理你挂在外部（EventBus）上的监听器。不清理 = 内存泄漏 + 幽灵回调。
 
 ## 4. 扩展方向
