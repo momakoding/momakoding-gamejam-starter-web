@@ -28,10 +28,21 @@ pnpm build
 ## 项目结构
 
 ```
+.
+├── docs/                       # 项目文档
+│   ├── spec-framework.md       # UI/工程框架规格说明
+│   ├── game-demo.md            # Phaser Demo 使用与结构说明
+│   └── phaser-study.md         # Phaser + Vue 集成学习拆解
+├── public/                     # 静态资源（原样拷贝）
+│   ├── favicon.svg
+│   ├── icons.svg
+│   └── logo.png
+│
 src/
 ├── main.ts                    # 应用入口
 ├── App.vue                    # 根组件
 ├── style.css                  # Tailwind 全局样式入口
+├── assets/                    # 由 Vite 处理的图片/静态素材
 │
 ├── pages/                     # 页面组件
 │   ├── home-page.vue          # 首页：标题 + 菜单按钮
@@ -50,14 +61,43 @@ src/
 │   └── game-button.vue
 │
 ├── composables/               # 组合式函数
-│   └── index.ts
+│   ├── index.ts                # 统一导出
+│   └── runtime/                # 运行时单例封装
+│       ├── event-bus.ts        # 全局事件总线 useEventBus()
+│       ├── game-shell.ts       # 游戏控制门面 useGame()
+│       ├── reactive.ts         # 轻量响应式参数实验封装
+│       └── index.ts            # runtime 统一导出
 │
-├── core/                      # 游戏核心逻辑（预留）
-│   └── index.ts
+├── core/                      # 与 Vue 解耦的游戏核心能力
+│   ├── index.ts                # core 统一导出
+│   ├── constants.ts            # 通用场景/事件/游戏配置常量
+│   ├── type.ts                 # 核心类型预留
+│   ├── event-bus/              # 核心事件总线实现
+│   │   ├── event-bus.ts        # GameEventBus 类
+│   │   ├── type.ts             # 事件回调类型
+│   │   └── index.ts            # event-bus 统一导出
+│   └── game-shell/             # Phaser 实例生命周期封装（进行中）
+│       ├── game-shell.ts       # GameShell 类
+│       └── index.ts            # game-shell 统一导出
 │
 └── router/                    # 路由配置
     └── index.ts
+
+配置文件：
+├── package.json                # 脚本与依赖
+├── vite.config.ts              # Vite / Vue / Tailwind / 自动导入配置
+├── tsconfig*.json              # TypeScript 配置
+└── index.html                  # Vite HTML 入口
 ```
+
+### 结构约定
+
+- `pages/` 放路由页面；页面文件使用 kebab-case，路由由 `src/router/index.ts` 显式维护。
+- `components/` 放可复用 UI 组件；Vue 组件只负责菜单、HUD、按钮等表现层。
+- `pages/game-demo/` 是可替换的 Demo 模块，包含自己的场景、常量和 Demo 专用事件桥接。
+- `core/` 放不依赖 Vue 组件的核心能力，例如事件总线、游戏 Shell、通用常量。
+- `composables/runtime/` 放 Vue 侧运行时单例/门面，用于把 UI 操作转换为核心事件或游戏控制。
+- `public/` 适合放不会经过打包处理的资源；`src/assets/` 适合放需要 import、hash 或参与构建的资源。
 
 ## 路由
 
@@ -93,3 +133,10 @@ src/
 - `docs/spec-framework.md` — UI 框架规格说明
 - `docs/game-demo.md` — 游戏 Demo 说明
 - `docs/phaser-study.md` — Phaser + Vue 集成学习拆解
+
+## 开发约定
+
+- 新增 Phaser 场景时使用 Class 结构，并在 `shutdown` / `destroy` 阶段清理自定义监听器。
+- 资源 Key、场景 Key、事件 Key 优先放入常量文件集中管理。
+- Vue 与 Phaser 通过 EventBus / Registry 通信，避免在 Vue 组件中编写核心游戏逻辑。
+- Game Jam 原型优先保证可运行闭环；缺少素材时使用 Phaser 图形或 `generateTexture` 生成占位资源。
