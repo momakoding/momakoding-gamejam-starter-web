@@ -21,7 +21,7 @@ const router = createRouter({
     {
       path: '/game',
       name: 'game',
-      component: () => import('@/pages/game.vue'),
+      component: () => import('@/pages/game/index.vue'),
     },
   ],
 })

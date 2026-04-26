@@ -216,21 +216,21 @@ Full troubleshooting catalog: `.clinerules/02-trouble-shoot.md`.
 
 > Update discipline: every row below must point to a real file/symbol in `src/`. If you rename or delete it, update the row *in the same turn*. Do not remove rows — mark them `~~deprecated~~` at the bottom of the table.
 
-**Current scaffold status:** *Reference demo in place, real game not yet started.*
-**Scaffold last updated:** 2026-04-26;01:35
+**Current scaffold status:** *"Neon Hunter" — top-down arena survival shooter. Playable end-to-end: waves, XP / level-up with upgrade picks, 4 enemy types + boss, procedural sprites, Web Audio SFX, game-over & high score.*
+**Scaffold last updated:** 2026-04-26;11:08
 
 ---
 
 ## 13.1 Directory map
 
-*Last updated: 2026-04-26;01:20*
+*Last updated: 2026-04-26;10:47*
 
 ```
 momakoding-gamejam-starter-web/
 ├── .clinerules/               # Original Chinese project rules (source of AGENTS.md)
 ├── docs/
-│   ├── game-demo.md           # Demo walkthrough
-│   ├── phaser-study.md        # Phaser + Vue integration study (中文, 193 lines)
+│   ├── game-demo.md           # Demo walkthrough (legacy; demo removed)
+│   ├── phaser-study.md        # Phaser + Vue integration study (中文)
 │   └── spec-framework.md      # UI framework spec
 ├── public/                    # Static assets served as-is
 ├── src/
@@ -252,13 +252,24 @@ momakoding-gamejam-starter-web/
 │   │   └── index.ts
 │   │
 │   ├── contents/              # ② 游戏内容层 (UI 无关，与 Phaser 耦合，但换 UI 不改)
-│   │   ├── constants.ts       # ★ SCENE_KEYS / EVENT_KEYS / GAME_CONFIG 全项目唯一源
-│   │   ├── types.ts           # IGameSceneData 等内容层类型
+│   │   ├── constants.ts       # ★ SCENE_KEYS / EVENT_KEYS / TEXTURE_KEYS / WORLD / PLAYER_BASE / ENEMY_STATS / PROGRESSION / DIFFICULTY / WAVE_UNLOCKS
+│   │   ├── types.ts           # IGameSceneData / IHudState / ILevelUpPayload / IUpgradeOption / IGameOverPayload / UpgradeId / EnemyKind
 │   │   ├── scenes/
-│   │   │   ├── boot-scene.ts  # 生成占位纹理 → 切到 GameScene
-│   │   │   └── game-scene.ts  # 平台跳跃 + 星星收集
+│   │   │   ├── boot-scene.ts  # 程序化生成全部纹理 + 进度条 → GameScene
+│   │   │   ├── game-scene.ts  # 主游戏场景：波次 / 升级 / 碰撞 / HUD 广播
+│   │   │   └── index.ts
+│   │   ├── entities/
+│   │   │   ├── player.ts      # Player (WASD + 鼠标瞄准 + 冲刺 + 射击 + 升级应用)
+│   │   │   ├── enemy.ts       # Enemy (GRUNT/RUNNER/SHOOTER/TANK/BOSS 五合一 kind)
+│   │   │   ├── bullet.ts      # Bullet (玩家/敌人共用，支持穿透)
+│   │   │   ├── xp-gem.ts      # XpGem + HealthPickup (掉落 + 磁吸)
+│   │   │   └── index.ts
+│   │   ├── systems/
+│   │   │   ├── audio-system.ts    # AudioSystem (Web Audio 合成 SFX，无文件)
+│   │   │   ├── wave-system.ts     # WaveSystem (难度曲线 + 刷怪节奏 + boss 波)
+│   │   │   ├── upgrade-system.ts  # UPGRADE_POOL + pickUpgrades (加权随机)
+│   │   │   └── index.ts
 │   │   └── index.ts
-│   │   # 未来按需扩：entities/ systems/ data/
 │   │
 │   ├── runtime/               # ③ 运行时胶水层 (Vue 侧模块级单例)
 │   │   ├── event-bus.ts       # useEventBus() 单例
@@ -272,12 +283,16 @@ momakoding-gamejam-starter-web/
 │   │   └── game-button.vue    # BEM-styled button, primary/secondary variants
 │   │
 │   └── pages/
-│       ├── home-page.vue      # Home menu
-│       ├── how-to-play.vue    # Instructions
-│       ├── about-us.vue       # Credits
-│       ├── game.vue           # Game shell: pause overlay, ESC, exit
-│       └── game-demo/
-│           └── index.vue      # ⚠ 参考示范：Vue 侧如何挂载 contents 里的 scenes
+│       ├── home-page.vue          # Title + menu (NEON HUNTER 品牌化)
+│       ├── how-to-play.vue        # 操作说明 + 生存要点
+│       ├── about-us.vue           # Credits
+│       └── game/
+│           ├── index.vue              # 顶层：协调 HUD / overlay / 键鼠 ↔ EventBus
+│           ├── game-canvas.vue        # Phaser 画布挂载点（唯一调 initGame/destroyGame）
+│           ├── game-hud.vue           # HP / 波次 / 等级+XP / 分数 / 击杀 / 冲刺 CD / 静音
+│           ├── level-up-overlay.vue   # 升级时的三选一卡片
+│           ├── pause-overlay.vue      # ESC 暂停面板
+│           └── game-over-overlay.vue  # 死亡结算 + 高分 + 重来/回主页
 ├── AGENTS.md                  # ← this file
 ├── README.md
 ├── index.html
@@ -293,14 +308,14 @@ momakoding-gamejam-starter-web/
 
 ## 13.2 Routes
 
-*Last updated: 2026-04-25;00:01. Source of truth: `src/router/index.ts`.*
+*Last updated: 2026-04-26;10:47. Source of truth: `src/router/index.ts`.*
 
 | Path | Name | Component | Purpose |
 |---|---|---|---|
-| `/` | `home` | `pages/home-page.vue` | Title + menu |
-| `/how-to-play` | `how-to-play` | `pages/how-to-play.vue` | Instructions |
+| `/` | `home` | `pages/home-page.vue` | NEON HUNTER 主菜单 |
+| `/how-to-play` | `how-to-play` | `pages/how-to-play.vue` | 操作 + 生存要点 |
 | `/about-us` | `about-us` | `pages/about-us.vue` | Credits |
-| `/game` | `game` | `pages/game.vue` | Game host (mounts Phaser via `game-demo/index.vue`) |
+| `/game` | `game` | `pages/game/index.vue` | Game host：Phaser 画布 + HUD + 升级/暂停/结算 overlay |
 
 History mode: **hash** (`createWebHashHistory`).
 
@@ -308,87 +323,126 @@ History mode: **hash** (`createWebHashHistory`).
 
 ## 13.3 Phaser scenes
 
-*Last updated: 2026-04-26;01:20. Source of truth: `src/contents/scenes/` and `src/contents/constants.ts` → `SCENE_KEYS`.*
+*Last updated: 2026-04-26;10:47. Source of truth: `src/contents/scenes/` and `src/contents/constants.ts` → `SCENE_KEYS`.*
 
 | Key (string) | Class | File | Role | Init data |
 |---|---|---|---|---|
-| `BootScene` | `BootScene` | `src/contents/scenes/boot-scene.ts` | 生成占位纹理 + 加载进度条 → `game.switchToScene(GameScene)` | none |
-| `GameScene` | `GameScene` | `src/contents/scenes/game-scene.ts` | 平台跳跃 + 收集星星 | `IGameSceneData = { startScore?: number }` |
+| `BootScene` | `BootScene` | `src/contents/scenes/boot-scene.ts` | `scale.resize(WORLD)` + 程序化生成所有纹理 + 初始化 AudioSystem → 延迟 250ms 切到 `GameScene` | none |
+| `GameScene` | `GameScene` | `src/contents/scenes/game-scene.ts` | 竞技场生存：玩家 / 敌人组 / 弹丸组 / XP / 波次 / 升级 / HUD 广播 / 死亡结算 | `IGameSceneData = { startScore?: number }` |
 
-场景装载顺序在 `src/pages/game-demo/index.vue` → `useGame().initGame(container, BootScene)` + `addScene(GameScene)`。
+场景装载顺序在 `src/pages/game/game-canvas.vue` → `useGame().initGame(container, BootScene)` + `addScene(GameScene)`。`GameScene` 不是路由的一级，而是 `BootScene.create()` 里 `game.switchToScene(SCENE_KEYS.GAME)` 触发。
 
 ---
 
 ## 13.4 Game entities
 
-*Last updated: 2026-04-25;00:03. Source of truth: `src/pages/game-demo/scenes/game-scene.ts`.*
+*Last updated: 2026-04-26;10:47. Source of truth: `src/contents/entities/` + `src/contents/scenes/game-scene.ts`.*
 
-| Entity | Type | Texture key | Defined in | Notes |
+| Entity | Class / Type | Texture key(s) | Defined in | Notes |
 |---|---|---|---|---|
-| Player | `Phaser.Physics.Arcade.Sprite` | `player` | `GameScene.create()` | World-bounded, gravity on body (`GRAVITY`), speed `PLAYER_SPEED`, jump `PLAYER_JUMP` |
-| Platforms | `Phaser.Physics.Arcade.StaticGroup` | `platform` | `GameScene.create()` | One ground spanning the level + 4 floating platforms |
-| Stars | `Phaser.Physics.Arcade.Group` | `star` | `GameScene.spawnStars()` | `STAR_COUNT` per wave, `setBounceY(0.2..0.5)`, respawn after `STAR_RESPAWN_DELAY` when all collected |
+| Player | `Player extends Phaser.Physics.Arcade.Sprite` | `player` + `player-gun` + `muzzle-flash` | `entities/player.ts` | WASD + 方向键；**自动瞄准最近敌人 + 自动开火**（`IPlayerDeps.getNearestEnemy` 由 `GameScene.findNearestEnemy` 注入）；SPACE 冲刺（带 i-frame + 冷却）；`applyUpgrade(id)` 消费 `UpgradeId`；body = 圆 `PLAYER_BASE.BODY_RADIUS`；相机 `startFollow` + deadzone |
+| Enemies (group) | `Phaser.Physics.Arcade.Group { classType: Enemy, maxSize: 80 }` | `enemy-grunt` / `enemy-runner` / `enemy-shooter` / `enemy-tank` / `enemy-boss` | `entities/enemy.ts` | 五合一 `kind: EnemyKind`；`spawn(x,y,kind,wave)` 应用随波次缩放（HP/SPEED/DAMAGE）；Shooter 保持距离 + 周期射；Boss 扇形弹幕 |
+| Player bullets | `Phaser.Physics.Arcade.Group { classType: Bullet, maxSize: 120 }` | `bullet-player` | `entities/bullet.ts` | `Bullet.fire(...)`；`pierceLeft` 计数；用 `hitEnemyIds: Set<number>` 防止单发反复命中同一敌人（euid 标记） |
+| Enemy bullets | `Phaser.Physics.Arcade.Group { classType: Bullet, maxSize: 80 }` | `bullet-enemy` | `entities/bullet.ts` | 与玩家弹共用 `Bullet` 类，`isPlayerBullet=false` 区分碰撞 |
+| XP gems | `Phaser.Physics.Arcade.Group { classType: XpGem, maxSize: 300 }` | `xp-gem` | `entities/xp-gem.ts` | 落地→静置→进入 `pickupRadius` 被磁吸向玩家；吸附时解除 drag，速度随距离缩放 |
+| Health pickups | `Phaser.Physics.Arcade.Group { classType: HealthPickup, maxSize: 20 }` | `health-pickup` | `entities/xp-gem.ts` | 低概率掉落（`HEALTH_DROP_CHANCE`）；Boss 必掉 |
+| Ground tile | `Phaser.GameObjects.TileSprite` | `ground-tile` | `GameScene.create` | 铺满 `ARENA` 的网格深蓝底；随相机 `scrollX/Y * 0.2` 视差 |
+| Arena border | `Phaser.GameObjects.Graphics` | — | `GameScene.create` | 双层青光描边 |
+| Particles | `this.add.particles(...)` ad-hoc | `particle` | `GameScene.spawnExplosion` / `spawnHitSparks` | 一次性 `explode()`，800ms 后 destroy；Boss 死亡粒子更大更多 |
+| Vignette | `Phaser.GameObjects.Graphics` | — | `GameScene.drawVignette` | 固定于相机 (`setScrollFactor(0)`)，多层透明描边模拟暗角 |
 
-Collisions wired: `player ↔ platforms`, `stars ↔ platforms`, `player ↔ stars` (overlap → `collectStar`).
+Collisions wired (via `this.physics.add.overlap`):
+- `playerBullets ↔ enemies` → `onBulletHitEnemy` (伤害 + 粒子 + 穿透计数)
+- `enemyBullets ↔ player` → `onEnemyBulletHitPlayer`
+- `player ↔ enemies` → `onPlayerHitEnemy` (接触伤害 + 回弹)
+- `player ↔ xpGems` → `onCollectXp` (升级循环)
+- `player ↔ healthPickups` → `onCollectHealth`
 
 ---
 
 ## 13.5 EventBus events
 
-*Last updated: 2026-04-25;00:03. Source of truth: `src/pages/game-demo/constants.ts` → `EVENT_KEYS`. Bus implementation: `src/pages/game-demo/event-bus.ts`.*
+*Last updated: 2026-04-26;10:47. Source of truth: `src/contents/constants.ts` → `EVENT_KEYS`. Bus implementation: `src/engine/event-bus/event-bus.ts` (runtime singleton at `src/runtime/event-bus.ts`).*
 
 | Key constant | String | Direction | Payload | Emitted by | Listened by |
 |---|---|---|---|---|---|
-| `SCORE_UPDATE` | `score:update` | Phaser → Vue | `number` (total score) | `GameScene.collectStar`, `GameScene.create` | `pages/game-demo/index.vue` |
-| `GAME_OVER` | `game:over` | Phaser → Vue | *(unused yet)* | — | — |
-| `GAME_RESTART` | `game:restart` | Vue → Phaser | *(none)* | `pages/game-demo/index.vue` `restartGame` | `GameScene.handleRestart` |
-| `GAME_PAUSE` | `game:pause` | Vue → Phaser | *(none)* | `pages/game.vue` `pauseGame` | `GameScene.handlePause` |
-| `GAME_RESUME` | `game:resume` | Vue → Phaser | *(none)* | `pages/game.vue` `resumeGame` | `GameScene.handleResume` |
+| `HUD_UPDATE` | `hud:update` | Phaser → Vue | `IHudState` (hp/maxHp/score/wave/level/xp/xpToNext/weaponLabel/elapsedMs/kills/dashReadyAt/now) | `GameScene.broadcastHud` (节流 120ms + 关键事件 force) | `pages/game/index.vue` `onHudUpdate` |
+| `LEVEL_UP` | `level:up` | Phaser → Vue | `ILevelUpPayload` ({ newLevel, choices: IUpgradeOption[] }) | `GameScene.triggerLevelUp` | `pages/game/index.vue` → `LevelUpOverlay` |
+| `WAVE_START` | `wave:start` | Phaser → Vue | `number` (wave) | `WaveSystem.onWaveStart` → `GameScene` | `pages/game/index.vue`（触发 `GameHud` flash） |
+| `WAVE_CLEARED` | `wave:cleared` | Phaser → Vue | `number` (wave) | `WaveSystem.onWaveCleared` → `GameScene` | *(reserved — 现仅用于 audio `playWaveClear`)* |
+| `GAME_OVER` | `game:over` | Phaser → Vue | `IGameOverPayload` | `GameScene.handlePlayerDeath` (900ms 延迟发) | `pages/game/index.vue` → `GameOverOverlay` |
+| `UPGRADE_SELECTED` | `upgrade:selected` | Vue → Phaser | `UpgradeId` | `pages/game/index.vue` `onPickUpgrade` | `GameScene.handleUpgradeSelected` (应用升级 + `physics.world.resume`) |
+| `GAME_RESTART` | `game:restart` | Vue → Phaser | *(none)* | `pages/game/index.vue` `restartGame` | `GameScene.handleRestart` (`scene.restart`) |
+| `GAME_PAUSE` | `game:pause` | Vue → Phaser | *(none)* | `pages/game/index.vue` `pauseGame` / ESC | `GameScene.handlePause` (`scene.pause`) |
+| `GAME_RESUME` | `game:resume` | Vue → Phaser | *(none)* | `pages/game/index.vue` `resumeGame` / ESC | `GameScene.handleResume` (`scene.resume`) |
+| `TOGGLE_MUTE` | `audio:toggle-mute` | Vue → Phaser | *(none)* | `pages/game/index.vue` `onToggleMute`（右下静音按钮） | `GameScene.handleToggleMute` → `AudioSystem.toggleMute` |
 
-**Rule:** new events are added to `EVENT_KEYS` first, then to the table above, then wired.
+**Rule:** new events are added to `EVENT_KEYS` first, then to the table above, then wired. Non-trivial payloads MUST have a named interface in `contents/types.ts`.
 
 ---
 
 ## 13.6 Asset keys
 
-*Last updated: 2026-04-25;00:01. Source of truth: `src/pages/game-demo/scenes/boot-scene.ts`.*
+*Last updated: 2026-04-26;10:47. Source of truth: `src/contents/constants.ts` → `TEXTURE_KEYS` + `src/contents/scenes/boot-scene.ts` (all generators).*
 
-All current textures are generated at runtime via `generateTexture` (no files in `public/`). When real art lands, move the loader calls into `BootScene.preload()`, keep the same keys, and drop the generator code.
+All textures are generated at runtime via `graphics.generateTexture` — no files in `public/`. When real art lands, move the loader calls into `BootScene.preload()`, keep the same `TEXTURE_KEYS.*` values, and drop the generator code.
 
-| Key | Kind | Size | Generated at | Used by |
+| Constant | String | Size | Generated by | Used by |
 |---|---|---|---|---|
-| `player` | texture (rect) | 32×48, fill `#4488ff` | `BootScene.create` | `GameScene` player sprite |
-| `star` | texture (circle) | 16×16, fill `#ffdd00` | `BootScene.create` | `GameScene` stars group |
-| `platform` | texture (rect) | 64×16, fill `#44aa44` | `BootScene.create` | `GameScene` platforms group |
+| `PLAYER` | `player` | 28×36 | `BootScene.generatePlayerTextures` (主角 + 头盔 + 面罩) | `Player` 主体 |
+| — (枪) | `player-gun` | 22×8 | 同上（独立贴图便于跟鼠标旋转） | `Player.gunSprite` |
+| `BULLET_PLAYER` | `bullet-player` | 14×8 | `generateBulletTextures`（青色流线） | `Bullet` 玩家弹 |
+| `BULLET_ENEMY` | `bullet-enemy` | 14×8 | `generateBulletTextures`（橙红色） | `Bullet` 敌方弹 |
+| `ENEMY_GRUNT` | `enemy-grunt` | 30×30 | `generateEnemyTextures`（矮胖绿僵尸） | `Enemy` kind=GRUNT |
+| `ENEMY_RUNNER` | `enemy-runner` | 26×32 | 同上（瘦长红） | `Enemy` kind=RUNNER |
+| `ENEMY_SHOOTER` | `enemy-shooter` | 28×34 | 同上（紫袍 + 法杖） | `Enemy` kind=SHOOTER |
+| `ENEMY_TANK` | `enemy-tank` | 48×46 | 同上（橙巨型 + 尖刺） | `Enemy` kind=TANK |
+| `ENEMY_BOSS` | `enemy-boss` | 90×90 | 同上（粉色六臂 + 外光晕） | `Enemy` kind=BOSS |
+| `XP_GEM` | `xp-gem` | 12×12 | `generateXpGemTexture`（蓝钻石） | `XpGem` |
+| `HEALTH_PICKUP` | `health-pickup` | 18×18 | `generateHealthPickupTexture`（红十字胶囊） | `HealthPickup` |
+| `PARTICLE` | `particle` | 8×8 | `generateParticleTexture`（发光圆点） | `spawnExplosion` / `spawnHitSparks` 的 particle emitter |
+| `MUZZLE_FLASH` | `muzzle-flash` | 16×12 | `generateMuzzleFlashTexture`（黄色扇形） | `Player.muzzleFlash` |
+| `GROUND_TILE` | `ground-tile` | 64×64 | `generateGroundTileTexture`（网格深蓝） | `GameScene.ground` tileSprite |
 
-No audio keys yet. When added, create a separate `ASSET_KEYS.AUDIO` table.
+No audio keys — SFX are synthesized at call-time via Web Audio in `systems/audio-system.ts`, no `this.load.audio` at all.
 
 ---
 
 ## 13.7 Shared TypeScript types / interfaces
 
-*Last updated: 2026-04-25;00:01.*
+*Last updated: 2026-04-26;10:47. All content-layer types live in `src/contents/types.ts` (unless noted).*
 
 | Symbol | Defined in | Used by | Purpose |
 |---|---|---|---|
-| `IGameSceneData` | `src/pages/game-demo/scenes/game-scene.ts` | `GameScene.init` | Scene startup params (`startScore?`) |
-| `Props` (game-button) | `src/components/game-button.vue` | `<GameButton>` usage | `{ label, variant?: 'primary' \| 'secondary' }` |
+| `IGameSceneData` | `contents/types.ts` | `GameScene.init` | Scene startup params (`startScore?`) |
+| `IHudState` | `contents/types.ts` | `GameScene.broadcastHud` → `pages/game/game-hud.vue` | HUD 全量状态（hp/maxHp/score/wave/level/xp/xpToNext/weaponLabel/elapsedMs/kills/dashReadyAt/now） |
+| `UpgradeId` | `contents/types.ts` | `Player.applyUpgrade` / `upgrade-system.ts` / `LevelUpOverlay` | 10 种升级的联合字符串字面量 |
+| `IUpgradeOption` | `contents/types.ts` | `ILevelUpPayload.choices` + `LevelUpOverlay` | 单个升级卡片（id/title/description/tier/icon） |
+| `ILevelUpPayload` | `contents/types.ts` | `EVENT_KEYS.LEVEL_UP` | `{ newLevel, choices: IUpgradeOption[] }` |
+| `IGameOverPayload` | `contents/types.ts` | `EVENT_KEYS.GAME_OVER` | `{ finalScore, highScore, isNewHighScore, wave, level, kills, survivedMs }` |
+| `EnemyKind` | `contents/constants.ts` | `Enemy.spawn` / `WaveSystem.pickEnemyKind` | `'GRUNT' \| 'RUNNER' \| 'SHOOTER' \| 'TANK' \| 'BOSS'` |
+| `IUpgradeDef` | `contents/systems/upgrade-system.ts` | `UPGRADE_POOL` 内部 | `IUpgradeOption` + `weight` + `maxStacks` |
+| `IPlayerDeps` | `contents/entities/player.ts` | `new Player(scene, x, y, deps)` | 注入 bullets 组 + `getNearestEnemy(x,y)` 目标查询 + 音效回调 |
+| `IEnemyDeps` | `contents/entities/enemy.ts` | `Enemy.tick` | 注入 bullets 组 + player 位置 getter |
+| `IWaveCallbacks` | `contents/systems/wave-system.ts` | `new WaveSystem(scene, cb)` | spawnEnemy / onWaveStart / onWaveCleared |
+| `Props` (game-button) | `components/game-button.vue` | `<GameButton>` usage | `{ label, variant?: 'primary' \| 'secondary' }` |
 
-When an EventBus payload becomes non-trivial (e.g. `GAME_OVER` carrying final score + cause), define a named type here and import it at both ends.
+When an EventBus payload becomes non-trivial, define a named type here and import it at both ends.
 
 ---
 
 ## 13.8 State stores
 
-*Last updated: 2026-04-25;00:01.*
+*Last updated: 2026-04-26;10:47.*
 
 - **Pinia**: installed and mounted (`src/main.ts`), persisted-state plugin enabled. **No stores defined yet.** When you add one, create `src/stores/<name>-store.ts` and register it here.
-- **Phaser Registry**: unused so far. If a value must survive scene restarts (e.g. high score), prefer the Registry over module-level singletons.
-- **Vue reactive**: in-component `ref` / `reactive` only (no shared reactive singletons outside Pinia).
+- **Phaser Registry**: unused.
+- **Vue reactive**: in-component `ref` / `reactive` only.
+- **localStorage (direct)**: `GameScene` reads / writes high score under key `neon-hunter:high-score`. Decision to keep this direct (not through Pinia) — it's scene-owned persistence and survives restarts without coupling the Vue tree. If cross-page access is ever needed, promote to a Pinia store.
 
 | Store / key | Location | Kind | Persisted? | Purpose |
 |---|---|---|---|---|
-| *(none)* | — | — | — | — |
+| `neon-hunter:high-score` | `contents/scenes/game-scene.ts` (`loadHighScore` / `saveHighScore`) | `localStorage` (number string) | yes | 累计最高分；game-over 时读写 |
 
 ---
 
@@ -420,6 +474,14 @@ Record non-obvious architectural choices so future agents don't re-litigate them
 | 2026-04-26;01:35 | `contents/` 的定位改成"UI 无关 + 与 Phaser 耦合"（原先误标为"引擎无关"） | scenes 继承 `Phaser.Scene`、用 physics/input，天然跟 Phaser 耦合。分层判据是"另一个 Phaser jam 游戏能不能复用"而不是"是否碰 Phaser"；engine 能复用、contents 不能复用，两边都可用 Phaser |
 | 2026-04-26;01:35 | scenes 留在 `contents/scenes/`，不单拎为顶层 `src/scenes/` | scenes 高度依赖 `contents/constants` / `types` / 未来的 `entities`，拆开只会增加跨目录 import；jam 节奏下内容层向内生长（contents/entities, contents/systems）而不是向外膨胀 |
 | 2026-04-26;01:35 | `runtime/` 引用 `contents/` 一律走深路径（`@/contents/constants` / `@/contents/types`），禁止走桶 | `contents/scenes/*` 顶层有 `useGame()` / `useEventBus()` 的模块级副作用；桶导出 `@/contents` 会把 scenes 拖进来，而 scenes 反向 import `@/runtime`，造成 runtime 初始化未完成时 scenes 已经在调 runtime → 循环启动死锁 |
+| 2026-04-26;10:47 | 实际游戏 "Neon Hunter" 落地：`contents/` 扩展出 `entities/` + `systems/`；原 demo 级 `GAME_CONFIG` 被拆成 `WORLD` / `PLAYER_BASE` / `ENEMY_STATS` / `PROGRESSION` / `DIFFICULTY` / `WAVE_UNLOCKS` 等领域对象 | jam 节奏下把数字按"领域"聚类比按"平铺"好调；`ENEMY_STATS.GRUNT.speed` 这种读法一眼知道影响什么，"vibe coding" 调手感更快 |
+| 2026-04-26;10:47 | SFX 全部用 Web Audio API 在运行时合成（`systems/audio-system.ts`），不走 `this.load.audio` | jam 起步阶段没有美术/音效素材；合成音既保证零资源依赖，又可以用单纯代码参数（envelope / freq ramp）即时迭代；首个 pointerdown 解锁 `AudioContext` 绕过浏览器 autoplay 策略 |
+| 2026-04-26;10:47 | `Player` / `Enemy` 不用抽象基类，直接 `extends Phaser.Physics.Arcade.Sprite` + 依赖注入（`IPlayerDeps` / `IEnemyDeps`） | 避免"实体基类 → 中间层 → 具体类"的深继承；jam 下把构造依赖显式传入（bullets 组 / 音效回调）比继承更易改 |
+| 2026-04-26;10:47 | 敌人五种形态共用一个 `Enemy` 类 + `kind: EnemyKind` 分支，不做 `class Grunt extends Enemy` | 差异主要在数值和 AI 片段（`maybeFire` / 保持距离 / 扇形弹幕）；一个类内 switch 在 100 行量级比 5 个子类更易对照调整，尤其是调手感时 |
+| 2026-04-26;10:47 | 高分持久化用 `localStorage` 直写（`GameScene.loadHighScore/saveHighScore`），不建 Pinia store | 只有一个 number、只在 game-over 读写、不需要跨页面响应式共享；建 store 是过度工程。真要共享时再提升到 Pinia |
+| 2026-04-26;10:47 | 页面结构：`pages/game/` 作为目录，拆成 `index.vue`（协调器）+ `game-canvas.vue`（唯一 Phaser 挂载点）+ HUD + 3 个 overlay | `game.vue` 单文件会塞下 HUD + 暂停 + 升级选择 + 死亡结算，500 行起步；拆成组件后每个文件 <200 行，overlay 之间互斥逻辑统一在协调器里用 `if` 挡 |
+| 2026-04-26;10:47 | 升级时 `physics.world.pause()` 而不是 `scene.pause()` | `scene.pause()` 会冻结 `update` 循环，暂停 overlay 动画和事件循环都不跑；`physics.world.pause()` 只冻结物理积分，`update` 仍能响应"玩家点了选择"的事件并 resume |
+| 2026-04-26;11:08 | 改为"survivor-style"自动射击：玩家只走位，枪自动锁定最近敌人并按冷却开火 | 降低操作门槛、单手手柄 / 触屏也能玩；更符合"在霓虹竞技场里活下去"的节奏——策略重心从"瞄准操作"转移到"走位 + 升级构筑"。实现用 `IPlayerDeps.getNearestEnemy` 注入查询回调，Player 自身不感知 enemies group，保持实体与场景解耦 |
 
 ---
 
@@ -427,6 +489,8 @@ Record non-obvious architectural choices so future agents don't re-litigate them
 
 One line per change that touches §13. Newest at the top. Keep it short.
 
+- **2026-04-26;11:08** — 输入模型改为 survivor-style 自动射击：`IPlayerDeps` 新增 `getNearestEnemy(x,y)`，`GameScene` 注入 `findNearestEnemy`；Player 去掉 pointer 监听与 `firing` 状态，保留上一帧 `aimAngle` 以避免无敌人时枪口归零；how-to-play / home-page / in-game hint 移除鼠标操作字样。同步 §13.4 / §13.7 / §13.10。
+- **2026-04-26;10:47** — "Neon Hunter" 生存射击落地：`contents/` 增 `entities/` + `systems/`；`constants` 拆分成 `WORLD` / `PLAYER_BASE` / `ENEMY_STATS` / `PROGRESSION` / `DIFFICULTY` / `WAVE_UNLOCKS` + `TEXTURE_KEYS`；`EVENT_KEYS` 扩展（HUD_UPDATE / LEVEL_UP / WAVE_START / WAVE_CLEARED / UPGRADE_SELECTED / TOGGLE_MUTE）；删除 `pages/game-demo/` + `pages/game.vue`，以 `pages/game/` 目录替代（index + canvas + HUD + 3 overlays）。高分走 `localStorage`（`neon-hunter:high-score`）。同步 §13.1–§13.8 / §13.10（6 条新决策）。
 - **2026-04-26;01:35** — 修正 `contents/` 分层描述（"UI 无关 + 与 Phaser 耦合"，不是"引擎无关"）；确认 scenes 留在 `contents/scenes/` 不外拎；新增"runtime → contents 必须走深路径"规则到 §11；同步 §13.10 决策日志（三条新决策）。
 - **2026-04-26;01:20** — 分层重构：`core` → `engine`；新增 `contents` 作为游戏内容层（场景/常量/类型的唯一源）；`composables/runtime` → `runtime`（提升到顶级）；`game-demo` 只保留 Vue 挂载示范。同步 §11 / §13.1 / §13.3 / §13.10；engine 不再依赖 `GAME_CONFIG`，改用内部 `SHELL_DEFAULTS`。
 - **2026-04-25;00:01** — Initial AGENTS.md rewrite: removed Nuxt / PrimeVue / portal sections irrelevant to this project; added §13 Codebase State registries (routes, scenes, entities, events, assets, types, stores, WIP, decisions) and §0 multi-agent protocol.
