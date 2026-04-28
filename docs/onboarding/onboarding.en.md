@@ -7,8 +7,8 @@
 |  | 中文 | English |
 |---|---|---|
 | 🎮 **有创意 / Game idea** | [上手指南](./onboarding.zh.md) | You're here |
-| 👩‍💻 **开发者 / Developer** | [开发者文档](./README.zh.md) | [Developer Docs](./README.en.md) |
-| 🤖 **AGENTS.md** | [AGENTS.md](../AGENTS.md) | [AGENTS.md](../AGENTS.md) |
+| 👩‍💻 **开发者 / Developer** | [开发者文档](../readme/README.zh.md) | [Developer Docs](../readme/README.en.md) |
+| 🤖 **AGENTS.md** | [AGENTS.md](../../AGENTS.md) | [AGENTS.md](../../AGENTS.md) |
 
 ---
 
@@ -256,8 +256,8 @@ None of that is wasted on a PM's résumé.
 1. **Get the demo running** (follow "Three steps to get it running" above)
 2. **Play it for a minute** — feel what "a game you can modify" is like
 3. **Open your AI assistant** and say "I want to turn this demo into [your game idea]" — let it guide you
-4. Want to understand how the project is organized? Read [`README.en.md`](./README.en.md)
-5. Want the AI to make fewer mistakes? Have it read [`AGENTS.md`](../AGENTS.md) first
+4. Want to understand how the project is organized? Read [`README.en.md`](../readme/README.en.md)
+5. Want the AI to make fewer mistakes? Have it read [`AGENTS.md`](../../AGENTS.md) first
 
 ---
 

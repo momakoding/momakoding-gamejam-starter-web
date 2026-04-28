@@ -4,9 +4,9 @@
 
 |  | 中文 | English |
 |---|---|---|
-| 🎮 **有创意 / Game idea** | [上手指南](./onboarding.zh.md) | [Onboarding Guide](./onboarding.en.md) |
+| 🎮 **有创意 / Game idea** | [上手指南](../onboarding/onboarding.zh.md) | [Onboarding Guide](../onboarding/onboarding.en.md) |
 | 👩‍💻 **开发者 / Developer** | 你在这里 | [Developer Docs](./README.en.md) |
-| 🤖 **AGENTS.md** | [AGENTS.md](../AGENTS.md) | [AGENTS.md](../AGENTS.md) |
+| 🤖 **AGENTS.md** | [AGENTS.md](../../AGENTS.md) | [AGENTS.md](../../AGENTS.md) |
 
 ---
 
@@ -91,7 +91,7 @@ contents → engine
 - `runtime/` 引用 `contents/` 只走深路径（`@/contents/constants`），禁止走桶导出（防止 ESM 循环）。
 - `contents/` 不 import `pages/`。
 
-详细架构说明见 [`vibe/engine-structure.md`](./vibe/engine-structure.md)。
+详细架构说明见 [`vibe/engine-structure.md`](../vibe/engine-structure.md)。
 
 ---
 
@@ -130,7 +130,7 @@ History 模式：**Hash**（`createWebHashHistory`），无需服务端配置。
 - **数值调参**：只改 `contents/constants.ts` 里的 `GAME_CONFIG`，不动场景代码。
 - **Vue ↔ Phaser 通信**：只走 `EventBus`，禁止在 Vue 里直接操作 Phaser 对象。
 
-多 agent 协作规约见 [`AGENTS.md`](./AGENTS.md)。
+多 agent 协作规约见 [`AGENTS.md`](../../AGENTS.md)。
 
 ---
 
@@ -138,9 +138,9 @@ History 模式：**Hash**（`createWebHashHistory`），无需服务端配置。
 
 | 文件 | 内容 |
 |---|---|
-| [`AGENTS.md`](../AGENTS.md) | 多 agent 协作协议 + 活注册表（场景/事件/资产/路由） |
-| [`vibe/engine-structure.md`](./vibe/engine-structure.md) | 四层架构详解 + Vibe coding 手册 |
-| [`vibe/game-demo.md`](./vibe/game-demo.md) | Demo 玩法与结构走读 |
-| [`vibe/phaser-study.md`](./vibe/phaser-study.md) | Phaser × Vue 集成调研笔记 |
-| [`onboarding.zh.md`](./onboarding.zh.md) | 面向非技术人员的上手指南（中文） |
-| [`onboarding.en.md`](./onboarding.en.md) | 面向非技术人员的上手指南（英文） |
+| [`AGENTS.md`](../../AGENTS.md) | 多 agent 协作协议 + 活注册表（场景/事件/资产/路由） |
+| [`vibe/engine-structure.md`](../vibe/engine-structure.md) | 四层架构详解 + Vibe coding 手册 |
+| [`vibe/game-demo.md`](../vibe/game-demo.md) | Demo 玩法与结构走读 |
+| [`vibe/phaser-study.md`](../vibe/phaser-study.md) | Phaser × Vue 集成调研笔记 |
+| [`onboarding.zh.md`](../onboarding/onboarding.zh.md) | 面向非技术人员的上手指南（中文） |
+| [`onboarding.en.md`](../onboarding/onboarding.en.md) | 面向非技术人员的上手指南（英文） |

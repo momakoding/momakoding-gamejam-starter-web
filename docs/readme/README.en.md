@@ -4,9 +4,9 @@
 
 |  | 中文 | English |
 |---|---|---|
-| 🎮 **有创意 / Game idea** | [上手指南](./onboarding.zh.md) | [Onboarding Guide](./onboarding.en.md) |
+| 🎮 **有创意 / Game idea** | [上手指南](../onboarding/onboarding.zh.md) | [Onboarding Guide](../onboarding/onboarding.en.md) |
 | 👩‍💻 **开发者 / Developer** | [开发者文档](./README.zh.md) | You're here |
-| 🤖 **AGENTS.md** | [AGENTS.md](../AGENTS.md) | [AGENTS.md](../AGENTS.md) |
+| 🤖 **AGENTS.md** | [AGENTS.md](../../AGENTS.md) | [AGENTS.md](../../AGENTS.md) |
 
 ---
 
@@ -91,7 +91,7 @@ contents → engine
 - `runtime/` references `contents/` via deep paths only (`@/contents/constants`). Barrel imports are forbidden (prevents ESM circular init).
 - `contents/` must not import `pages/`.
 
-Full architecture walkthrough: [`vibe/engine-structure.md`](./vibe/engine-structure.md).
+Full architecture walkthrough: [`vibe/engine-structure.md`](../vibe/engine-structure.md).
 
 ---
 
@@ -130,7 +130,7 @@ All textures are generated at runtime via `generateTexture` in `BootScene` — z
 - **Tuning values**: only touch `GAME_CONFIG` in `contents/constants.ts` — don't refactor scene code.
 - **Vue ↔ Phaser communication**: EventBus only. Never reach into Phaser objects from Vue.
 
-Multi-agent collaboration protocol: [`AGENTS.md`](../AGENTS.md).
+Multi-agent collaboration protocol: [`AGENTS.md`](../../AGENTS.md).
 
 ---
 
@@ -138,9 +138,9 @@ Multi-agent collaboration protocol: [`AGENTS.md`](../AGENTS.md).
 
 | File | Contents |
 |---|---|
-| [`AGENTS.md`](../AGENTS.md) | Multi-agent protocol + live registry (scenes / events / assets / routes) |
-| [`vibe/engine-structure.md`](./vibe/engine-structure.md) | Four-layer architecture + Vibe coding handbook |
-| [`vibe/game-demo.md`](./vibe/game-demo.md) | Demo walkthrough |
-| [`vibe/phaser-study.md`](./vibe/phaser-study.md) | Phaser × Vue integration research notes |
-| [`onboarding.zh.md`](./onboarding.zh.md) | Non-technical onboarding guide (Chinese) |
-| [`onboarding.en.md`](./onboarding.en.md) | Non-technical onboarding guide (English) |
+| [`AGENTS.md`](../../AGENTS.md) | Multi-agent protocol + live registry (scenes / events / assets / routes) |
+| [`vibe/engine-structure.md`](../vibe/engine-structure.md) | Four-layer architecture + Vibe coding handbook |
+| [`vibe/game-demo.md`](../vibe/game-demo.md) | Demo walkthrough |
+| [`vibe/phaser-study.md`](../vibe/phaser-study.md) | Phaser × Vue integration research notes |
+| [`onboarding.zh.md`](../onboarding/onboarding.zh.md) | Non-technical onboarding guide (Chinese) |
+| [`onboarding.en.md`](../onboarding/onboarding.en.md) | Non-technical onboarding guide (English) |

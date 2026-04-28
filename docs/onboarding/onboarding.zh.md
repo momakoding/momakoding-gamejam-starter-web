@@ -7,8 +7,8 @@
 |  | 中文 | English |
 |---|---|---|
 | 🎮 **有创意 / Game idea** | 你在这里 | [Onboarding Guide](./onboarding.en.md) |
-| 👩‍💻 **开发者 / Developer** | [开发者文档](./README.zh.md) | [Developer Docs](./README.en.md) |
-| 🤖 **AGENTS.md** | [AGENTS.md](../AGENTS.md) | [AGENTS.md](../AGENTS.md) |
+| 👩‍💻 **开发者 / Developer** | [开发者文档](../readme/README.zh.md) | [Developer Docs](../readme/README.en.md) |
+| 🤖 **AGENTS.md** | [AGENTS.md](../../AGENTS.md) | [AGENTS.md](../../AGENTS.md) |
 
 ---
 
