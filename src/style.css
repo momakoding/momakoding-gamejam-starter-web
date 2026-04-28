@@ -2,8 +2,31 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-game-border: #475569;
-  --color-scrollbar-thumb: #334155;
+  /* ── 滚动条（原有） ── */
+  --color-game-border: var(--color-slate-600);
+  --color-scrollbar-thumb: var(--color-slate-700);
+
+  /* ── 页面背景 ── */
+  --color-bg-page: var(--color-slate-900);      /* 全局页面底色 */
+  --color-bg-surface: var(--color-slate-800);   /* 卡片/面板底色 */
+  --color-bg-overlay: var(--color-gray-900);    /* 游戏画布区底色 */
+
+  /* ── 强调色（amber 系） ── */
+  --color-accent: var(--color-amber-500);       /* 主按钮、主标题 */
+  --color-accent-light: var(--color-amber-400); /* 标题高亮 */
+  --color-accent-dim: var(--color-amber-600);   /* 按下态 */
+
+  /* ── 文字 ── */
+  --color-text-primary: var(--color-slate-100);
+  --color-text-secondary: var(--color-slate-400);
+  --color-text-muted: var(--color-slate-500);
+
+  /* ── 边框 ── */
+  --color-border-subtle: var(--color-slate-700); /* 卡片边框 */
+
+  /* ── 功能色 ── */
+  --color-danger: var(--color-red-600);         /* 危险/重启按钮 */
+  --color-success: var(--color-green-600);      /* 继续/确认按钮 */
 }
 
 @layer components {

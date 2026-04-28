@@ -166,7 +166,13 @@ The current `src/pages/game-demo/` is a **reference implementation** (platformer
 
 ### Theme tokens
 
-- Shared colors and tokens live in `src/style.css` under `@theme { … }` (v4 idiom). Examples: `--color-game-border`, `--color-scrollbar-thumb`.
+- Shared colors and tokens live in `src/style.css` under `@theme { … }` (v4 idiom). Current tokens:
+  - **背景**: `--color-bg-page` (slate-900), `--color-bg-surface` (slate-800), `--color-bg-overlay` (gray-900)
+  - **强调色**: `--color-accent` (amber-500), `--color-accent-light` (amber-400), `--color-accent-dim` (amber-600)
+  - **文字**: `--color-text-primary` (slate-100), `--color-text-secondary` (slate-400), `--color-text-muted` (slate-500)
+  - **边框**: `--color-border-subtle` (slate-700), `--color-game-border` (slate-600, 原有)
+  - **功能色**: `--color-danger` (red-600), `--color-success` (green-600)
+  - **滚动条**: `--color-scrollbar-thumb` (slate-700, 原有)
 - Component-level color roles (player, enemy, danger) should be added to `@theme` when reused across ≥ 2 components.
 
 ### Custom classes
