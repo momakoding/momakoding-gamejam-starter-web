@@ -217,13 +217,13 @@ Full troubleshooting catalog: `.clinerules/02-trouble-shoot.md`.
 > Update discipline: every row below must point to a real file/symbol in `src/`. If you rename or delete it, update the row *in the same turn*. Do not remove rows — mark them `~~deprecated~~` at the bottom of the table.
 
 **Current scaffold status:** *Reference demo in place, real game not yet started.*
-**Scaffold last updated:** 2026-04-26;01:35
+**Scaffold last updated:** 2026-04-28;15:00
 
 ---
 
 ## 13.1 Directory map
 
-*Last updated: 2026-04-26;01:20*
+*Last updated: 2026-04-28;15:00*
 
 ```
 momakoding-gamejam-starter-web/
@@ -257,6 +257,11 @@ momakoding-gamejam-starter-web/
 │   │   ├── scenes/
 │   │   │   ├── boot-scene.ts  # 生成占位纹理 → 切到 GameScene
 │   │   │   └── game-scene.ts  # 平台跳跃 + 星星收集
+│   │   ├── game-info/         # ★ 游戏基本信息配置（非游戏逻辑，供 Vue 页面读取）
+│   │   │   ├── game-meta.ts   # GAME_META: 游戏名称、副标题
+│   │   │   ├── team.ts        # TEAM_INFO: 团队名称、成员列表（含类型定义）
+│   │   │   ├── how-to-play.md # 玩法介绍正文（Markdown + HTML，?raw 导入）
+│   │   │   └── index.ts       # 桶导出
 │   │   └── index.ts
 │   │   # 未来按需扩：entities/ systems/ data/
 │   │
