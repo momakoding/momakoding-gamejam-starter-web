@@ -11,7 +11,7 @@
   --color-bg-surface: var(--color-slate-800);   /* 卡片/面板底色 */
   --color-bg-overlay: var(--color-gray-900);    /* 游戏画布区底色 */
 
-  /* ── 强调色（amber 系） ── */
+  /* ── 强调色 ── */
   --color-accent: var(--color-amber-500);       /* 主按钮、主标题 */
   --color-accent-light: var(--color-amber-400); /* 标题高亮 */
   --color-accent-dim: var(--color-amber-600);   /* 按下态 */
