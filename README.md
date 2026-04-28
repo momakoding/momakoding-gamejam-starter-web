@@ -2,6 +2,8 @@
 
 基于 **Vue 3 + Phaser 4 + TypeScript** 的 Game Jam 快速原型脚手架。
 
+![MOMAKODING_LOGO](./public/img/logo/mmkd-white-bg.png)
+
 ## 快速导航
 
 |  | 中文 | English |
