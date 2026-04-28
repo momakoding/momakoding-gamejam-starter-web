@@ -2,9 +2,11 @@
 
 基于 **Vue 3 + Phaser 4 + TypeScript** 的 Game Jam 快速原型脚手架。
 
+A Game Jam rapid-prototype scaffold built on **Vue 3 + Phaser 4 + TypeScript**.
+
 ![MOMAKODING_LOGO](./public/img/logo/mmkd-white-bg-512x512.png)
 
-## 快速导航
+## 快速导航 Quick Navigation
 
 |  | 中文 | English |
 |---|---|---|
@@ -12,7 +14,7 @@
 | 👩‍💻 **开发者 / Developer** | [开发者文档](./docs/readme/README.zh.md) | [Developer Docs](./docs/readme/README.en.md) |
 | 🤖 **AGENTS.md** | [AGENTS.md](./AGENTS.md) | [AGENTS.md](./AGENTS.md) |
 
-## 快速开始
+## 快速开始 Getting Started
 
 ```bash
 pnpm install
