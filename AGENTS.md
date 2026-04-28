@@ -278,8 +278,8 @@ momakoding-gamejam-starter-web/
 │       ├── game.vue           # Game shell: pause overlay, ESC, exit
 │       └── game-demo/
 │           └── index.vue      # ⚠ 参考示范：Vue 侧如何挂载 contents 里的 scenes
-├── AGENTS.md                  # ← this file
-├── README.md
+├── AGENTS.md                  # ← this file (multi-agent protocol + live registry)
+├── README.md                  # 导航入口（指向 docs/）
 ├── index.html
 ├── package.json
 ├── vite.config.ts             # @ alias → ./src ; vue + tailwind plugins
