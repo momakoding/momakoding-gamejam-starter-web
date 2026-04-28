@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import GameButton from '@/components/game-button.vue'
+import { GAME_META } from '@/contents/game-info'
 
 interface MenuItem {
 	label: string
@@ -39,9 +40,8 @@ const menuItems: MenuItem[] = [
 
 <template>
 	<div class="home-page">
-		<h1 class="home-page__title">
-			[请输入文本]
-		</h1>
+		<h1 class="home-page__title">{{ GAME_META.title }}</h1>
+		<p v-if="GAME_META.subtitle" class="home-page__subtitle">{{ GAME_META.subtitle }}</p>
 
 		<nav class="home-page__nav">
 			<GameButton v-for="item in menuItems" :key="item.label" :label="item.label" :variant="item.variant"

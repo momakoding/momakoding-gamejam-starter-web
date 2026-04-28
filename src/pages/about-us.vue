@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router'
 import GameButton from '@/components/game-button.vue'
 import MmkdStarterCredit from '@/components/mmkd-starter-credit.vue'
 import { ref } from 'vue'
+import { TEAM_INFO } from '@/contents/game-info'
 
 const router = useRouter()
 const needShowingIntro = ref<boolean>(false) // Experimental
@@ -26,21 +27,13 @@ function goHome() {
       <!-- 团队介绍卡片 -->
       <section class="about-us__card about-us__card--team" :class="{ 'col-span-2': !needShowingIntro }">
         <span class="about-us__card-eyebrow">团队</span>
-        <h3 class="about-us__card-heading">[团队名称]</h3>
-        <p class="about-us__card-text">
-          [这里是团队介绍和项目信息的占位文本。]
-        </p>
-        <!-- 成员列表占位 -->
+        <h3 class="about-us__card-heading">{{ TEAM_INFO.teamName }}</h3>
+        <p class="about-us__card-text">{{ TEAM_INFO.description }}</p>
         <ul class="about-us__member-list">
-          <li class="about-us__member">
-            <span class="about-us__member-avatar">👤</span>
-            <span class="about-us__member-name">[成员 A]</span>
-            <span class="about-us__member-role">策划 / 程序</span>
-          </li>
-          <li class="about-us__member">
-            <span class="about-us__member-avatar">👤</span>
-            <span class="about-us__member-name">[成员 B]</span>
-            <span class="about-us__member-role">美术 / 音效</span>
+          <li v-for="member in TEAM_INFO.members" :key="member.name" class="about-us__member">
+            <span class="about-us__member-avatar">{{ member.avatar ?? '👤' }}</span>
+            <span class="about-us__member-name">{{ member.name }}</span>
+            <span class="about-us__member-role">{{ member.role }}</span>
           </li>
         </ul>
       </section>
