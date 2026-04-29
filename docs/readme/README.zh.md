@@ -160,6 +160,7 @@ History 模式：**Hash**（`createWebHashHistory`），无需服务端配置。
 | 文件 | 内容 |
 |---|---|
 | [`AGENTS.md`](../../AGENTS.md) | 多 agent 协作协议 + 活注册表（场景/事件/资产/路由） |
+| [`vibe/spec-game.md`](../vibe/spec-game.md) | 游戏设计 spec（用户描述创意后由 AI 自动生成/更新） |
 | [`vibe/engine-structure.md`](../vibe/engine-structure.md) | 四层架构详解 + Vibe coding 手册 |
 | [`vibe/game-demo.md`](../vibe/game-demo.md) | Demo 玩法与结构走读 |
 | [`vibe/phaser-study.md`](../vibe/phaser-study.md) | Phaser × Vue 集成调研笔记 |

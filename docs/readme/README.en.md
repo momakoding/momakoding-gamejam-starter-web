@@ -158,6 +158,7 @@ Multi-agent collaboration protocol: [`AGENTS.md`](../../AGENTS.md).
 | File | Contents |
 |---|---|
 | [`AGENTS.md`](../../AGENTS.md) | Multi-agent protocol + live registry (scenes / events / assets / routes) |
+| [`vibe/spec-game.md`](../vibe/spec-game.md) | Game design spec (auto-generated / updated by AI from user's game idea) |
 | [`vibe/engine-structure.md`](../vibe/engine-structure.md) | Four-layer architecture + Vibe coding handbook |
 | [`vibe/game-demo.md`](../vibe/game-demo.md) | Demo walkthrough |
 | [`vibe/phaser-study.md`](../vibe/phaser-study.md) | Phaser × Vue integration research notes |

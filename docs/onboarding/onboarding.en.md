@@ -186,6 +186,23 @@ Refresh the browser after saving — the title screen will already look like you
 
 ---
 
+## Record your game idea
+
+Once you have an idea, just tell the AI what game you want to make. The AI will turn your description into a **game design spec** and save it at [`docs/vibe/spec-game.md`](../vibe/spec-game.md).
+
+This spec is the "design blueprint" for your game, covering: core mechanic, player actions, entities (characters/enemies/items), win/lose conditions, scoring, difficulty curve, and more.
+
+**How it works:**
+
+1. Tell the AI: "I want to make a game where…" (describe it however you like, in any language)
+2. The AI auto-generates `docs/vibe/spec-game.md`
+3. When you want to change mechanics or add features later, the AI **updates** the existing spec instead of rewriting from scratch
+4. All development work uses this spec as the source of truth, so your vision stays consistent through iterations
+
+> 💡 You don't need to open or edit this file yourself. Just chat with the AI about your ideas and it will maintain the document for you.
+
+---
+
 ## How do I tell the AI what to change?
 
 One rule: **describe the feeling you want, not the code change**.
