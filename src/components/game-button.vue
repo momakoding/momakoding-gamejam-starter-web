@@ -10,10 +10,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <button
-    class="game-button"
-    :class="[variant === 'primary' ? 'game-button--primary' : 'game-button--secondary']"
-  >
+  <button class="game-button" :class="[variant === 'primary' ? 'game-button--primary' : 'game-button--secondary']">
     {{ label }}
   </button>
 </template>
@@ -26,10 +23,10 @@ withDefaults(defineProps<Props>(), {
 }
 
 .game-button--primary {
-  @apply bg-amber-500 text-slate-900 hover:bg-amber-400 active:bg-amber-600;
+  @apply bg-accent text-text-dark hover:bg-accent-light active:bg-accent-dim;
 }
 
 .game-button--secondary {
-  @apply border border-slate-500 bg-transparent text-slate-300 hover:border-slate-400 hover:text-white active:bg-slate-800;
+  @apply border border-text-muted bg-transparent text-text-secondary hover:border-text-secondary hover:text-text-primary active:bg-bg-surface;
 }
 </style>

@@ -10,6 +10,6 @@
 @reference "@/style.css";
 
 .game-ui {
-  @apply min-h-screen bg-slate-900 text-white;
+  @apply h-screen bg-bg-page text-text-primary;
 }
 </style>

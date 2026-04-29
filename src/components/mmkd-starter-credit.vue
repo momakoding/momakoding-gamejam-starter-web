@@ -47,7 +47,7 @@ const TECHNOLOGIES = [
 @reference "@/style.css";
 
 .mmkd-credit {
-  @apply flex flex-col gap-4 rounded-xl border border-amber-500/30 bg-amber-950/20 px-5 py-4;
+  @apply flex flex-col gap-4 rounded-xl border border-accent/30 bg-amber-950/20 px-5 py-4;
 }
 
 /* 顶部横排：logo + 文字 */
@@ -68,15 +68,15 @@ const TECHNOLOGIES = [
 }
 
 .mmkd-credit__name {
-  @apply inline-flex items-center gap-1.5 text-sm font-semibold text-amber-300 hover:text-amber-200 transition-colors;
+  @apply inline-flex items-center gap-1.5 text-sm font-semibold text-accent-light hover:text-amber-200 transition-colors;
 }
 
 .mmkd-credit__gh-icon {
-  @apply h-4 w-4 shrink-0 text-slate-400;
+  @apply h-4 w-4 shrink-0 text-text-secondary;
 }
 
 .mmkd-credit__desc {
-  @apply text-xs text-slate-500;
+  @apply text-xs text-text-muted;
 }
 
 /* 徽章行 */

@@ -20,13 +20,28 @@
   --color-text-primary: var(--color-slate-100);
   --color-text-secondary: var(--color-slate-400);
   --color-text-muted: var(--color-slate-500);
+  --color-text-dark: var(--color-slate-900);    /* 亮色按钮上的深色对比文字 */
 
   /* ── 边框 ── */
   --color-border-subtle: var(--color-slate-700); /* 卡片边框 */
 
   /* ── 功能色 ── */
   --color-danger: var(--color-red-600);         /* 危险/重启按钮 */
+  --color-danger-light: var(--color-red-500);   /* 危险 hover 态 */
   --color-success: var(--color-green-600);      /* 继续/确认按钮 */
+  --color-success-light: var(--color-green-500); /* 确认 hover 态 */
+
+  /* ── 遮罩 / 玻璃效果 ── */
+  --color-overlay-scrim: var(--color-black);    /* 遮罩背景（配合 /60 等透明度） */
+  --color-glass: var(--color-white);            /* 玻璃按钮表面（配合 /10 /20 等透明度） */
+
+  /* ── 文字（极端亮度） ── */
+  --color-text-bright: var(--color-white);      /* hover 态全亮文字 */
+}
+
+/* ── 全局可复用 utility ── */
+@utility game-tag {
+  @apply rounded-md border border-(--color-border-subtle)/50 bg-(--color-bg-surface)/40 px-2 py-0.5 text-xs text-(--color-text-muted);
 }
 
 @layer components {
