@@ -197,6 +197,7 @@ The project is split into four non-overlapping layers. **Import direction is one
 - All `props` typed with TypeScript; all events typed with `defineEmits<...>()`.
 
 **依赖方向禁忌：**
+
 - `engine/` 不能 import `contents/` / `runtime/` / `pages/`。
 - `contents/` 不能 import `pages/`（但可以 import `engine/` 和 `runtime/`）。
 - 出现反向依赖说明分层错了。
@@ -229,75 +230,7 @@ Full troubleshooting catalog: `.clinerules/02-trouble-shoot.md`.
 
 ## 13.1 Directory map
 
-*Last updated: 2026-04-28;15:00*
-
-```
-momakoding-gamejam-starter-web/
-├── .clinerules/               # Original Chinese project rules (source of AGENTS.md)
-├── docs/
-│   ├── game-demo.md           # Demo walkthrough
-│   ├── phaser-study.md        # Phaser + Vue integration study (中文, 193 lines)
-│   └── spec-framework.md      # UI framework spec
-├── public/                    # Static assets served as-is
-├── src/
-│   ├── main.ts                # App entry: Pinia + persisted-state + Router
-│   ├── App.vue                # Root shell (<RouterView/>)
-│   ├── style.css              # Tailwind v4 entry + @theme tokens + scrollbar utilities
-│   ├── router/
-│   │   └── index.ts           # Hash-history routes
-│   │
-│   ├── engine/                # ① 引擎层 (UI 无关 + 游戏无关，不 import 任何项目模块)
-│   │   ├── game-shell/
-│   │   │   ├── game-shell.ts  # Phaser.Game 生命周期薄封装
-│   │   │   ├── defaults.ts    # SHELL_DEFAULTS (engine 内部 fallback，不是游戏常量)
-│   │   │   └── index.ts
-│   │   ├── event-bus/
-│   │   │   ├── event-bus.ts   # GameEventBus (Map+Set 实现)
-│   │   │   └── index.ts
-│   │   ├── types.ts           # EventCallback 等引擎级类型
-│   │   └── index.ts
-│   │
-│   ├── contents/              # ② 游戏内容层 (UI 无关，与 Phaser 耦合，但换 UI 不改)
-│   │   ├── constants.ts       # ★ SCENE_KEYS / EVENT_KEYS / GAME_CONFIG 全项目唯一源
-│   │   ├── types.ts           # IGameSceneData 等内容层类型
-│   │   ├── scenes/
-│   │   │   ├── boot-scene.ts  # 生成占位纹理 → 切到 GameScene
-│   │   │   └── game-scene.ts  # 平台跳跃 + 星星收集
-│   │   ├── game-info/         # ★ 游戏基本信息配置（非游戏逻辑，供 Vue 页面读取）
-│   │   │   ├── game-meta.ts   # GAME_META: 游戏名称、副标题
-│   │   │   ├── team.ts        # TEAM_INFO: 团队名称、成员列表（含类型定义）
-│   │   │   ├── how-to-play.md # 玩法介绍正文（Markdown + HTML，?raw 导入）
-│   │   │   └── index.ts       # 桶导出
-│   │   └── index.ts
-│   │   # 未来按需扩：entities/ systems/ data/
-│   │
-│   ├── runtime/               # ③ 运行时胶水层 (Vue 侧模块级单例)
-│   │   ├── event-bus.ts       # useEventBus() 单例
-│   │   ├── game.ts            # useGame() 单例 (包装 GameShell)
-│   │   └── index.ts
-│   │
-│   ├── composables/           # ④ 真·Vue composables (暂空)
-│   │   └── index.ts
-│   │
-│   ├── components/
-│   │   ├── game-button.vue         # BEM-styled button, primary/secondary variants
-│   │   └── mmkd-starter-credit.vue # Momakoding 脚手架署名卡片（Logo + 技术栈徽章）
-│   │
-│   └── pages/
-│       ├── home-page.vue      # Home menu
-│       ├── how-to-play.vue    # Instructions
-│       ├── about-us.vue       # Credits
-│       ├── game.vue           # Game shell: pause overlay, ESC, exit
-│       └── game-demo/
-│           └── index.vue      # ⚠ 参考示范：Vue 侧如何挂载 contents 里的 scenes
-├── AGENTS.md                  # ← this file (multi-agent protocol + live registry)
-├── README.md                  # 导航入口（指向 docs/）
-├── index.html
-├── package.json
-├── vite.config.ts             # @ alias → ./src ; vue + tailwind plugins
-├── tsconfig.json / tsconfig.app.json / tsconfig.node.json
-└── pnpm-lock.yaml
-```
+Just `grep` by agent itself.
 
 `composables/` 目前是空 stub；新的 `useXxx()` hook（返回 `Ref` 或依赖组件生命周期）放这里，全局单例服务放 `runtime/`。
 
@@ -407,11 +340,7 @@ When an EventBus payload becomes non-trivial (e.g. `GAME_OVER` carrying final sc
 
 ## 13.9 Work in progress (WIP)
 
-*Claim an area before starting a multi-turn feature. Clear your row when done.*
-
-| Owner | Area / files | Started | Notes |
-|---|---|---|---|
-| *(none)* | — | — | — |
+> Moved to [`WIP.md`](./WIP.md). **Always append new WIP contents there, especially for game idea users**, not here.
 
 ---
 
