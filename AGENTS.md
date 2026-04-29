@@ -141,6 +141,22 @@ The current `src/pages/game-demo/` is a **reference implementation** (platformer
 - When asked to research or explain, do not edit code.
 - When asked to implement, follow the Read-before-write checklist in §0.
 
+### Skills (domain knowledge documents)
+
+`.skills/` contains reusable domain knowledge and operational guides. Agents do **not** auto-load these files — read them **on demand** based on task context.
+
+| Trigger | Skill file | Description |
+|---|---|---|
+| Phaser development (scenes, physics, rendering, animations, migration) | `.skills/phaser-js/SKILL.md` | Phaser 4 developer guide + API quick-ref; `references/` subdirectory has API reference, game patterns, and v3→v4 migration |
+| Editing game metadata (title, subtitle, tags, team info, OSS credits) | `.skills/scaffold/edit-game-meta.md` | Step-by-step guide for editing only `game-meta.ts` / `team.ts` |
+| User describes a game idea and wants a spec written | `docs/vibe/spec-game.md` | **User's game spec.** Agents auto-generate / update this file based on the user's game idea. See §13.1 `docs/vibe/` for details |
+
+**Rules:**
+
+- When adding a new skill, create the file under `.skills/<domain>/` and register a trigger row in this table.
+- Skill files may include YAML frontmatter (`name` / `description`) for future tooling, but agents currently discover skills only through this table.
+- A task may match multiple skills — read all matching ones before writing code.
+
 ---
 
 ## 9. Naming
@@ -167,12 +183,14 @@ The current `src/pages/game-demo/` is a **reference implementation** (platformer
 ### Theme tokens
 
 - Shared colors and tokens live in `src/style.css` under `@theme { … }` (v4 idiom). Current tokens:
-  - **背景**: `--color-bg-page` (slate-900), `--color-bg-surface` (slate-800), `--color-bg-overlay` (gray-900)
-  - **强调色**: `--color-accent` (amber-500), `--color-accent-light` (amber-400), `--color-accent-dim` (amber-600)
-  - **文字**: `--color-text-primary` (slate-100), `--color-text-secondary` (slate-400), `--color-text-muted` (slate-500)
-  - **边框**: `--color-border-subtle` (slate-700), `--color-game-border` (slate-600, 原有)
-  - **功能色**: `--color-danger` (red-600), `--color-success` (green-600)
-  - **滚动条**: `--color-scrollbar-thumb` (slate-700, 原有)
+  - **Backgrounds**: `--color-bg-page` (slate-900), `--color-bg-surface` (slate-800), `--color-bg-overlay` (gray-900)
+  - **Accent**: `--color-accent` (amber-500), `--color-accent-light` (amber-400), `--color-accent-dim` (amber-600)
+  - **Text**: `--color-text-primary` (slate-100), `--color-text-secondary` (slate-400), `--color-text-muted` (slate-500)
+  - **Borders**: `--color-border-subtle` (slate-700), `--color-game-border` (slate-600, legacy)
+  - **Functional**: `--color-danger` (red-600), `--color-danger-light` (red-500), `--color-success` (green-600), `--color-success-light` (green-500)
+  - **Overlay / Glass**: `--color-overlay-scrim` (black), `--color-glass` (white)
+  - **Text (extreme)**: `--color-text-dark` (slate-900), `--color-text-bright` (white)
+  - **Scrollbar**: `--color-scrollbar-thumb` (slate-700, legacy)
 - Component-level color roles (player, enemy, danger) should be added to `@theme` when reused across ≥ 2 components.
 
 ### Custom classes
@@ -186,23 +204,23 @@ The current `src/pages/game-demo/` is a **reference implementation** (platformer
 
 The project is split into four non-overlapping layers. **Import direction is one-way: `pages → runtime/contents → engine`.**
 
-分层的判据是**"另一个 Phaser jam 游戏能不能复用"**，而不是"是否引用 Phaser"：engine/ 和 contents/ 都允许 import Phaser，只是抽象层级不同。
+The layering criterion is **"could another Phaser jam game reuse this?"**, not "does it import Phaser?". Both `engine/` and `contents/` may import Phaser — they differ in abstraction level.
 
-- `src/engine/` — **引擎层**。UI 无关、**具体游戏**无关的 Phaser 薄封装（`GameShell`、`GameEventBus`、`SHELL_DEFAULTS`、`EventCallback`）。换游戏不改。**不 import 任何项目内模块**。
-- `src/contents/` — **游戏内容层**。UI 无关、**与 Phaser 耦合**（scenes 继承 `Phaser.Scene`、用 physics/input）但与 Vue/DOM 解耦的游戏世界：`constants.ts` 场景/事件/数值、`types.ts`、`scenes/`、未来的 `entities/`、`systems/`、`data/`。全项目**唯一**的 SCENE_KEYS / EVENT_KEYS / GAME_CONFIG 源头。
-- `src/runtime/` — **运行时胶水层**。Vue 侧模块级单例（`useGame()` / `useEventBus()`），把 engine 的类实例包装成应用生命周期内的全局服务。不持有游戏数据。
-- `src/composables/` — **真·Vue composables**。`useXxx()` 返回 `Ref` / `Reactive` 或依赖组件生命周期的 hook；不是 `useXxx()` 的单例服务请放到 `runtime/`。
-- `src/components/` — 全局可复用的 UI 原语（按钮、标签、面板、HUD widget）。
-- `src/pages/` — 路由级组件。page 变复杂时，按 page 名建子目录（`pages/game-demo/` 即示例）。
+- `src/engine/` — **Engine layer.** UI-agnostic, **game-agnostic** thin wrappers around Phaser (`GameShell`, `GameEventBus`, `SHELL_DEFAULTS`, `EventCallback`). Unchanged when swapping games. **Must not import any other project module.**
+- `src/contents/` — **Game content layer.** UI-agnostic, **Phaser-coupled** (scenes extend `Phaser.Scene`, use physics/input) but decoupled from Vue/DOM. Contains the game world: `constants.ts` (scene/event keys, tuning values), `types.ts`, `scenes/`, and future `entities/`, `systems/`, `data/`. The project's **sole** source of SCENE_KEYS / EVENT_KEYS / GAME_CONFIG.
+- `src/runtime/` — **Runtime glue layer.** Module-level singletons on the Vue side (`useGame()` / `useEventBus()`) that wrap engine class instances into app-lifetime global services. Holds no game data.
+- `src/composables/` — **True Vue composables.** `useXxx()` functions that return `Ref` / `Reactive` or depend on component lifecycle. Singleton services that are not lifecycle-bound belong in `runtime/`.
+- `src/components/` — Globally reusable UI primitives (buttons, tags, panels, HUD widgets).
+- `src/pages/` — Route-level components. When a page grows complex, split its sub-modules into a same-name subdirectory (`pages/game-demo/` is the current example).
 - All `props` typed with TypeScript; all events typed with `defineEmits<...>()`.
 
-**依赖方向禁忌：**
+**Forbidden import directions:**
 
-- `engine/` 不能 import `contents/` / `runtime/` / `pages/`。
-- `contents/` 不能 import `pages/`（但可以 import `engine/` 和 `runtime/`）。
-- 出现反向依赖说明分层错了。
+- `engine/` must not import `contents/`, `runtime/`, or `pages/`.
+- `contents/` must not import `pages/` (but may import `engine/` and `runtime/`).
+- A reverse dependency means the layering is wrong.
 
-**`runtime/` → `contents/` 必须走深路径。** runtime 文件只能写 `import ... from "@/contents/constants"` / `"@/contents/types"`，**禁止走 `@/contents` 桶导出**。原因：`contents/scenes/*` 顶层有 `const eventBus = useEventBus()` / `const game = useGame()` 这类模块副作用，经 `@/contents` 桶会把 scenes 顺带加载进来；而 scenes 又反向 import `@/runtime`，于是 runtime 尚未初始化完成时 scenes 已经在调 `useGame()`，触发 ES 模块循环启动。现用范例：`src/runtime/game.ts`。
+**`runtime/` → `contents/` must use deep imports.** Runtime files must write `import ... from "@/contents/constants"` / `"@/contents/types"` — **never import from the `@/contents` barrel export**. Reason: `contents/scenes/*` files have top-level side effects (`const eventBus = useEventBus()` / `const game = useGame()`); importing via the barrel pulls scenes in transitively, and since scenes import `@/runtime` back, this triggers a circular module initialization where `useGame()` is called before runtime has finished initializing. See `src/runtime/game.ts` for the current pattern.
 
 ---
 
@@ -232,25 +250,43 @@ Full troubleshooting catalog: `.clinerules/02-trouble-shoot.md`.
 
 Just `grep` by agent itself.
 
-`composables/` 目前是空 stub；新的 `useXxx()` hook（返回 `Ref` 或依赖组件生命周期）放这里，全局单例服务放 `runtime/`。
+`composables/` is currently an empty stub. New `useXxx()` hooks (returning `Ref` or depending on component lifecycle) go here; app-lifetime singleton services go in `runtime/`.
 
-### `src/contents/game-info/` — 个性化内容入口
+### `src/contents/game-info/` — Player-facing content entry point
 
-这是**玩家可见的占位内容**的唯一事实源。所有页面组件从这里读取数据，禁止在 `.vue` 文件里硬编码游戏名、团队名或玩法文案。
+This is the **single source of truth** for all player-visible placeholder content. All page components read from here — never hard-code game title, team name, or gameplay copy in `.vue` files.
 
-| 文件 | 导出 | 用途 |
+| File | Export | Purpose |
 |---|---|---|
-| `game-meta.ts` | `GAME_META` (`IGameMeta`) | 游戏标题、副标题、版本等元信息；首页读取 |
-| `how-to-play.md` | (raw Markdown) | 玩法介绍正文；`/how-to-play` 页面渲染 |
-| `team.ts` | `TEAM_INFO` (`ITeamInfo`) | 团队名称、成员列表、项目简介；`/about-us` 页面读取 |
-| `index.ts` | 桶导出 | 统一 re-export 上述内容 |
+| `game-meta.ts` | `GAME_META` (`GameMeta`) | Game title, subtitle, description, tags, OSS credits; read by home page and about page |
+| `how-to-play.md` | (raw Markdown) | Gameplay instructions; rendered by `/how-to-play` page |
+| `team.ts` | `TEAM_INFO` (`TeamInfo`) | Team name, member list, project description; read by `/about-us` page |
+| `index.ts` | barrel export | Re-exports all of the above |
 
-**修改规则：**
+**Edit rules:**
 
-- 改游戏名/副标题 → 只改 `game-meta.ts`。
-- 改玩法说明 → 只改 `how-to-play.md`（支持 Markdown + 少量 inline HTML）。
-- 改团队信息 → 只改 `team.ts`。
-- 禁止在 `pages/` 组件里直接写死任何游戏名、团队名或玩法文案字符串。
+- Change game title / subtitle → edit only `game-meta.ts`.
+- Change gameplay instructions → edit only `how-to-play.md` (supports Markdown + minimal inline HTML).
+- Change team info → edit only `team.ts`.
+- Never hard-code game title, team name, or gameplay copy strings in `pages/` components.
+
+### `docs/vibe/` — Design documents and game spec
+
+| File | Purpose |
+|---|---|
+| `spec-framework.md` | UI/engineering framework spec (architecture, pages, routes, conventions) |
+| `spec-game.md` | **User's game spec.** When the user describes a game idea, agents auto-generate / update this file. This is the single source of truth for the game's design: mechanics, entities, win/lose conditions, level progression, etc. |
+| `engine-structure.md` | Four-layer architecture walkthrough + vibe coding handbook |
+| `game-demo.md` | Demo walkthrough (platformer + stars reference implementation) |
+| `phaser-study.md` | Phaser × Vue integration research notes |
+
+**`spec-game.md` workflow:**
+
+1. User describes a game idea (in chat, in any language).
+2. Agent reads `docs/vibe/spec-game.md`, then **overwrites** it with a structured spec derived from the user's description.
+3. The spec should cover: core mechanic, player actions, entities, win/lose conditions, scoring, difficulty curve, and any art/audio direction.
+4. On subsequent iterations the agent **updates** the existing spec rather than rewriting from scratch, preserving sections the user has already approved.
+5. Implementation work references this spec as the design source of truth.
 
 ---
 
@@ -275,10 +311,10 @@ History mode: **hash** (`createWebHashHistory`).
 
 | Key (string) | Class | File | Role | Init data |
 |---|---|---|---|---|
-| `BootScene` | `BootScene` | `src/contents/scenes/boot-scene.ts` | 生成占位纹理 + 加载进度条 → `game.switchToScene(GameScene)` | none |
-| `GameScene` | `GameScene` | `src/contents/scenes/game-scene.ts` | 平台跳跃 + 收集星星 | `IGameSceneData = { startScore?: number }` |
+| `BootScene` | `BootScene` | `src/contents/scenes/boot-scene.ts` | Generate placeholder textures + progress bar → `game.switchToScene(GameScene)` | none |
+| `GameScene` | `GameScene` | `src/contents/scenes/game-scene.ts` | Platformer + star collection demo | `IGameSceneData = { startScore?: number }` |
 
-场景装载顺序在 `src/pages/game-demo/index.vue` → `useGame().initGame(container, BootScene)` + `addScene(GameScene)`。
+Scene loading order is in `src/pages/game-demo/index.vue` → `useGame().initGame(container, BootScene)` + `addScene(GameScene)`.
 
 ---
 
@@ -330,16 +366,17 @@ No audio keys yet. When added, create a separate `ASSET_KEYS.AUDIO` table.
 
 ## 13.7 Shared TypeScript types / interfaces
 
-*Last updated: 2026-04-29;15:30.*
+*Last updated: 2026-04-29;18:52.*
 
 | Symbol | Defined in | Used by | Purpose |
 |---|---|---|---|
-| `IGameSceneData` | `src/pages/game-demo/scenes/game-scene.ts` | `GameScene.init` | Scene startup params (`startScore?`) |
+| `IGameSceneData` | `src/contents/scenes/game-scene.ts` | `GameScene.init` | Scene startup params (`startScore?`) |
 | `Props` (game-button) | `src/components/game-button.vue` | `<GameButton>` usage | `{ label, variant?: 'primary' \| 'secondary' }` |
-| `src/components/mmkd-starter-credit.vue` | `<MmkdStarterCredit>` usage in `pages/about-us.vue` | no props; displays scaffold logo, link, and tech-stack badges |
-| `IGameMeta` | `src/contents/game-info/game-meta.ts` | `pages/home-page.vue` | `{ title, subtitle, version?, description? }` |
-| `ITeamInfo` | `src/contents/game-info/team.ts` | `pages/about-us.vue` | `{ teamName, members: ITeamMember[], projectBlurb? }` |
-| `ITeamMember` | `src/contents/game-info/team.ts` | `ITeamInfo.members` | `{ name, role?, link? }` |
+| `MmkdStarterCredit` (no props) | `src/components/mmkd-starter-credit.vue` | `pages/about-us.vue` | Displays scaffold logo, link, and tech-stack badges |
+| `GameMeta` | `src/contents/game-info/types.ts` | `pages/home-page.vue`, `pages/about-us.vue` | `{ title, subtitle?, description?, tags?, showGameCard, ossCredits?: OssCredit[] }` |
+| `OssCredit` | `src/contents/game-info/types.ts` | `GameMeta.ossCredits` | `{ name, desc, url? }` |
+| `TeamInfo` | `src/contents/game-info/types.ts` | `pages/about-us.vue` | `{ teamName, description, members: TeamMember[] }` |
+| `TeamMember` | `src/contents/game-info/types.ts` | `TeamInfo.members` | `{ name, role, avatar?, introId? }` |
 
 When an EventBus payload becomes non-trivial (e.g. `GAME_OVER` carrying final score + cause), define a named type here and import it at both ends.
 
