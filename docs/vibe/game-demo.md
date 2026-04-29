@@ -1,4 +1,4 @@
-# 游戏 DEMO
+# 游戏 DEMO - Picking Stars
 
 ## 概述
 
