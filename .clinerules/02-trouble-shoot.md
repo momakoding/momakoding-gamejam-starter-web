@@ -120,21 +120,7 @@ export default defineConfig({
 
 ## 6. Nuxt 4 常见问题
 
-### 6.1 组件自动导入
-
-Nuxt 4 会自动导入 `components/` 目录下的组件，直接在模板中使用即可，无需手动 `import`。
-
-### 6.2 页面路由
-
-Nuxt 4 使用 `app/pages/` 目录下的文件结构自动生成路由。例如：
-
-- `app/pages/index.vue` -> `/`
-- `app/pages/about.vue` -> `/about`
-- `app/pages/risk-profile/[id].vue` -> `/risk-profile/:id`
-
-### 6.3 布局使用
-
-使用 `app/layouts/` 目录创建布局，在页面中通过 `definePageMeta({ layout: 'default' })` 指定布局。
+本项目不使用Nuxt，尤其是不做SSR，暂时移除，未来会替换成Vue 3 常见问题
 
 ## 7. Tailwind CSS v4 与 v3 写法差异
 

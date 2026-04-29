@@ -1,6 +1,6 @@
 # 开发规范
 
-## 命名 (Nuxt 3)
+## 命名
 
 1. **文件命名**: 统一使用kebab-case (短横线分隔)，例如 `global-search-bar.vue`。
 2. **组件引用**: 在 `<template>` 中使用时，和在 `<script>` 中引入时一样，使用PascalCase，例如 `import GlobalSearchBar from '...'`，`<GlobalSearchBar />`。
