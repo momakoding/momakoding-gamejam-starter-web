@@ -24,7 +24,9 @@ pnpm build    # 输出到 dist/
 
 ## 🌟 精选案例 Featured Showcase
 
-- **Neon Hunter** by [Archie(PandaEMOnium. aka Wanli-Go)](https://github.com/Wanli-Go).
-    > The tutorial demo of this repo.
 - [The Bounder](https://github.com/chatoyo/the-bounder) by Momakoding / Chatoyo
     > Vibejam Shenzhen in 2026
+- **Neon Hunter** by [Archie(PandaEMOnium. aka Wanli-Go)](https://github.com/Wanli-Go).
+    > The tutorial demo of this framework. See the branch `demo/neon-hunter`.
+- **Picking Stars** by [Saša(NBDatsuya)](https://github.com/NBDatsuya)
+    > A simpler demo. See the branch `demo/picking-stars`.
