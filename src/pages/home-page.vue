@@ -21,6 +21,10 @@ const menuItems: MenuItem[] = [
 		label: '玩法介绍',
 		variant: 'secondary',
 		onClick: () => router.push({ name: 'how-to-play', query: { from: 'menu' } }),
+	}, {
+		label: '设置',
+		variant: 'secondary',
+		onClick: () => router.push({ name: 'settings' }),
 	},
 	{
 		label: '关于我们',
@@ -41,7 +45,9 @@ const menuItems: MenuItem[] = [
 <template>
 	<div class="home-page">
 		<h1 class="home-page__title">{{ GAME_META.title }}</h1>
-		<p v-if="GAME_META.subtitle" class="home-page__subtitle">{{ GAME_META.subtitle }}</p>
+		<p v-if="GAME_META.subtitle && GAME_META.subtitle !== ''" class="home-page__subtitle">
+			{{ GAME_META.subtitle }}
+		</p>
 
 		<nav class="home-page__nav">
 			<GameButton v-for="item in menuItems" :key="item.label" :label="item.label" :variant="item.variant"
@@ -54,11 +60,11 @@ const menuItems: MenuItem[] = [
 @reference "@/style.css";
 
 .home-page {
-	@apply flex min-h-screen flex-col items-center justify-center gap-12;
+	@apply flex h-screen flex-col items-center justify-center gap-12;
 }
 
 .home-page__title {
-	@apply text-5xl font-bold tracking-widest text-amber-400;
+	@apply text-5xl font-bold tracking-widest text-accent-light;
 }
 
 .home-page__nav {

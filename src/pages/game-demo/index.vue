@@ -57,7 +57,7 @@ onUnmounted(() => {
 @reference "@/style.css";
 
 .game-demo {
-  @apply relative flex min-h-screen items-center justify-center bg-gray-900;
+  @apply relative flex min-h-screen items-center justify-center bg-bg-overlay;
 }
 
 .game-demo__canvas {
@@ -69,10 +69,10 @@ onUnmounted(() => {
 }
 
 .game-demo__score {
-  @apply text-lg font-bold text-yellow-300;
+  @apply text-lg font-bold text-accent-light;
 }
 
 .game-demo__restart-btn {
-  @apply pointer-events-auto rounded bg-red-600 px-3 py-1 text-sm text-white transition hover:bg-red-500;
+  @apply pointer-events-auto rounded bg-danger px-3 py-1 text-sm text-text-primary transition hover:bg-danger-light;
 }
 </style>

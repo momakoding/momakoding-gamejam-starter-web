@@ -65,15 +65,15 @@ onUnmounted(() => {
 @reference "@/style.css";
 
 .game-page {
-  @apply relative min-h-screen bg-gray-900;
+  @apply relative min-h-screen bg-bg-overlay;
 }
 
 .game-page__overlay {
-  @apply absolute inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-sm;
+  @apply absolute inset-0 z-20 flex items-center justify-center bg-overlay-scrim/60 backdrop-blur-sm;
 }
 
 .game-page__pause-panel {
-  @apply flex flex-col items-center gap-4 rounded-xl bg-gray-800/90 p-8 text-white;
+  @apply flex flex-col items-center gap-4 rounded-xl bg-bg-surface/90 p-8 text-text-primary;
 }
 
 .game-page__pause-title {
@@ -81,15 +81,15 @@ onUnmounted(() => {
 }
 
 .game-page__resume-btn {
-  @apply rounded-lg bg-green-600 px-6 py-2 text-lg transition hover:bg-green-500;
+  @apply rounded-lg bg-success px-6 py-2 text-lg transition hover:bg-success-light;
 }
 
 .game-page__exit-btn {
-  @apply rounded-lg bg-gray-600 px-6 py-2 text-sm transition hover:bg-gray-500;
+  @apply rounded-lg bg-game-border px-6 py-2 text-sm transition hover:bg-text-muted;
 }
 
 .game-page__pause-trigger {
-  @apply absolute top-4 right-4 z-10 rounded-lg bg-white/10 px-3 py-1.5 text-sm text-white/70 transition hover:bg-white/20 hover:text-white;
+  @apply absolute top-4 right-4 z-10 rounded-lg bg-glass/10 px-3 py-1.5 text-sm text-text-primary/70 transition hover:bg-glass/20 hover:text-text-bright;
 }
 
 .fade-enter-active,

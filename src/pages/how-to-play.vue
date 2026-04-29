@@ -43,23 +43,23 @@ function handleAction() {
   @apply flex min-h-screen flex-col items-center justify-center gap-10 px-6 py-14;
 }
 .how-to-play__title {
-  @apply text-4xl font-bold text-amber-400;
+  @apply text-4xl font-bold text-accent-light;
 }
  
 
 .how-to-play__content {
-  @apply w-full max-w-lg text-slate-300;
+  @apply w-full max-w-lg text-text-secondary;
 }
 
 /* markdown 渲染样式 */
 .how-to-play__content :deep(h1) {
-  @apply text-2xl font-bold text-amber-400 mb-4;
+  @apply text-2xl font-bold text-accent-light mb-4;
 }
 .how-to-play__content :deep(h2) {
-  @apply text-lg font-semibold text-amber-300 mt-6 mb-2;
+  @apply text-lg font-semibold text-accent-light mt-6 mb-2;
 }
 .how-to-play__content :deep(h3) {
-  @apply text-base font-semibold text-slate-200 mt-4 mb-1;
+  @apply text-base font-semibold text-text-primary mt-4 mb-1;
 }
 .how-to-play__content :deep(p) {
   @apply leading-relaxed mb-3;
@@ -71,18 +71,18 @@ function handleAction() {
   @apply list-decimal pl-5 space-y-1 mb-3;
 }
 .how-to-play__content :deep(blockquote) {
-  @apply border-l-4 border-amber-500/50 pl-4 text-slate-400 italic mb-3;
+  @apply border-l-4 border-accent/50 pl-4 text-text-secondary italic mb-3;
 }
 .how-to-play__content :deep(table) {
   @apply w-full text-sm border-collapse mb-3;
 }
 .how-to-play__content :deep(th) {
-  @apply border border-slate-600 bg-slate-700/50 px-3 py-1.5 text-left text-slate-200;
+  @apply border border-game-border bg-border-subtle/50 px-3 py-1.5 text-left text-text-primary;
 }
 .how-to-play__content :deep(td) {
-  @apply border border-slate-700 px-3 py-1.5;
+  @apply border border-border-subtle px-3 py-1.5;
 }
 .how-to-play__content :deep(code) {
-  @apply rounded bg-slate-700/60 px-1 py-0.5 text-xs text-amber-300 font-mono;
+  @apply rounded bg-border-subtle/60 px-1 py-0.5 text-xs text-accent-light font-mono;
 }
 </style>
