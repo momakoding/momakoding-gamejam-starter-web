@@ -122,12 +122,31 @@ All textures are generated at runtime via `generateTexture` in `BootScene` — z
 
 ---
 
+## Customization Checklist (do this first)
+
+The scaffold concentrates all player-visible placeholder content in a handful of files. Before you start building your actual game, work through this list so the title screen, instructions page, credits page, and color scheme no longer show placeholder text:
+
+| What to change | File | Affects |
+|---|---|---|
+| Game title & subtitle | `src/contents/game-info/game-meta.ts` | Home page title |
+| How-to-play body copy | `src/contents/game-info/how-to-play.md` | `/how-to-play` page — Markdown + inline HTML |
+| Team name, members, project blurb | `src/contents/game-info/team.ts` | `/about-us` page |
+| Global theme colors | `@theme { … }` in `src/style.css` | Buttons, panels, text, borders — all Tailwind tokens |
+
+> If you see `[Text Here]`, `[Team Name]`, or `[Member A]` anywhere in the running app, that section hasn't been personalized yet. You can tell the AI: "Replace the placeholder content in `game-info` with my game's details, and change the theme to a neon-cyberpunk palette."
+
+When updating colors, edit the existing tokens in `@theme` (e.g. `--color-accent`, `--color-bg-page`, `--color-text-primary`) rather than hardcoding colors in individual Vue files. That way a full theme swap is a single-file edit.
+
+---
+
 ## Development Conventions
 
 - **New scene**: extend `Phaser.Scene`, take the key from `SCENE_KEYS`, clean up listeners in `shutdown`.
 - **New event**: add to `EVENT_KEYS` first, then wire `on` / `emit` at both ends, then update `AGENTS.md §13.5`.
 - **New asset**: register the key in `AGENTS.md §13.6`; use `generateTexture` as placeholder, real assets go in `public/assets/`.
 - **Tuning values**: only touch `GAME_CONFIG` in `contents/constants.ts` — don't refactor scene code.
+- **Display copy**: always edit `contents/game-info/` — never scatter game title, team name, or instructions across page components.
+- **Theme reskin**: edit `@theme` tokens in `src/style.css` — avoid one-off color values scattered across files.
 - **Vue ↔ Phaser communication**: EventBus only. Never reach into Phaser objects from Vue.
 
 Multi-agent collaboration protocol: [`AGENTS.md`](../../AGENTS.md).

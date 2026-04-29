@@ -56,6 +56,7 @@ src/
 ├── contents/                # ② 游戏内容层：场景/常量/类型的唯一事实源
 │   ├── constants.ts         #   ★ SCENE_KEYS / EVENT_KEYS / GAME_CONFIG
 │   ├── types.ts             #   IGameSceneData 等
+│   ├── game-info/           #   ★ 游戏标题、玩法文案、团队信息
 │   └── scenes/              #   BootScene / GameScene / ...
 │
 ├── runtime/                 # ③ 运行时胶水层：Vue 侧模块级单例
@@ -65,7 +66,8 @@ src/
 ├── composables/             # ④ 真·Vue composables（返回 Ref / 依赖组件生命周期）
 │
 ├── components/
-│   └── game-button.vue      # BEM 风格按钮，primary / secondary 变体
+│   ├── game-button.vue      # BEM 风格按钮，primary / secondary 变体
+│   └── mmkd-starter-credit.vue # Momakoding 脚手架署名卡片
 │
 ├── pages/
 │   ├── home-page.vue        # 首页菜单
@@ -92,6 +94,23 @@ contents → engine
 - `contents/` 不 import `pages/`。
 
 详细架构说明见 [`vibe/engine-structure.md`](../vibe/engine-structure.md)。
+
+---
+
+## 个性化内容入口（开做前先改）
+
+这个脚手架故意把“玩家会直接看到的占位内容”集中在少数几个文件里。正式开做自己的游戏前，建议先完成这份清单：
+
+| 要改什么 | 文件 | 会影响哪里 |
+|---|---|---|
+| 游戏名称、副标题 | `src/contents/game-info/game-meta.ts` | 首页标题、页面展示的游戏元信息 |
+| 玩法介绍正文 | `src/contents/game-info/how-to-play.md` | `/how-to-play` 页面，支持 Markdown 和少量 HTML |
+| 团队名称、成员、项目简介 | `src/contents/game-info/team.ts` | `/about-us` 页面 |
+| 全局主题色 | `src/style.css` 的 `@theme { ... }` | 首页、按钮、面板、文字、边框等 Tailwind token |
+
+> 看到 `[请输入文本]`、`[Text Here]`、`[团队名称]`、`[成员 A]` 这类内容，就说明还没完成个性化。可以直接让 AI：“把 game-info 里的占位内容替换成我的游戏信息，并把主题色改成霓虹赛博风”。
+
+主题色优先改 `@theme` 中已有 token，例如 `--color-accent`、`--color-bg-page`、`--color-text-primary`。不要在各个 Vue 文件里到处硬编码颜色；这样后续换主题最快。
 
 ---
 
@@ -128,6 +147,8 @@ History 模式：**Hash**（`createWebHashHistory`），无需服务端配置。
 - **新事件**：先加进 `EVENT_KEYS`，再在两端 `on` / `emit`，最后更新 `AGENTS.md §13.5`。
 - **新资产**：key 登记进 `AGENTS.md §13.6`；占位用 `generateTexture`，真实素材放 `public/assets/`。
 - **数值调参**：只改 `contents/constants.ts` 里的 `GAME_CONFIG`，不动场景代码。
+- **展示文案**：优先改 `contents/game-info/`，不要把游戏名、团队名、玩法说明散落在页面组件里。
+- **主题换肤**：优先改 `src/style.css` 的 `@theme` token，复用 Tailwind 类名，不要到处写一次性颜色。
 - **Vue ↔ Phaser 通信**：只走 `EventBus`，禁止在 Vue 里直接操作 Phaser 对象。
 
 多 agent 协作规约见 [`AGENTS.md`](../../AGENTS.md)。

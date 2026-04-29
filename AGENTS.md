@@ -234,6 +234,24 @@ Just `grep` by agent itself.
 
 `composables/` 目前是空 stub；新的 `useXxx()` hook（返回 `Ref` 或依赖组件生命周期）放这里，全局单例服务放 `runtime/`。
 
+### `src/contents/game-info/` — 个性化内容入口
+
+这是**玩家可见的占位内容**的唯一事实源。所有页面组件从这里读取数据，禁止在 `.vue` 文件里硬编码游戏名、团队名或玩法文案。
+
+| 文件 | 导出 | 用途 |
+|---|---|---|
+| `game-meta.ts` | `GAME_META` (`IGameMeta`) | 游戏标题、副标题、版本等元信息；首页读取 |
+| `how-to-play.md` | (raw Markdown) | 玩法介绍正文；`/how-to-play` 页面渲染 |
+| `team.ts` | `TEAM_INFO` (`ITeamInfo`) | 团队名称、成员列表、项目简介；`/about-us` 页面读取 |
+| `index.ts` | 桶导出 | 统一 re-export 上述内容 |
+
+**修改规则：**
+
+- 改游戏名/副标题 → 只改 `game-meta.ts`。
+- 改玩法说明 → 只改 `how-to-play.md`（支持 Markdown + 少量 inline HTML）。
+- 改团队信息 → 只改 `team.ts`。
+- 禁止在 `pages/` 组件里直接写死任何游戏名、团队名或玩法文案字符串。
+
 ---
 
 ## 13.2 Routes
@@ -312,13 +330,16 @@ No audio keys yet. When added, create a separate `ASSET_KEYS.AUDIO` table.
 
 ## 13.7 Shared TypeScript types / interfaces
 
-*Last updated: 2026-04-25;00:01.*
+*Last updated: 2026-04-29;15:30.*
 
 | Symbol | Defined in | Used by | Purpose |
 |---|---|---|---|
 | `IGameSceneData` | `src/pages/game-demo/scenes/game-scene.ts` | `GameScene.init` | Scene startup params (`startScore?`) |
 | `Props` (game-button) | `src/components/game-button.vue` | `<GameButton>` usage | `{ label, variant?: 'primary' \| 'secondary' }` |
 | `src/components/mmkd-starter-credit.vue` | `<MmkdStarterCredit>` usage in `pages/about-us.vue` | no props; displays scaffold logo, link, and tech-stack badges |
+| `IGameMeta` | `src/contents/game-info/game-meta.ts` | `pages/home-page.vue` | `{ title, subtitle, version?, description? }` |
+| `ITeamInfo` | `src/contents/game-info/team.ts` | `pages/about-us.vue` | `{ teamName, members: ITeamMember[], projectBlurb? }` |
+| `ITeamMember` | `src/contents/game-info/team.ts` | `ITeamInfo.members` | `{ name, role?, link? }` |
 
 When an EventBus payload becomes non-trivial (e.g. `GAME_OVER` carrying final score + cause), define a named type here and import it at both ends.
 

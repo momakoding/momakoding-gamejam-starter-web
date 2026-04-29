@@ -165,6 +165,27 @@ This creates a `dist/` folder. Upload that folder to any static host (GitHub Pag
 
 ---
 
+## Before you start building: replace the placeholder content
+
+Once the demo is running, you'll notice some **placeholder text** in the title screen, how-to-play page, and about page — things like `[Text Here]`, `[Team Name]`, and `[Member A]`. Those are yours to fill in.
+
+Just tell the AI:
+
+> "Replace the placeholder content in `game-info` with my game's details: the game is called XX, subtitle is XX, team name is XX, members are A, B, and C."
+
+Or open the files yourself:
+
+| What to change | File |
+|---|---|
+| Game title & subtitle | `src/contents/game-info/game-meta.ts` |
+| How-to-play body copy | `src/contents/game-info/how-to-play.md` |
+| Team name & members | `src/contents/game-info/team.ts` |
+| Overall color theme | `@theme { … }` in `src/style.css` |
+
+Refresh the browser after saving — the title screen will already look like your game.
+
+---
+
 ## How do I tell the AI what to change?
 
 One rule: **describe the feeling you want, not the code change**.

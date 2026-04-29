@@ -2,6 +2,7 @@
 
 One line per change that touches `src/` or project structure. Newest at the top.
 
+- **2026-04-29** — 文档补全：`docs/readme/README.en.md` 新增 Customization Checklist；`onboarding.zh.md` / `onboarding.en.md` 在"跑起来"后新增占位内容替换指引；`AGENTS.md` §13.1 新增 `game-info/` 目录规约，§13.7 补充 `IGameMeta` / `ITeamInfo` / `ITeamMember` 类型条目。
 - **2026-04-28** — 整理全局颜色 token：`src/style.css` `@theme` 块新增 bg/accent/text/border/danger/success 系列 token，所有值统一引用 Tailwind 内置 `var(--color-*)` 而非硬编码 HEX；同步 AGENTS.md §10。
 - **2026-04-28** — 重构 `pages/about-us.vue`：新增 Hero 标题区、团队卡片成员列表、游戏信息卡片（`needShowingIntro` 控制显隐）、全宽开源技术区（`MmkdStarterCredit` + 其他依赖列表）；升级 `components/mmkd-starter-credit.vue`（横排 header、GitHub 图标、amber 主题边框）。
 - **2026-04-28** — Decision Log 和 Change Log 从 AGENTS.md 拆出为独立文件（`DECISION_LOG.md` / `CHANGELOG.md`）；更新 AGENTS.md §13.10 引用指向。
