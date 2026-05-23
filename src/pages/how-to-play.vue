@@ -40,7 +40,7 @@ function handleAction() {
 @reference "@/style.css";
 
 .how-to-play {
-  @apply flex min-h-screen flex-col items-center justify-center gap-10 px-6 py-14;
+  @apply flex h-screen flex-col items-center justify-center gap-10 px-6 py-14 overflow-y-auto;
 }
 .how-to-play__title {
   @apply text-4xl font-bold text-accent-light;
