@@ -71,7 +71,7 @@
     <span class="dim">gh-pages</span>
   </div>
 
-  <div class="max-w-4xl mx-auto px-4 py-8 space-y-10">
+  <div class="max-w-4xl mx-auto px-4 py-12 space-y-14">
 
     <!-- HERO -->
     <section>
@@ -108,9 +108,111 @@
       </div>
     </section>
 
+    <!-- FEATURES -->
+    <section class="ascii-border p-6" data-label="FEATURES">
+      <div class="space-y-5">
+        <div class="space-y-1">
+          <div class="text-zinc-100">⚡ 开箱即用 <span class="dim">/ Ready on day one</span></div>
+          <div class="text-zinc-400 pl-4">菜单、示例游戏、暂停 / 恢复 / 退出逻辑全部就绪，fork 即可开始创作。</div>
+          <div class="dim pl-4 text-xs">Title menu, demo scene, pause/resume/exit — no boilerplate to write.</div>
+        </div>
+        <div class="divider">· · ·</div>
+        <div class="space-y-1">
+          <div class="text-zinc-100">🏗 分层架构 <span class="dim">/ Layered architecture</span></div>
+          <div class="text-zinc-400 pl-4">Engine → Contents → Runtime → Vue 四层清晰分离，改一处不牵连全局。</div>
+          <div class="dim pl-4 text-xs">Four-layer separation keeps changes local and predictable.</div>
+        </div>
+        <div class="divider">· · ·</div>
+        <div class="space-y-1">
+          <div class="text-zinc-100">🤖 AI 协作友好 <span class="dim">/ AI-dev friendly</span></div>
+          <div class="text-zinc-400 pl-4">附带 AGENTS.md，结构化约束让 AI 辅助开发不容易跑偏。</div>
+          <div class="dim pl-4 text-xs">AGENTS.md keeps AI-assisted development on track.</div>
+        </div>
+        <div class="divider">· · ·</div>
+        <div class="space-y-1">
+          <div class="text-zinc-100">🌐 双语文档 <span class="dim">/ Bilingual docs</span></div>
+          <div class="text-zinc-400 pl-4">上手指南与开发者文档均提供中英双语版本。</div>
+          <div class="dim pl-4 text-xs">Onboarding and developer docs in both Chinese and English.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE -->
+    <section class="ascii-border p-6" data-label="SHOWCASE">
+      <div class="space-y-6">
+
+        <div class="space-y-2">
+          <div class="flex items-baseline gap-2">
+            <span class="ok font-bold">The Bounder</span>
+            <span class="dim text-xs">by Momakoding / Chatoyo</span>
+          </div>
+          <div class="text-zinc-400 pl-4 text-xs">Vibejam Shenzhen 2026</div>
+          <div class="pl-4 border border-dashed border-zinc-700 rounded h-32 flex items-center justify-center text-xs dim">
+            screenshot / gif placeholder
+          </div>
+          <div class="pl-4">
+            <a href="https://github.com/chatoyo/the-bounder" class="link text-xs">→ github.com/chatoyo/the-bounder</a>
+          </div>
+        </div>
+
+        <div class="divider">─────────────────────────────────────────</div>
+
+        <div class="space-y-2">
+          <div class="flex items-baseline gap-2">
+            <span class="info font-bold">Neon Hunter</span>
+            <span class="dim text-xs">by Archie (PandaEMOnium / Wanli-Go)</span>
+          </div>
+          <div class="text-zinc-400 pl-4 text-xs">Tutorial demo of this framework</div>
+          <div class="pl-4 border border-dashed border-zinc-700 rounded h-32 flex items-center justify-center text-xs dim">
+            screenshot / gif placeholder
+          </div>
+          <div class="pl-4 text-xs">
+            branch <span class="hl">demo/neon-hunter</span>
+            <span class="dim"> · </span>
+            <a href="https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/neon-hunter" class="link">→ view</a>
+          </div>
+        </div>
+
+        <div class="divider">─────────────────────────────────────────</div>
+
+        <div class="space-y-2">
+          <div class="flex items-baseline gap-2">
+            <span class="warn font-bold">Picking Stars</span>
+            <span class="dim text-xs">by Saša (NBDatsuya)</span>
+          </div>
+          <div class="text-zinc-400 pl-4 text-xs">A simpler demo</div>
+          <div class="pl-4 border border-dashed border-zinc-700 rounded h-32 flex items-center justify-center text-xs dim">
+            screenshot / gif placeholder
+          </div>
+          <div class="pl-4 text-xs">
+            branch <span class="hl">demo/picking-stars</span>
+            <span class="dim"> · </span>
+            <a href="https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/picking-stars" class="link">→ view</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section class="ascii-border p-6" data-label="QUICK START">
+      <div class="space-y-1 text-xs leading-6">
+        <div class="prompt"><span>$</span> git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git</div>
+        <div class="prompt"><span>$</span> cd YOUR_REPO</div>
+        <div class="dim pl-4"># install dependencies</div>
+        <div class="prompt"><span>$</span> pnpm install</div>
+        <div class="dim pl-4"># start dev server → http://localhost:5173/</div>
+        <div class="prompt"><span>$</span> pnpm dev</div>
+        <div class="ok pl-4">  VITE v8.x  ready in Xms</div>
+        <div class="ok pl-4">  ➜  Local:   http://localhost:5173/</div>
+        <div class="mt-3 dim pl-4"># build for production → dist/</div>
+        <div class="prompt"><span>$</span> pnpm build</div>
+      </div>
+    </section>
+
     <!-- TECH STACK -->
-    <section class="ascii-border p-5" data-label="TECH STACK">
-      <div class="space-y-1">
+    <section class="ascii-border p-6" data-label="TECH STACK">
+      <div class="space-y-2">
         <div class="row"><span class="col-key">UI Framework</span><span class="col-sep">│</span><span class="col-val"><span class="ok">Vue 3</span> SFC · &lt;script setup lang="ts"&gt;</span></div>
         <div class="row"><span class="col-key">Game Engine</span><span class="col-sep">│</span><span class="col-val"><span class="err">Phaser 4</span> · Arcade Physics</span></div>
         <div class="row"><span class="col-key">Language</span><span class="col-sep">│</span><span class="col-val"><span class="info">TypeScript</span> strict · <span class="dim">any</span> forbidden</span></div>
@@ -124,8 +226,8 @@
     </section>
 
     <!-- ARCHITECTURE -->
-    <section class="ascii-border p-5" data-label="ARCHITECTURE">
-      <div class="space-y-1 text-xs">
+    <section class="ascii-border p-6" data-label="ARCHITECTURE">
+      <div class="space-y-1 text-xs leading-5">
         <div><span class="dim">src/</span></div>
         <div><span class="dim">├── </span><span class="info">engine/</span><span class="dim">          ① UI-agnostic Phaser wrapper</span></div>
         <div><span class="dim">│   ├── </span>game-shell/<span class="dim">    GameShell lifecycle</span></div>
@@ -140,99 +242,6 @@
         <div><span class="dim">├── </span><span class="err">composables/</span><span class="dim">     ④ True Vue composables (Ref / lifecycle)</span></div>
         <div><span class="dim">├── </span>components/<span class="dim">      game-button · mmkd-starter-credit</span></div>
         <div><span class="dim">└── </span>pages/<span class="dim">           home · how-to-play · about · game</span></div>
-      </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="ascii-border p-5" data-label="FEATURES">
-      <div class="space-y-3">
-        <div>
-          <div class="text-zinc-100">⚡ 开箱即用 <span class="dim">/ Ready on day one</span></div>
-          <div class="dim pl-4">菜单、示例游戏、暂停 / 恢复 / 退出逻辑全部就绪，fork 即可开始创作。</div>
-          <div class="dim pl-4 text-xs">Title menu, demo scene, pause/resume/exit — no boilerplate to write.</div>
-        </div>
-        <div class="divider">· · ·</div>
-        <div>
-          <div class="text-zinc-100">🏗 分层架构 <span class="dim">/ Layered architecture</span></div>
-          <div class="dim pl-4">Engine → Contents → Runtime → Vue 四层清晰分离，改一处不牵连全局。</div>
-          <div class="dim pl-4 text-xs">Four-layer separation keeps changes local and predictable.</div>
-        </div>
-        <div class="divider">· · ·</div>
-        <div>
-          <div class="text-zinc-100">🤖 AI 协作友好 <span class="dim">/ AI-dev friendly</span></div>
-          <div class="dim pl-4">附带 AGENTS.md，结构化约束让 AI 辅助开发不容易跑偏。</div>
-          <div class="dim pl-4 text-xs">AGENTS.md keeps AI-assisted development on track.</div>
-        </div>
-        <div class="divider">· · ·</div>
-        <div>
-          <div class="text-zinc-100">🌐 双语文档 <span class="dim">/ Bilingual docs</span></div>
-          <div class="dim pl-4">上手指南与开发者文档均提供中英双语版本。</div>
-          <div class="dim pl-4 text-xs">Onboarding and developer docs in both Chinese and English.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SHOWCASE -->
-    <section class="ascii-border p-5" data-label="SHOWCASE">
-      <div class="space-y-4">
-
-        <div>
-          <div class="flex items-baseline gap-2">
-            <span class="ok font-bold">The Bounder</span>
-            <span class="dim text-xs">by Momakoding / Chatoyo</span>
-          </div>
-          <div class="dim pl-4 text-xs">Vibejam Shenzhen 2026</div>
-          <div class="pl-4">
-            <a href="https://github.com/chatoyo/the-bounder" class="link text-xs">→ github.com/chatoyo/the-bounder</a>
-          </div>
-        </div>
-
-        <div class="divider">─────────────────────────────────────────</div>
-
-        <div>
-          <div class="flex items-baseline gap-2">
-            <span class="info font-bold">Neon Hunter</span>
-            <span class="dim text-xs">by Archie (PandaEMOnium / Wanli-Go)</span>
-          </div>
-          <div class="dim pl-4 text-xs">Tutorial demo of this framework</div>
-          <div class="pl-4 text-xs">
-            branch <span class="hl">demo/neon-hunter</span>
-            <span class="dim"> · </span>
-            <a href="https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/neon-hunter" class="link">→ view</a>
-          </div>
-        </div>
-
-        <div class="divider">─────────────────────────────────────────</div>
-
-        <div>
-          <div class="flex items-baseline gap-2">
-            <span class="warn font-bold">Picking Stars</span>
-            <span class="dim text-xs">by Saša (NBDatsuya)</span>
-          </div>
-          <div class="dim pl-4 text-xs">A simpler demo</div>
-          <div class="pl-4 text-xs">
-            branch <span class="hl">demo/picking-stars</span>
-            <span class="dim"> · </span>
-            <a href="https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/picking-stars" class="link">→ view</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- QUICK START -->
-    <section class="ascii-border p-5" data-label="QUICK START">
-      <div class="space-y-1 text-xs">
-        <div class="prompt"><span>$</span> git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git</div>
-        <div class="prompt"><span>$</span> cd YOUR_REPO</div>
-        <div class="dim pl-4"># install dependencies</div>
-        <div class="prompt"><span>$</span> pnpm install</div>
-        <div class="dim pl-4"># start dev server → http://localhost:5173/</div>
-        <div class="prompt"><span>$</span> pnpm dev</div>
-        <div class="ok pl-4">  VITE v8.x  ready in Xms</div>
-        <div class="ok pl-4">  ➜  Local:   http://localhost:5173/</div>
-        <div class="mt-3 dim pl-4"># build for production → dist/</div>
-        <div class="prompt"><span>$</span> pnpm build</div>
       </div>
     </section>
 
