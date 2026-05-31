@@ -249,7 +249,7 @@ const i18n = {
       "Nakon forka preskačeš pola dana namještanja skele — meniji, pauza, rutiranje i build lanac su gotovi, prva linija koda ide pravo u gameplay.",
     who2_t: "Dizajneri / PM-ovi / scenaristi",
     who2_d:
-      “Bez Phasera, čak ni poznavanje koda nije potrebno. Mijenjaš placeholder tekst, štimaš brojke, pustiš AI da „osjećaj” prevede u kod. Svoju ideju isti dan igraš u pregledniku.”,
+      "Bez Phasera, čak ni poznavanje koda nije potrebno. Mijenjaš placeholder tekst, štimaš brojke, pustiš AI da „osjećaj” prevede u kod. Svoju ideju isti dan igraš u pregledniku.",
     who3_t: "Mješoviti timovi ljudi + AI",
     who3_d:
       "spec-game.md je dizajnerski ugovor, AGENTS.md je inženjerski ugovor. AI se uskladi prije pisanja, ljudi definišu doživljaj — bez sukoba oko teritorija.",
