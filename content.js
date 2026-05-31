@@ -5,6 +5,8 @@ const i18n = {
   "zh-J": {
     author_tag: "作者",
     board_tag: "出品",
+    title_tag: "标题",
+    time_tag: "时间",
     page_title: "Momakoding — 网页游戏快速原型脚手架",
     main_title: "[工具] Web Game Jam Starter: 快速游戏原型脚手架",
     hero_desc:
@@ -75,6 +77,7 @@ const i18n = {
   "zh-F": {
     author_tag: "作者",
     board_tag: "出品",
+    title_tag: "標題",
     time_tag: "時間",
     page_title: "Momakoding — 網頁遊戲快速原型腳手架",
     main_title: "[工具] Web Game Jam Starter: 快速遊戲原型腳手架",
