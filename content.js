@@ -4,9 +4,8 @@ const GITHUB_REPO_URL =
 const i18n = {
   "zh-J": {
     author_tag: "作者",
-    board_tag: "看板",
-    title_tag: "标题",
-    time_tag: "时间",
+    board_tag: "出品",
+    page_title: "Momakoding — 网页游戏快速原型脚手架",
     main_title: "[工具] Web Game Jam Starter: 快速游戏原型脚手架",
     hero_desc:
       "周末 48 小时，一个人（加几个 AI）也能做出能玩、一个 URL 就能分享、能直接上线的网页游戏。\n Vue 管菜单 UI，Phaser 管玩法物理，AI 照登记表改数值——你只管想好不好玩。",
@@ -30,7 +29,7 @@ const i18n = {
       "fork 之后跳过搭架子的半天，菜单、暂停、路由、构建链全配好，第一行代码就写在玩法里。",
     who2_t: "策划 / 产品 / 设计师",
     who2_d:
-      "不用学 Phaser，不用读源码。改占位文案、调数值、靠 AI 把「手感」翻译成代码，当天就能在浏览器里玩到自己的想法。",
+      "不用学 Phaser，甚至根本不需要懂代码。改占位文案、调数值、靠 AI 把「手感」翻译成代码，当天就能在浏览器里玩到自己的想法。",
     who3_t: "人 + AI 混编团队",
     who3_d:
       "spec-game.md 当设计契约，AGENTS.md 当工程契约。AI 改代码前先对账，人类负责定义体验，分工不打架。",
@@ -75,9 +74,9 @@ const i18n = {
   },
   "zh-F": {
     author_tag: "作者",
-    board_tag: "看板",
-    title_tag: "標題",
+    board_tag: "出品",
     time_tag: "時間",
+    page_title: "Momakoding — 網頁遊戲快速原型腳手架",
     main_title: "[工具] Web Game Jam Starter: 快速遊戲原型腳手架",
     hero_desc:
       "週末 48 小時，一個人（加幾個 AI）也能做出能玩、一個 URL 就能分享、能直接上線的網頁遊戲。\n Vue 管選單 UI，Phaser 管玩法物理，AI 照登記表改數值——你只管想好不好玩。",
@@ -101,7 +100,7 @@ const i18n = {
       "fork 之後跳過搭架子的半天，選單、暫停、路由、建置鏈全配好，第一行程式碼就寫在玩法裡。",
     who2_t: "策劃 / 產品 / 設計師",
     who2_d:
-      "不用學 Phaser，不用讀原始碼。改佔位文案、調數值、靠 AI 把「手感」翻譯成程式碼，當天就能在瀏覽器裡玩到自己的想法。",
+      "不用學 Phaser，甚至根本不需要懂程式碼。改佔位文案、調數值、靠 AI 把「手感」翻譯成程式碼，當天就能在瀏覽器裡玩到自己的想法。",
     who3_t: "人 + AI 混編團隊",
     who3_d:
       "spec-game.md 當設計契約，AGENTS.md 當工程契約。AI 改程式碼前先對帳，人類負責定義體驗，分工不打架。",
@@ -146,9 +145,10 @@ const i18n = {
   },
   en: {
     author_tag: "Author",
-    board_tag: "Board",
+    board_tag: "By",
     title_tag: "Title",
     time_tag: "Time",
+    page_title: "Momakoding — Web Game Jam Starter",
     main_title: "[Tool] Web Game Jam Starter: Rapid Game Prototype Scaffold",
     hero_desc:
       "A weekend, one person (plus a few AI agents) — and you ship a web game that's playable, shareable by a single URL, and live. \n Vue owns the menus, Phaser owns the gameplay, AI tweaks the numbers. You just make it fun.",
@@ -174,7 +174,7 @@ const i18n = {
       "Skip half a day of scaffolding. Menus, pause, routing, and the build pipeline are wired up — your first line of code goes straight into gameplay.",
     who2_t: "Designers / PMs / Writers",
     who2_d:
-      "No Phaser, no source diving. Edit placeholder copy, tune numbers, let the AI translate 'feel' into code. Play your idea in the browser the same day.",
+      "No Phaser, no coding knowledge required. Edit placeholder copy, tune numbers, let the AI translate 'feel' into code. Play your idea in the browser the same day.",
     who3_t: "Human + AI Hybrid Teams",
     who3_d:
       "spec-game.md is the design contract; AGENTS.md is the engineering contract. AI reconciles before writing, humans own the experience — no turf wars.",
@@ -219,9 +219,10 @@ const i18n = {
   },
   yug: {
     author_tag: "Autor",
-    board_tag: "Forum",
+    board_tag: "Izdaje",
     title_tag: "Naslov",
     time_tag: "Vrijeme",
+    page_title: "Momakoding — Skela za brzo prototipiranje web igara",
     main_title: "[Alat] Web Game Jam Starter: skela za brzo prototipiranje igara",
     hero_desc:
       "Jedan vikend, jedna osoba (plus nekoliko AI agenata) — i napraviš web igru koja se može igrati, podijeliti jednim URL-om i odmah objaviti. \n Vue drži menije, Phaser drži gameplay, AI mijenja brojke. Ti se baviš samo time da bude zabavno.",
@@ -245,7 +246,7 @@ const i18n = {
       "Nakon forka preskačeš pola dana namještanja skele — meniji, pauza, rutiranje i build lanac su gotovi, prva linija koda ide pravo u gameplay.",
     who2_t: "Dizajneri / PM-ovi / scenaristi",
     who2_d:
-      "Bez Phasera, bez kopanja po izvornom kodu. Mijenjaš placeholder tekst, štimaš brojke, pustiš AI da „osjećaj“ prevede u kod. Svoju ideju isti dan igraš u pregledniku.",
+      “Bez Phasera, čak ni poznavanje koda nije potrebno. Mijenjaš placeholder tekst, štimaš brojke, pustiš AI da „osjećaj” prevede u kod. Svoju ideju isti dan igraš u pregledniku.”,
     who3_t: "Mješoviti timovi ljudi + AI",
     who3_d:
       "spec-game.md je dizajnerski ugovor, AGENTS.md je inženjerski ugovor. AI se uskladi prije pisanja, ljudi definišu doživljaj — bez sukoba oko teritorija.",
