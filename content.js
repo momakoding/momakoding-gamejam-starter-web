@@ -10,7 +10,7 @@ const i18n = {
     page_title: "Momakoding — 网页游戏快速原型脚手架",
     main_title: "[工具] Web Game Jam Starter: 快速游戏原型脚手架",
     hero_desc:
-      "周末 48 小时，一个人（加几个 AI）也能做出能玩、一个 URL 就能分享、能直接上线的网页游戏。\n Vue 管菜单 UI，Phaser 管玩法物理，AI 照登记表改数值——你只管想好不好玩。",
+      "周末 48 小时，一个人（加几个 AI）也能做出能玩，能直接上线的网页游戏。\n Vue 管菜单 UI，Phaser 管玩法物理，AI 照登记表改数值——你只管想好不好玩。",
 
     box_why: "WHY THIS STARTER / 为什么选它？",
     answer_label: "A:",
@@ -91,7 +91,7 @@ const i18n = {
     page_title: "Momakoding — 網頁遊戲快速原型腳手架",
     main_title: "[工具] Web Game Jam Starter: 快速遊戲原型腳手架",
     hero_desc:
-      "週末 48 小時，一個人（加幾個 AI）也能做出能玩、一個 URL 就能分享、能直接上線的網頁遊戲。\n Vue 管選單 UI，Phaser 管玩法物理，AI 照登記表改數值——你只管想好不好玩。",
+      "週末 48 小時，一個人（加幾個 AI）也能做出能玩，能直接上線的網頁遊戲。\n Vue 管選單 UI，Phaser 管玩法物理，AI 照登記表改數值——你只管想好不好玩。",
 
     box_why: "WHY THIS STARTER / 為什麼選它？",
     answer_label: "A:",
@@ -172,11 +172,12 @@ const i18n = {
     page_title: "Momakoding — Web Game Jam Starter",
     main_title: "[Tool] Web Game Jam Starter: Rapid Game Prototype Scaffold",
     hero_desc:
-      "A weekend, one person (plus a few AI agents) — and you ship a web game that's playable, shareable by a single URL, and live. \n Vue owns the menus, Phaser owns the gameplay, AI tweaks the numbers. You just make it fun.",
+      "A weekend, one person (plus a few AI agents) — and you ship a web game that's playable and live. \n Vue owns the menus, Phaser owns the gameplay, AI tweaks the numbers. You just make it fun.",
 
     box_why: "WHY THIS STARTER",
     answer_label: "A:",
-    why_q1: "Q: Hand-rolling UI, menus, and settings panels on Canvas every single time?",
+    why_q1:
+      "Q: Hand-rolling UI, menus, and settings panels on Canvas every single time?",
     why_a1:
       "In a 48-hour budget, UI eats more time than gameplay. Hand-rolling buttons and menus on Canvas means reinventing layout, focus, and styling with no HMR. Let Vue 3 + Tailwind own the DOM; let Phaser own the render, physics, and input loop. Clear split, doubled iteration speed.",
     why_q2:
@@ -219,12 +220,16 @@ const i18n = {
     showcase_view_label: "→ view",
     showcase_bounder_topic: "Theme: Border",
     showcase_ensemble_topic: "Theme: Education ✖️ Art",
-    showcase_ensemble_desc: "Listen to your students' stories and play them into songs.",
+    showcase_ensemble_desc:
+      "Listen to your students' stories and play them into songs.",
 
     box_workflow: "WORKFLOW",
-    workflow_intro: "No coding experience needed. The typical iteration loop looks like this:",
-    workflow_loop: "① Describe your idea → ② AI edits the code → ③ Play in browser → ④ Keep tuning",
-    workflow_first_t: "Once it's running, these four placeholders are the first things to change:",
+    workflow_intro:
+      "No coding experience needed. The typical iteration loop looks like this:",
+    workflow_loop:
+      "① Describe your idea → ② AI edits the code → ③ Play in browser → ④ Keep tuning",
+    workflow_first_t:
+      "Once it's running, these four placeholders are the first things to change:",
     workflow_f1: "Game title / subtitle",
     workflow_f2: "How-to-play text",
     workflow_f3: "Team name / members",
@@ -253,13 +258,15 @@ const i18n = {
     title_tag: "Naslov",
     time_tag: "Vrijeme",
     page_title: "Momakoding — Skela za brzo prototipiranje web igara",
-    main_title: "[Alat] Web Game Jam Starter: skela za brzo prototipiranje igara",
+    main_title:
+      "[Alat] Web Game Jam Starter: skela za brzo prototipiranje igara",
     hero_desc:
-      "Jedan vikend, jedna osoba (plus nekoliko AI agenata) — i napraviš web igru koja se može igrati, podijeliti jednim URL-om i odmah objaviti. \n Vue drži menije, Phaser drži gameplay, AI mijenja brojke. Ti se baviš samo time da bude zabavno.",
+      "Jedan vikend, jedna osoba (plus nekoliko AI agenata) — i napraviš web igru koja se može igrati i odmah objaviti. \n Vue drži menije, Phaser drži gameplay, AI mijenja brojke. Ti se baviš samo time da bude zabavno.",
 
     box_why: "WHY THIS STARTER / Zašto baš ova skela?",
     answer_label: "O:",
-    why_q1: "P: Svaki put iznova ručno crtaš UI, menije i panel postavki u Canvasu?",
+    why_q1:
+      "P: Svaki put iznova ručno crtaš UI, menije i panel postavki u Canvasu?",
     why_a1:
       "U budžetu od 48 sati UI pojede više vremena nego sam gameplay. Ručno crtanje dugmadi i menija u Canvasu znači iznova izmišljati raspored, fokus i stilove, bez hot reloada. Prepusti DOM Vue 3 + Tailwindu, a Phaser neka radi samo render, fiziku i input petlju — jasna podjela, dvostruko brža iteracija.",
     why_q2: "P: Kod se stalno gazi kad ga dira više ljudi ili AI agenata?",
@@ -300,12 +307,16 @@ const i18n = {
     showcase_view_label: "→ pogledaj",
     showcase_bounder_topic: "Tema: Granica (Border)",
     showcase_ensemble_topic: "Tema: Obrazovanje ✖️ Umjetnost",
-    showcase_ensemble_desc: "Slušaj priče svojih učenika i pretvori ih u pjesme.",
+    showcase_ensemble_desc:
+      "Slušaj priče svojih učenika i pretvori ih u pjesme.",
 
     box_workflow: "WORKFLOW / Tipičan tok rada",
-    workflow_intro: "Nije potrebno znati programirati. Tipičan ritam iteracije izgleda ovako:",
-    workflow_loop: "① Opišeš ideju → ② AI mijenja kod → ③ Igraš u pregledniku → ④ Nastaviš dotjerivati",
-    workflow_first_t: "Kad pokreneš, ovo su četiri placeholder-a koja mijenjаš prva:",
+    workflow_intro:
+      "Nije potrebno znati programirati. Tipičan ritam iteracije izgleda ovako:",
+    workflow_loop:
+      "① Opišeš ideju → ② AI mijenja kod → ③ Igraš u pregledniku → ④ Nastaviš dotjerivati",
+    workflow_first_t:
+      "Kad pokreneš, ovo su četiri placeholder-a koja mijenjаš prva:",
     workflow_f1: "Naziv igre / podnaslov",
     workflow_f2: "Tekst s uputama za igranje",
     workflow_f3: "Naziv tima / članovi",
@@ -341,10 +352,22 @@ const SHOWCASE = [
     titleColor: "f2",
     meta: "by Momakoding / Chatoyo (Vibejam Shenzhen 2026)",
     images: [
-      { src: "./img/showcase/the_bounder-01.png", alt: "The Bounder screenshot 1" },
-      { src: "./img/showcase/the_bounder-02.png", alt: "The Bounder screenshot 2" },
-      { src: "./img/showcase/the_bounder-03.png", alt: "The Bounder screenshot 3" },
-      { src: "./img/showcase/the_bounder-04.png", alt: "The Bounder screenshot 4" },
+      {
+        src: "./img/showcase/the_bounder-01.png",
+        alt: "The Bounder screenshot 1",
+      },
+      {
+        src: "./img/showcase/the_bounder-02.png",
+        alt: "The Bounder screenshot 2",
+      },
+      {
+        src: "./img/showcase/the_bounder-03.png",
+        alt: "The Bounder screenshot 3",
+      },
+      {
+        src: "./img/showcase/the_bounder-04.png",
+        alt: "The Bounder screenshot 4",
+      },
     ],
     topicKey: "showcase_bounder_topic",
     playUrl: "https://the-bounder.vercel.app",
@@ -358,9 +381,22 @@ const SHOWCASE = [
     titleColor: "f6",
     meta: "by Saša from Momakoding（2026年深圳文博会）",
     images: [
-      { src: "./img/showcase/ensemble_class_begin-01.png", alt: "Ensemble Class Begins screenshot 1" },
-      { src: "./img/showcase/ensemble_class_begin-02.png", alt: "Ensemble Class Begins screenshot 2" },
-      { src: "./img/showcase/ensemble_class_begin-03.png", alt: "Ensemble Class Begins screenshot 3" },
+      {
+        src: "./img/showcase/ensemble_class_begin-01.png",
+        alt: "Ensemble Class Begins screenshot 1",
+      },
+      {
+        src: "./img/showcase/ensemble_class_begin-02.png",
+        alt: "Ensemble Class Begins screenshot 2",
+      },
+      {
+        src: "./img/showcase/ensemble_class_begin-03.png",
+        alt: "Ensemble Class Begins screenshot 3",
+      },
+      {
+        src: "./img/showcase/ensemble_class_begin-04.png",
+        alt: "Ensemble Class Begins screenshot 4",
+      },
     ],
     topicKey: "showcase_ensemble_topic",
     descKey: "showcase_ensemble_desc",
@@ -375,7 +411,8 @@ const SHOWCASE = [
     titleColor: "f6",
     metaKey: "showcase_neon_meta",
     branch: "demo/neon-hunter",
-    branchUrl: "https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/neon-hunter",
+    branchUrl:
+      "https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/neon-hunter",
   },
   {
     id: "stars",
@@ -383,7 +420,8 @@ const SHOWCASE = [
     titleColor: "f3",
     metaKey: "showcase_stars_meta",
     branch: "demo/picking-stars",
-    branchUrl: "https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/picking-stars",
+    branchUrl:
+      "https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/picking-stars",
   },
 ];
 
@@ -393,15 +431,22 @@ function renderShowcase(lang) {
   if (!container) return;
 
   const items = SHOWCASE.map((game, idx) => {
-    const meta = game.metaKey ? (t[game.metaKey] || "") : (game.meta || "");
-    const topic = game.topicKey ? `<span class="${game.topicKey === 'showcase_bounder_topic' ? 'f3' : 'f2'}">${t[game.topicKey] || ""}</span><br>` : "";
-    const desc = game.descKey ? `<span class="f2">${t[game.descKey] || ""}</span><br>` : "";
+    const meta = game.metaKey ? t[game.metaKey] || "" : game.meta || "";
+    const topic = game.topicKey
+      ? `<span class="${game.topicKey === "showcase_bounder_topic" ? "f3" : "f2"}">${t[game.topicKey] || ""}</span><br>`
+      : "";
+    const desc = game.descKey
+      ? `<span class="f2">${t[game.descKey] || ""}</span><br>`
+      : "";
 
     let imageHtml = "";
     if (game.images && game.images.length > 0) {
-      const imgTags = game.images.map(img =>
-        `<img src="${img.src}" alt="${img.alt}" style="width:100%;display:block">`
-      ).join("");
+      const imgTags = game.images
+        .map(
+          (img) =>
+            `<img src="${img.src}" alt="${img.alt}" style="width:100%;display:block">`,
+        )
+        .join("");
       imageHtml = `<div class="grid grid-cols-1 md:grid-cols-2 gap-1 my-2">${imgTags}</div>`;
     }
 
@@ -416,7 +461,8 @@ function renderShowcase(lang) {
       linksHtml = `<span class="mono" style="font-size:13px">branch: <span class="hl">${game.branch}</span> | <a href="${game.branchUrl}" class="link" target="_blank">${t.showcase_view_label || "→ view"}</a></span>`;
     }
 
-    const divider = idx < SHOWCASE.length - 1 ? '<div class="divider"></div>' : "";
+    const divider =
+      idx < SHOWCASE.length - 1 ? '<div class="divider"></div>' : "";
     return `
       <div class="showcase-item">
         <div>
