@@ -13,6 +13,7 @@ const i18n = {
       "周末 48 小时，一个人（加几个 AI）也能做出能玩、一个 URL 就能分享、能直接上线的网页游戏。\n Vue 管菜单 UI，Phaser 管玩法物理，AI 照登记表改数值——你只管想好不好玩。",
 
     box_why: "WHY THIS STARTER / 为什么选它？",
+    answer_label: "A:",
     why_q1: "Q: UI、菜单、设置面板，每次都要在 Canvas 里手搓？",
     why_a1:
       "48 小时的体力账本里，最贵的从来不是玩法，是 UI。Canvas 手搓按钮、菜单、设置面板要重复造轮子，没有热更新、没有焦点管理。把 DOM 的活交回 Vue 3 + Tailwind，Phaser 专心做渲染、物理、输入循环——分工清楚，迭代速度直接翻倍。",
@@ -93,6 +94,7 @@ const i18n = {
       "週末 48 小時，一個人（加幾個 AI）也能做出能玩、一個 URL 就能分享、能直接上線的網頁遊戲。\n Vue 管選單 UI，Phaser 管玩法物理，AI 照登記表改數值——你只管想好不好玩。",
 
     box_why: "WHY THIS STARTER / 為什麼選它？",
+    answer_label: "A:",
     why_q1: "Q: UI、選單、設定面板，每次都要在 Canvas 裡手搓？",
     why_a1:
       "48 小時的體力帳本裡，最貴的從來不是玩法，是 UI。Canvas 手搓按鈕、選單、設定面板要重複造輪子，沒有熱更新、沒有焦點管理。把 DOM 的活交回 Vue 3 + Tailwind，Phaser 專心做渲染、物理、輸入迴圈——分工清楚，迭代速度直接翻倍。",
@@ -173,6 +175,7 @@ const i18n = {
       "A weekend, one person (plus a few AI agents) — and you ship a web game that's playable, shareable by a single URL, and live. \n Vue owns the menus, Phaser owns the gameplay, AI tweaks the numbers. You just make it fun.",
 
     box_why: "WHY THIS STARTER",
+    answer_label: "A:",
     why_q1: "Q: Hand-rolling UI, menus, and settings panels on Canvas every single time?",
     why_a1:
       "In a 48-hour budget, UI eats more time than gameplay. Hand-rolling buttons and menus on Canvas means reinventing layout, focus, and styling with no HMR. Let Vue 3 + Tailwind own the DOM; let Phaser own the render, physics, and input loop. Clear split, doubled iteration speed.",
@@ -255,6 +258,7 @@ const i18n = {
       "Jedan vikend, jedna osoba (plus nekoliko AI agenata) — i napraviš web igru koja se može igrati, podijeliti jednim URL-om i odmah objaviti. \n Vue drži menije, Phaser drži gameplay, AI mijenja brojke. Ti se baviš samo time da bude zabavno.",
 
     box_why: "WHY THIS STARTER / Zašto baš ova skela?",
+    answer_label: "O:",
     why_q1: "P: Svaki put iznova ručno crtaš UI, menije i panel postavki u Canvasu?",
     why_a1:
       "U budžetu od 48 sati UI pojede više vremena nego sam gameplay. Ručno crtanje dugmadi i menija u Canvasu znači iznova izmišljati raspored, fokus i stilove, bez hot reloada. Prepusti DOM Vue 3 + Tailwindu, a Phaser neka radi samo render, fiziku i input petlju — jasna podjela, dvostruko brža iteracija.",
