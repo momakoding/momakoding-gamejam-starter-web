@@ -353,19 +353,19 @@ const SHOWCASE = [
     meta: "by Momakoding / Chatoyo (Vibejam Shenzhen 2026)",
     images: [
       {
-        src: "./img/showcase/the_bounder-01.png",
+        src: "./img/showcase/the_bounder-01.webp",
         alt: "The Bounder screenshot 1",
       },
       {
-        src: "./img/showcase/the_bounder-02.png",
+        src: "./img/showcase/the_bounder-02.webp",
         alt: "The Bounder screenshot 2",
       },
       {
-        src: "./img/showcase/the_bounder-03.png",
+        src: "./img/showcase/the_bounder-03.webp",
         alt: "The Bounder screenshot 3",
       },
       {
-        src: "./img/showcase/the_bounder-04.png",
+        src: "./img/showcase/the_bounder-04.webp",
         alt: "The Bounder screenshot 4",
       },
     ],
@@ -382,19 +382,19 @@ const SHOWCASE = [
     meta: "by Saša from Momakoding（2026年深圳文博会）",
     images: [
       {
-        src: "./img/showcase/ensemble_class_begin-01.png",
+        src: "./img/showcase/ensemble_class_begin-01.webp",
         alt: "Ensemble Class Begins screenshot 1",
       },
       {
-        src: "./img/showcase/ensemble_class_begin-02.png",
+        src: "./img/showcase/ensemble_class_begin-02.webp",
         alt: "Ensemble Class Begins screenshot 2",
       },
       {
-        src: "./img/showcase/ensemble_class_begin-03.png",
+        src: "./img/showcase/ensemble_class_begin-03.webp",
         alt: "Ensemble Class Begins screenshot 3",
       },
       {
-        src: "./img/showcase/ensemble_class_begin-04.png",
+        src: "./img/showcase/ensemble_class_begin-04.webp",
         alt: "Ensemble Class Begins screenshot 4",
       },
     ],
