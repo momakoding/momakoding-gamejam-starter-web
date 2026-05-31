@@ -49,6 +49,10 @@ const i18n = {
     box_showcase: "SHOWCASE / 实例展示",
     showcase_neon_meta: "本框架官方教程 Demo",
     showcase_stars_meta: "更基础的平台跳跃收集 Demo",
+    play_link_label: "→ 试玩",
+    showcase_bounder_topic: "选题：边境（Border）",
+    showcase_ensemble_topic: "选题：教育✖️艺术",
+    showcase_ensemble_desc: "简介：倾听学生的故事，把它们弹成歌。",
 
     box_workflow: "WORKFLOW / 典型工作流",
     workflow_intro: "不会写代码也没关系。典型的迭代节奏是这样的：",
@@ -66,6 +70,7 @@ const i18n = {
     arch_3: "Vue 构建的菜单与 UI 系统",
     quick_start: "快速开始：",
     guide_link: "上手指南 (CN)",
+    guide_desc: "完整新手流程，含常见失误与 FAQ",
     footer: " 按 ← Github ⭐ Star | j/k 滚动 | MIT License",
   },
   "zh-F": {
@@ -115,6 +120,10 @@ const i18n = {
     box_showcase: "SHOWCASE / 實例展示",
     showcase_neon_meta: "本框架官方教程 Demo",
     showcase_stars_meta: "更基礎的平台跳躍收集 Demo",
+    play_link_label: "→ 試玩",
+    showcase_bounder_topic: "選題：邊境（Border）",
+    showcase_ensemble_topic: "選題：教育✖️藝術",
+    showcase_ensemble_desc: "簡介：傾聽學生的故事，把它們彈成歌。",
 
     box_workflow: "WORKFLOW / 典型工作流程",
     workflow_intro: "不會寫程式碼也沒關係。典型的迭代節奏是這樣的：",
@@ -132,6 +141,7 @@ const i18n = {
     arch_3: "Vue 構建的菜單與 UI 系統",
     quick_start: "快速開始：",
     guide_link: "上手指南（CN）",
+    guide_desc: "完整新手流程，含常見失誤與 FAQ",
     footer: " 按 ← Github ⭐ Star | j/k 滾動 | MIT License",
   },
   en: {
@@ -183,6 +193,10 @@ const i18n = {
     box_showcase: "SHOWCASE",
     showcase_neon_meta: "Official tutorial demo of this framework",
     showcase_stars_meta: "A simpler platformer collection demo",
+    play_link_label: "→ Play",
+    showcase_bounder_topic: "Theme: Border",
+    showcase_ensemble_topic: "Theme: Education ✖️ Art",
+    showcase_ensemble_desc: "Listen to your students' stories and play them into songs.",
 
     box_workflow: "WORKFLOW",
     workflow_intro: "No coding experience needed. The typical iteration loop looks like this:",
@@ -200,6 +214,7 @@ const i18n = {
     arch_3: "Menu and UI system built with Vue",
     quick_start: "Quick Start:",
     guide_link: "Onboarding (EN)",
+    guide_desc: "Full beginner walkthrough with common mistakes & FAQ",
     footer: "Press ← GitHub ⭐ Star | j/k to scroll | MIT License",
   },
   yug: {
@@ -249,6 +264,10 @@ const i18n = {
     box_showcase: "SHOWCASE / Primjeri",
     showcase_neon_meta: "Zvanični tutorijal demo ovog frameworka",
     showcase_stars_meta: "Jednostavniji platformer demo sa skupljanjem",
+    play_link_label: "→ Igraj",
+    showcase_bounder_topic: "Tema: Granica (Border)",
+    showcase_ensemble_topic: "Tema: Obrazovanje ✖️ Umjetnost",
+    showcase_ensemble_desc: "Slušaj priče svojih učenika i pretvori ih u pjesme.",
 
     box_workflow: "WORKFLOW / Tipičan tok rada",
     workflow_intro: "Nije potrebno znati programirati. Tipičan ritam iteracije izgleda ovako:",
@@ -266,6 +285,7 @@ const i18n = {
     arch_3: "Sistem menija i UI-ja izgrađen u Vue-u",
     quick_start: "Brzi početak:",
     guide_link: "Uputstvo (EN)",
+    guide_desc: "Kompletan vodič za početnike s čestim greškama i FAQ-om",
     footer: " Pritisni ← GitHub ⭐ Star | j/k za skrolanje | MIT License",
   },
 };
