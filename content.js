@@ -8,10 +8,11 @@ const i18n = {
     title_tag: "标题",
     time_tag: "时间",
     main_title: "[工具] Web Game Jam Starter: 快速游戏原型脚手架",
-    hero_desc: "Game Jam 快速原型脚手架，开箱即用，专为 Web 开发者设计。",
+    hero_desc:
+      "周末 48 小时，一个人（加几个 AI）也能做出能玩、一个 URL 就能分享、能直接上线的网页游戏。\n Vue 管菜单 UI，Phaser 管玩法物理，AI 照登记表改数值——你只管想好不好玩。",
 
     box_why: "WHY THIS STARTER / 为什么选它？",
-    why_q1: "Q: 为什么不用 Phaser 一把梭？",
+    why_q1: "Q: UI、菜单、设置面板，每次都要在 Canvas 里手搓？",
     why_a1:
       "48 小时的体力账本里，最贵的从来不是玩法，是 UI。Canvas 手搓按钮、菜单、设置面板要重复造轮子，没有热更新、没有焦点管理。把 DOM 的活交回 Vue 3 + Tailwind，Phaser 专心做渲染、物理、输入循环——分工清楚，迭代速度直接翻倍。",
     why_q2: "Q: 多人或 AI 协作时，代码总被改乱怎么办？",
@@ -43,11 +44,20 @@ const i18n = {
     f4_t: "占位优先",
     f4_d: "无美术也能跑：纯色矩形即占位，game-info/ 集中管理标题、说明、团队信息。先把玩法跑通，美术后补，节奏不被资源卡死。",
     f5_t: "可路演 / 可上线",
-    f5_d: "pnpm build 出的是真生产物，不是 demo 残留。Hash 路由适配 GitHub Pages、itch.io、Vercel 等静态托管，无需服务端配置。路演时扔一个 URL 就行——不用打包 exe，不用现场连本地，评委扫码即玩，作品上线即归档。",
+    f5_d: "pnpm build 出的是真生产物，不是 demo 残留。Hash 路由适配 GitHub Pages、itch.io、Vercel 等静态托管，无需服务端配置。路演时扔一个 URL 就行——不用打包 exe，不用现场连本地，评委点开即玩（URL 也方便现场转成二维码），作品上线即归档。",
 
     box_showcase: "SHOWCASE / 实例展示",
     showcase_neon_meta: "本框架官方教程 Demo",
     showcase_stars_meta: "更基础的平台跳跃收集 Demo",
+
+    box_workflow: "WORKFLOW / 典型工作流",
+    workflow_intro: "不会写代码也没关系。典型的迭代节奏是这样的：",
+    workflow_loop: "① 描述想法 → ② AI 改代码 → ③ 浏览器试玩 → ④ 继续微调",
+    workflow_first_t: "跑起来后，优先改这四处占位内容：",
+    workflow_f1: "游戏名称 / 副标题",
+    workflow_f2: "玩法介绍正文",
+    workflow_f3: "团队名称 / 成员",
+    workflow_f4: "整体配色",
 
     box_tech: "TECH STACK / 技术栈",
     box_arch: "ARCHITECTURE / 架构",
@@ -64,10 +74,11 @@ const i18n = {
     title_tag: "標題",
     time_tag: "時間",
     main_title: "[工具] Web Game Jam Starter: 快速遊戲原型腳手架",
-    hero_desc: "Game Jam 快速原型腳手架，開箱即用，專為 Web 開發者設計。",
+    hero_desc:
+      "週末 48 小時，一個人（加幾個 AI）也能做出能玩、一個 URL 就能分享、能直接上線的網頁遊戲。\n Vue 管選單 UI，Phaser 管玩法物理，AI 照登記表改數值——你只管想好不好玩。",
 
     box_why: "WHY THIS STARTER / 為什麼選它？",
-    why_q1: "Q: 為什麼不用 Phaser 一把梭？",
+    why_q1: "Q: UI、選單、設定面板，每次都要在 Canvas 裡手搓？",
     why_a1:
       "48 小時的體力帳本裡，最貴的從來不是玩法，是 UI。Canvas 手搓按鈕、選單、設定面板要重複造輪子，沒有熱更新、沒有焦點管理。把 DOM 的活交回 Vue 3 + Tailwind，Phaser 專心做渲染、物理、輸入迴圈——分工清楚，迭代速度直接翻倍。",
     why_q2: "Q: 多人或 AI 協作時，程式碼總被改亂怎麼辦？",
@@ -99,11 +110,20 @@ const i18n = {
     f4_t: "佔位優先",
     f4_d: "無美術也能跑：純色矩形即佔位，game-info/ 集中管理標題、說明、團隊資訊。先把玩法跑通，美術後補，節奏不被資源卡死。",
     f5_t: "可路演 / 可上線",
-    f5_d: "pnpm build 出的是真正的生產產物，不是 demo 殘留。Hash 路由適配 GitHub Pages、itch.io、Vercel 等靜態託管，無需伺服端設定。路演時丟一個 URL 就行——不用打包 exe，不用現場連本地，評審掃碼即玩，作品上線即歸檔。",
+    f5_d: "pnpm build 出的是真正的生產產物，不是 demo 殘留。Hash 路由適配 GitHub Pages、itch.io、Vercel 等靜態託管，無需伺服端設定。路演時丟一個 URL 就行——不用打包 exe，不用現場連本地，評審點開即玩（URL 也方便現場轉成 QR Code），作品上線即歸檔。",
 
     box_showcase: "SHOWCASE / 實例展示",
     showcase_neon_meta: "本框架官方教程 Demo",
     showcase_stars_meta: "更基礎的平台跳躍收集 Demo",
+
+    box_workflow: "WORKFLOW / 典型工作流程",
+    workflow_intro: "不會寫程式碼也沒關係。典型的迭代節奏是這樣的：",
+    workflow_loop: "① 描述想法 → ② AI 改程式碼 → ③ 瀏覽器試玩 → ④ 繼續微調",
+    workflow_first_t: "跑起來後，優先改這四處佔位內容：",
+    workflow_f1: "遊戲名稱 / 副標題",
+    workflow_f2: "玩法介紹正文",
+    workflow_f3: "團隊名稱 / 成員",
+    workflow_f4: "整體配色",
 
     box_tech: "TECH STACK / 技術棧",
     box_arch: "ARCHITECTURE / 架構",
@@ -121,10 +141,10 @@ const i18n = {
     time_tag: "Time",
     main_title: "[Tool] Web Game Jam Starter: Rapid Game Prototype Scaffold",
     hero_desc:
-      "Ready-to-use scaffold for Game Jams, designed for Web developers.",
+      "A weekend, one person (plus a few AI agents) — and you ship a web game that's playable, shareable by a single URL, and live. \n Vue owns the menus, Phaser owns the gameplay, AI tweaks the numbers. You just make it fun.",
 
-    box_why: "WHY THIS STARTER / 为什么选它？",
-    why_q1: "Q: Why not just go all-in on Phaser?",
+    box_why: "WHY THIS STARTER",
+    why_q1: "Q: Hand-rolling UI, menus, and settings panels on Canvas every single time?",
     why_a1:
       "In a 48-hour budget, UI eats more time than gameplay. Hand-rolling buttons and menus on Canvas means reinventing layout, focus, and styling with no HMR. Let Vue 3 + Tailwind own the DOM; let Phaser own the render, physics, and input loop. Clear split, doubled iteration speed.",
     why_q2:
@@ -138,7 +158,7 @@ const i18n = {
     why_q4: "Q: I can't code at all. Can I still use this?",
     why_a4:
       "Yes. Pair it with an AI assistant like Cursor, Claude Code, or Kilo Code. You describe the feel — 'make the jump lighter,' 'cut coins from ten to five' — the AI writes the code. The scaffold also captures your game idea into docs/vibe/spec-game.md as the single source of truth, so the AI doesn't relearn your concept on every iteration.",
-    box_who: "WHO IT'S FOR / 它为谁而造",
+    box_who: "WHO IT'S FOR",
     who1_t: "Developers",
     who1_d:
       "Skip half a day of scaffolding. Menus, pause, routing, and the build pipeline are wired up — your first line of code goes straight into gameplay.",
@@ -148,7 +168,7 @@ const i18n = {
     who3_t: "Human + AI Hybrid Teams",
     who3_d:
       "spec-game.md is the design contract; AGENTS.md is the engineering contract. AI reconciles before writing, humans own the experience — no turf wars.",
-    box_features: "FEATURES / 特性",
+    box_features: "FEATURES",
     f1_t: "Ready Out of the Box",
     f1_d: "Title menu, placeholder level, pause/resume/exit, and hash routing all wired up. pnpm i && pnpm dev and you're iterating gameplay — no half-day of scaffolding lost.",
     f2_t: "Layered Architecture",
@@ -164,6 +184,15 @@ const i18n = {
     showcase_neon_meta: "Official tutorial demo of this framework",
     showcase_stars_meta: "A simpler platformer collection demo",
 
+    box_workflow: "WORKFLOW",
+    workflow_intro: "No coding experience needed. The typical iteration loop looks like this:",
+    workflow_loop: "① Describe your idea → ② AI edits the code → ③ Play in browser → ④ Keep tuning",
+    workflow_first_t: "Once it's running, these four placeholders are the first things to change:",
+    workflow_f1: "Game title / subtitle",
+    workflow_f2: "How-to-play text",
+    workflow_f3: "Team name / members",
+    workflow_f4: "Color theme",
+
     box_tech: "TECH STACK",
     box_arch: "ARCHITECTURE",
     arch_1: "UI-agnostic Phaser wrapper (GameShell)",
@@ -173,6 +202,89 @@ const i18n = {
     guide_link: "Onboarding (EN)",
     footer: "Press ← GitHub ⭐ Star | j/k to scroll | MIT License",
   },
+  yug: {
+    author_tag: "Autor",
+    board_tag: "Forum",
+    title_tag: "Naslov",
+    time_tag: "Vrijeme",
+    main_title: "[Alat] Web Game Jam Starter: skela za brzo prototipiranje igara",
+    hero_desc:
+      "Jedan vikend, jedna osoba (plus nekoliko AI agenata) — i napraviš web igru koja se može igrati, podijeliti jednim URL-om i odmah objaviti. \n Vue drži menije, Phaser drži gameplay, AI mijenja brojke. Ti se baviš samo time da bude zabavno.",
+
+    box_why: "WHY THIS STARTER / Zašto baš ova skela?",
+    why_q1: "P: Svaki put iznova ručno crtaš UI, menije i panel postavki u Canvasu?",
+    why_a1:
+      "U budžetu od 48 sati UI pojede više vremena nego sam gameplay. Ručno crtanje dugmadi i menija u Canvasu znači iznova izmišljati raspored, fokus i stilove, bez hot reloada. Prepusti DOM Vue 3 + Tailwindu, a Phaser neka radi samo render, fiziku i input petlju — jasna podjela, dvostruko brža iteracija.",
+    why_q2: "P: Kod se stalno gazi kad ga dira više ljudi ili AI agenata?",
+    why_a2:
+      "Tri fizički odvojena sloja plus dogovor o granama. engine/ je pokretač, contents/ je svijet igre, runtime/ je lijepak na Vue strani — importi teku samo u jednom smjeru. Konkretan gameplay živi u games/ ili demo/* granama; main ostaje čista baza spremna za fork. Mijenjaš igru bez ponovne izgradnje skele, a saradnici si ne gaze putić.",
+    why_q3: "P: Dizajner ili AI u timu ne znaju Phaser. Kako da doprinesu?",
+    why_a3:
+      "AGENTS.md upisuje svaki ključ scene, događaja, resursa i svaku konstantu za podešavanje u jednu živu tabelu. Neprogrameri ili AI samo mijenjaju gravitaciju, početnu brzinu i vrijednosti nivoa u contents/constants.ts da naštimaju osjećaj; izmijene naslove, upute i podatke o timu u game-info/, pa se početna i „o nama“ stranica ažuriraju u istom koraku. Bez ijednog detalja Phaserove hijerarhije klasa.",
+    why_q4: "P: Uopšte ne znam programirati. Mogu li i dalje ovo koristiti?",
+    why_a4:
+      "Možeš. Upari ga s AI asistentom poput Cursora, Claude Code ili Kilo Code. Ti opišeš osjećaj — „neka skok bude lakši“, „smanji novčiće s deset na pet“ — a AI piše kod. Skela uz to tvoju zamisao zapisuje u docs/vibe/spec-game.md kao jedini izvor istine, pa AI ne mora pri svakoj iteraciji nanovo shvatati tvoju ideju.",
+    box_who: "WHO IT'S FOR / Za koga je",
+    who1_t: "Programeri",
+    who1_d:
+      "Nakon forka preskačeš pola dana namještanja skele — meniji, pauza, rutiranje i build lanac su gotovi, prva linija koda ide pravo u gameplay.",
+    who2_t: "Dizajneri / PM-ovi / scenaristi",
+    who2_d:
+      "Bez Phasera, bez kopanja po izvornom kodu. Mijenjaš placeholder tekst, štimaš brojke, pustiš AI da „osjećaj“ prevede u kod. Svoju ideju isti dan igraš u pregledniku.",
+    who3_t: "Mješoviti timovi ljudi + AI",
+    who3_d:
+      "spec-game.md je dizajnerski ugovor, AGENTS.md je inženjerski ugovor. AI se uskladi prije pisanja, ljudi definišu doživljaj — bez sukoba oko teritorija.",
+    box_features: "FEATURES / Mogućnosti",
+    f1_t: "Spremno za rad odmah",
+    f1_d: "Naslovni meni, placeholder nivo, pauza/nastavak/izlaz i hash rutiranje — sve je već povezano. pnpm i && pnpm dev i već iteriraš gameplay, bez izgubljenog pola dana na skelu.",
+    f2_t: "Slojevita arhitektura",
+    f2_d: "engine / contents / runtime / pages s jednosmjernim zavisnostima; main uvijek ostaje čist. Refaktorisanje se ne razlije kroz cijelo stablo.",
+    f3_t: "Prijateljski prema AI saradnji",
+    f3_d: "AGENTS.md je mehanički ugovor: registri, „read-before-write“ checklist i dnevnik odluka. Agenti usklade stanje prije pisanja — manje halucinacija, manje vraćanja unazad.",
+    f4_t: "Placeholder na prvom mjestu",
+    f4_d: "Radi bez ijednog grafičkog asseta — obojeni pravougaonici stoje umjesto sprajtova; game-info/ centralizuje naslove, upute i podatke o timu. Prvo pokreni petlju, grafika kasnije. Resursi nikad ne koče ritam.",
+    f5_t: "Spremno za prezentaciju i za produkciju",
+    f5_d: "pnpm build pravi pravi produkcijski bundle, ne ostatak iz dev faze. Hash rutiranje radi na bilo kom statičkom hostingu — GitHub Pages, itch.io, Vercel — bez ikakve serverske konfiguracije. Za prezentaciju podijeliš URL: nema exe-a za pakovanje, nema localhosta za dadiljanje, žiri otvori i igra (URL se lako pretvori i u QR kod), a igra ostaje online kao dio portfolija i dugo nakon jama.",
+
+    box_showcase: "SHOWCASE / Primjeri",
+    showcase_neon_meta: "Zvanični tutorijal demo ovog frameworka",
+    showcase_stars_meta: "Jednostavniji platformer demo sa skupljanjem",
+
+    box_workflow: "WORKFLOW / Tipičan tok rada",
+    workflow_intro: "Nije potrebno znati programirati. Tipičan ritam iteracije izgleda ovako:",
+    workflow_loop: "① Opišeš ideju → ② AI mijenja kod → ③ Igraš u pregledniku → ④ Nastaviš dotjerivati",
+    workflow_first_t: "Kad pokreneš, ovo su četiri placeholder-a koja mijenjаš prva:",
+    workflow_f1: "Naziv igre / podnaslov",
+    workflow_f2: "Tekst s uputama za igranje",
+    workflow_f3: "Naziv tima / članovi",
+    workflow_f4: "Paleta boja",
+
+    box_tech: "TECH STACK / Tehnologije",
+    box_arch: "ARCHITECTURE / Arhitektura",
+    arch_1: "Phaser omotač nezavisan od UI-ja (GameShell)",
+    arch_2: "Konkretan sadržaj igre i nivoi",
+    arch_3: "Sistem menija i UI-ja izgrađen u Vue-u",
+    quick_start: "Brzi početak:",
+    guide_link: "Uputstvo (EN)",
+    footer: " Pritisni ← GitHub ⭐ Star | j/k za skrolanje | MIT License",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// BCP 47 language-tag mapping (for the HTML `lang` attribute).
+// 仅为国际化技术规范 / Purely an i18n technical convention:
+//   - 这些是 IETF BCP 47 标准语言代码，用于 a11y、SEO 与浏览器识别。
+//   - The values below are standard IETF BCP 47 tags used for accessibility,
+//     SEO and browser language detection — not a political statement of any kind.
+//   - zh-J (简体) -> zh-CN ; zh-F (繁體) -> zh-TW : 沿用 Unicode CLDR / BCP 47
+//     最常见的脚本-区域写法，仅表脚本与字体回退，不代表作者任何政治立场。
+//   - yug (BCS, Latinica) -> sh-Latn : Serbo-Croatian 拉丁字母，语言学中性写法。
+// ---------------------------------------------------------------------------
+const LANG_TAG = {
+  "zh-J": "zh-CN",
+  "zh-F": "zh-TW",
+  en: "en",
+  yug: "sh-Latn",
 };
 
 function setLang(lang) {
@@ -183,10 +295,7 @@ function setLang(lang) {
     }
   });
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.remove("active");
-    if (btn.innerText.toLowerCase().includes(lang.split("-")[1] || lang)) {
-      btn.classList.add("active");
-    }
+    btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
   });
-  document.documentElement.lang = lang;
+  document.documentElement.lang = LANG_TAG[lang] || lang;
 }
