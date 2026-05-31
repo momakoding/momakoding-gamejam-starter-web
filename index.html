@@ -398,167 +398,10 @@
         </div>
       </div>
 
-      <!-- SHOWCASE SECTION (提前到 FEATURES 之前：先给人看做出来的东西) -->
+      <!-- SHOWCASE SECTION -->
       <div class="ascii-box">
-        <span class="ascii-box-label" data-i18n="box_showcase"
-          >SHOWCASE / 实例展示</span
-        >
-
-        <div class="showcase-item">
-          <div>
-            <span class="f2 hl">The Bounder</span>
-            <span class="showcase-meta"
-              >by Momakoding / Chatoyo (Vibejam Shenzhen 2026)</span
-            >
-          </div>
-          <img
-            src="./img/showcase/the-bounder.gif"
-            alt="The Bounder"
-            class="showcase-img"
-            style="max-width: 100%; display: block"
-            onerror="
-              this.style.display = 'none';
-              this.nextElementSibling.style.display = 'flex';
-            "
-          />
-          <div class="placeholder-box" style="display: none">
-            [ screenshot / gif placeholder ]
-          </div>
-          <div>
-            <span data-i18n="showcase_bounder_topic">选题：边境（Border）</span
-            ><br />
-            <a
-              href="https://the-bounder.vercel.app"
-              class="link hl"
-              target="_blank"
-              ><span data-i18n="play_link_label">→ 试玩</span>
-              the-bounder.vercel.app</a
-            ><br />
-            <a
-              href="https://github.com/chatoyo/the-bounder"
-              class="link"
-              target="_blank"
-              >→ github.com/chatoyo/the-bounder</a
-            >
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="showcase-item">
-          <div>
-            <span class="f6 hl">合奏课 · Ensemble Class Begins</span>
-            <span class="showcase-meta"
-              >by Saša from Momakoding（2026年深圳文博会）</span
-            >
-          </div>
-          <div class="flex flex-col sm:flex-row gap-1">
-            <img
-              src="./img/showcase/ensemble_class_begin-01.png"
-              alt="Ensemble Class Begins screenshot 1"
-              class="w-full sm:flex-1"
-              style="min-width: 0; display: block"
-            />
-            <img
-              src="./img/showcase/ensemble_class_begin-02.png"
-              alt="Ensemble Class Begins screenshot 2"
-              class="w-full sm:flex-1"
-              style="min-width: 0; display: block"
-            />
-            <img
-              src="./img/showcase/ensemble_class_begin-03.png"
-              alt="Ensemble Class Begins screenshot 3"
-              class="w-full sm:flex-1"
-              style="min-width: 0; display: block"
-            />
-          </div>
-          <div>
-            <span data-i18n="showcase_ensemble_topic">选题：教育✖️艺术</span
-            ><br />
-            <span data-i18n="showcase_ensemble_desc"
-              >简介：倾听学生的故事，把它们弹成歌。</span
-            ><br />
-            <a
-              href="https://ensemble-class-begin.vercel.app"
-              class="link hl"
-              target="_blank"
-              ><span data-i18n="play_link_label">→ 试玩</span>
-              ensemble-class-begin.vercel.app</a
-            ><br />
-            <a
-              href="https://github.com/momakoding/ensemble-class-begin"
-              class="link"
-              target="_blank"
-              >→ github.com/momakoding/ensemble-class-begin</a
-            >
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="showcase-item">
-          <div>
-            <span class="f6 hl">Neon Hunter</span>
-            <span class="showcase-meta" data-i18n="showcase_neon_meta"
-              >本框架官方教程 Demo</span
-            >
-          </div>
-          <img
-            src="./img/showcase/neon-hunter.gif"
-            alt="Neon Hunter"
-            class="showcase-img"
-            style="max-width: 100%; display: block"
-            onerror="
-              this.style.display = 'none';
-              this.nextElementSibling.style.display = 'flex';
-            "
-          />
-          <div class="placeholder-box" style="display: none">
-            [ screenshot / gif placeholder ]
-          </div>
-          <div class="mono" style="font-size: 13px">
-            branch: <span class="hl">demo/neon-hunter</span> |
-            <a
-              href="https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/neon-hunter"
-              class="link"
-              target="_blank"
-              >→ view</a
-            >
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="showcase-item">
-          <div>
-            <span class="f3 hl">Picking Stars</span>
-            <span class="showcase-meta" data-i18n="showcase_stars_meta"
-              >更基础的平台跳跃收集 Demo</span
-            >
-          </div>
-          <img
-            src="./img/showcase/picking-stars.gif"
-            alt="Picking Stars"
-            class="showcase-img"
-            style="max-width: 100%; display: block"
-            onerror="
-              this.style.display = 'none';
-              this.nextElementSibling.style.display = 'flex';
-            "
-          />
-          <div class="placeholder-box" style="display: none">
-            [ screenshot / gif placeholder ]
-          </div>
-          <div class="mono" style="font-size: 13px">
-            branch: <span class="hl">demo/picking-stars</span> |
-            <a
-              href="https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/picking-stars"
-              class="link"
-              target="_blank"
-              >→ view</a
-            >
-          </div>
-        </div>
+        <span class="ascii-box-label" data-i18n="box_showcase">SHOWCASE / 实例展示</span>
+        <div id="showcase-list"></div>
       </div>
 
       <!-- WORKFLOW SECTION -->
@@ -649,10 +492,10 @@
           >TECH STACK / 技术栈</span
         >
         <div class="mono">
-          <span class="f3">UI :</span> Vue 3 (SFC + Composition API)<br />
-          <span class="f3">Engine :</span> Phaser 4 (Arcade Physics)<br />
-          <span class="f3">Styling :</span> Tailwind CSS v4<br />
-          <span class="f3">Build :</span> Vite 8 + TypeScript Strict Mode
+          <span class="f3">UI :</span> <span data-i18n="tech_ui">Vue 3 (SFC + Composition API)</span><br />
+          <span class="f3">Engine :</span> <span data-i18n="tech_engine">Phaser 4 (Arcade Physics)</span><br />
+          <span class="f3">Styling :</span> <span data-i18n="tech_styling">Tailwind CSS v4</span><br />
+          <span class="f3">Build :</span> <span data-i18n="tech_build">Vite 8 + TypeScript Strict Mode</span>
         </div>
       </div>
 
@@ -672,28 +515,16 @@
       </div>
 
       <p class="hl" data-i18n="quick_start">快速开始：</p>
-      <pre
-        class="mono"
-        style="background: #111; padding: 10px"
-      ><span class="f3">$</span> pnpm install
-<span class="f3">$</span> pnpm dev <span class="f2"># 启动 http://localhost:5173/</span></pre>
+      <pre class="mono" style="background: #111; padding: 10px"><span class="f3">$</span> pnpm install
+<span class="f3">$</span> pnpm dev <span class="f2" data-i18n="dev_comment"># 启动 http://localhost:5173/</span></pre>
 
       <div class="divider"></div>
 
       <p>
-        <span class="f6">GitHub:</span>
-        <a
-          href="https://github.com/momakoding/momakoding-gamejam-starter-web"
-          class="link"
-          >momakoding-gamejam-starter-web</a
-        ><br />
-        <span class="f6">Onboarding:</span>
-        <a
-          href="https://github.com/momakoding/momakoding-gamejam-starter-web/blob/main/docs/onboarding/onboarding.zh.md"
-          class="link"
-          data-i18n="guide_link"
-          >上手指南 (CN)</a
-        >
+        <span class="f6" data-i18n="github_label">GitHub:</span>
+        <a href="https://github.com/momakoding/momakoding-gamejam-starter-web" class="link">momakoding-gamejam-starter-web</a><br />
+        <span class="f6" data-i18n="onboarding_label">Onboarding:</span>
+        <a href="https://github.com/momakoding/momakoding-gamejam-starter-web/blob/main/docs/onboarding/onboarding.zh.md" class="link" data-i18n="guide_link">上手指南 (CN)</a>
       </p>
     </div>
 

@@ -51,6 +51,7 @@ const i18n = {
     showcase_neon_meta: "本框架官方教程 Demo",
     showcase_stars_meta: "更基础的平台跳跃收集 Demo",
     play_link_label: "→ 试玩",
+    showcase_view_label: "→ 查看",
     showcase_bounder_topic: "选题：边境（Border）",
     showcase_ensemble_topic: "选题：教育✖️艺术",
     showcase_ensemble_desc: "简介：倾听学生的故事，把它们弹成歌。",
@@ -65,11 +66,18 @@ const i18n = {
     workflow_f4: "整体配色",
 
     box_tech: "TECH STACK / 技术栈",
+    tech_ui: "Vue 3 (SFC + Composition API)",
+    tech_engine: "Phaser 4 (Arcade Physics)",
+    tech_styling: "Tailwind CSS v4",
+    tech_build: "Vite 8 + TypeScript Strict Mode",
     box_arch: "ARCHITECTURE / 架构",
     arch_1: "UI 无关的 Phaser 包装器 (GameShell)",
     arch_2: "具体的游戏内容与关卡",
     arch_3: "Vue 构建的菜单与 UI 系统",
     quick_start: "快速开始：",
+    dev_comment: "# 启动 http://localhost:5173/",
+    github_label: "GitHub:",
+    onboarding_label: "Onboarding:",
     guide_link: "上手指南 (CN)",
     guide_desc: "完整新手流程，含常见失误与 FAQ",
     footer: " 按 ← Github ⭐ Star | j/k 滚动 | MIT License",
@@ -123,6 +131,7 @@ const i18n = {
     showcase_neon_meta: "本框架官方教程 Demo",
     showcase_stars_meta: "更基礎的平台跳躍收集 Demo",
     play_link_label: "→ 試玩",
+    showcase_view_label: "→ 查看",
     showcase_bounder_topic: "選題：邊境（Border）",
     showcase_ensemble_topic: "選題：教育✖️藝術",
     showcase_ensemble_desc: "簡介：傾聽學生的故事，把它們彈成歌。",
@@ -137,11 +146,18 @@ const i18n = {
     workflow_f4: "整體配色",
 
     box_tech: "TECH STACK / 技術棧",
+    tech_ui: "Vue 3 (SFC + Composition API)",
+    tech_engine: "Phaser 4 (Arcade Physics)",
+    tech_styling: "Tailwind CSS v4",
+    tech_build: "Vite 8 + TypeScript Strict Mode",
     box_arch: "ARCHITECTURE / 架構",
     arch_1: "UI 無關的 Phaser 包裝器 (GameShell)",
     arch_2: "具體的遊戲內容與關卡",
     arch_3: "Vue 構建的菜單與 UI 系統",
     quick_start: "快速開始：",
+    dev_comment: "# 啟動 http://localhost:5173/",
+    github_label: "GitHub:",
+    onboarding_label: "Onboarding:",
     guide_link: "上手指南（CN）",
     guide_desc: "完整新手流程，含常見失誤與 FAQ",
     footer: " 按 ← Github ⭐ Star | j/k 滾動 | MIT License",
@@ -197,6 +213,7 @@ const i18n = {
     showcase_neon_meta: "Official tutorial demo of this framework",
     showcase_stars_meta: "A simpler platformer collection demo",
     play_link_label: "→ Play",
+    showcase_view_label: "→ view",
     showcase_bounder_topic: "Theme: Border",
     showcase_ensemble_topic: "Theme: Education ✖️ Art",
     showcase_ensemble_desc: "Listen to your students' stories and play them into songs.",
@@ -211,11 +228,18 @@ const i18n = {
     workflow_f4: "Color theme",
 
     box_tech: "TECH STACK",
+    tech_ui: "Vue 3 (SFC + Composition API)",
+    tech_engine: "Phaser 4 (Arcade Physics)",
+    tech_styling: "Tailwind CSS v4",
+    tech_build: "Vite 8 + TypeScript Strict Mode",
     box_arch: "ARCHITECTURE",
     arch_1: "UI-agnostic Phaser wrapper (GameShell)",
     arch_2: "Specific game contents and levels",
     arch_3: "Menu and UI system built with Vue",
     quick_start: "Quick Start:",
+    dev_comment: "# start http://localhost:5173/",
+    github_label: "GitHub:",
+    onboarding_label: "Onboarding:",
     guide_link: "Onboarding (EN)",
     guide_desc: "Full beginner walkthrough with common mistakes & FAQ",
     footer: "Press ← GitHub ⭐ Star | j/k to scroll | MIT License",
@@ -269,6 +293,7 @@ const i18n = {
     showcase_neon_meta: "Zvanični tutorijal demo ovog frameworka",
     showcase_stars_meta: "Jednostavniji platformer demo sa skupljanjem",
     play_link_label: "→ Igraj",
+    showcase_view_label: "→ pogledaj",
     showcase_bounder_topic: "Tema: Granica (Border)",
     showcase_ensemble_topic: "Tema: Obrazovanje ✖️ Umjetnost",
     showcase_ensemble_desc: "Slušaj priče svojih učenika i pretvori ih u pjesme.",
@@ -283,16 +308,124 @@ const i18n = {
     workflow_f4: "Paleta boja",
 
     box_tech: "TECH STACK / Tehnologije",
+    tech_ui: "Vue 3 (SFC + Composition API)",
+    tech_engine: "Phaser 4 (Arcade Physics)",
+    tech_styling: "Tailwind CSS v4",
+    tech_build: "Vite 8 + TypeScript Strict Mode",
     box_arch: "ARCHITECTURE / Arhitektura",
     arch_1: "Phaser omotač nezavisan od UI-ja (GameShell)",
     arch_2: "Konkretan sadržaj igre i nivoi",
     arch_3: "Sistem menija i UI-ja izgrađen u Vue-u",
     quick_start: "Brzi početak:",
+    dev_comment: "# pokretanje http://localhost:5173/",
+    github_label: "GitHub:",
+    onboarding_label: "Onboarding:",
     guide_link: "Uputstvo (EN)",
     guide_desc: "Kompletan vodič za početnike s čestim greškama i FAQ-om",
     footer: " Pritisni ← GitHub ⭐ Star | j/k za skrolanje | MIT License",
   },
 };
+
+// ---------------------------------------------------------------------------
+// SHOWCASE data — static per-game info, language-independent fields first,
+// then i18n keys for translatable text.
+// ---------------------------------------------------------------------------
+const SHOWCASE = [
+  {
+    id: "bounder",
+    title: "The Bounder",
+    titleColor: "f2",
+    meta: "by Momakoding / Chatoyo (Vibejam Shenzhen 2026)",
+    images: [
+      { src: "./img/showcase/the_bounder-01.png", alt: "The Bounder screenshot 1" },
+      { src: "./img/showcase/the_bounder-02.png", alt: "The Bounder screenshot 2" },
+      { src: "./img/showcase/the_bounder-03.png", alt: "The Bounder screenshot 3" },
+      { src: "./img/showcase/the_bounder-04.png", alt: "The Bounder screenshot 4" },
+    ],
+    topicKey: "showcase_bounder_topic",
+    playUrl: "https://the-bounder.vercel.app",
+    playLabel: "the-bounder.vercel.app",
+    githubUrl: "https://github.com/chatoyo/the-bounder",
+    githubLabel: "github.com/chatoyo/the-bounder",
+  },
+  {
+    id: "ensemble",
+    title: "合奏课 · Ensemble Class Begins",
+    titleColor: "f6",
+    meta: "by Saša from Momakoding（2026年深圳文博会）",
+    images: [
+      { src: "./img/showcase/ensemble_class_begin-01.png", alt: "Ensemble Class Begins screenshot 1" },
+      { src: "./img/showcase/ensemble_class_begin-02.png", alt: "Ensemble Class Begins screenshot 2" },
+      { src: "./img/showcase/ensemble_class_begin-03.png", alt: "Ensemble Class Begins screenshot 3" },
+    ],
+    topicKey: "showcase_ensemble_topic",
+    descKey: "showcase_ensemble_desc",
+    playUrl: "https://ensemble-class-begin.vercel.app",
+    playLabel: "ensemble-class-begin.vercel.app",
+    githubUrl: "https://github.com/momakoding/ensemble-class-begin",
+    githubLabel: "github.com/momakoding/ensemble-class-begin",
+  },
+  {
+    id: "neon",
+    title: "Neon Hunter",
+    titleColor: "f6",
+    metaKey: "showcase_neon_meta",
+    branch: "demo/neon-hunter",
+    branchUrl: "https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/neon-hunter",
+  },
+  {
+    id: "stars",
+    title: "Picking Stars",
+    titleColor: "f3",
+    metaKey: "showcase_stars_meta",
+    branch: "demo/picking-stars",
+    branchUrl: "https://github.com/momakoding/momakoding-gamejam-starter-web/tree/demo/picking-stars",
+  },
+];
+
+function renderShowcase(lang) {
+  const t = i18n[lang] || i18n["zh-J"];
+  const container = document.getElementById("showcase-list");
+  if (!container) return;
+
+  const items = SHOWCASE.map((game, idx) => {
+    const meta = game.metaKey ? (t[game.metaKey] || "") : (game.meta || "");
+    const topic = game.topicKey ? `<span class="${game.topicKey === 'showcase_bounder_topic' ? 'f3' : 'f2'}">${t[game.topicKey] || ""}</span><br>` : "";
+    const desc = game.descKey ? `<span class="f2">${t[game.descKey] || ""}</span><br>` : "";
+
+    let imageHtml = "";
+    if (game.images && game.images.length > 0) {
+      const imgTags = game.images.map(img =>
+        `<img src="${img.src}" alt="${img.alt}" style="width:100%;display:block">`
+      ).join("");
+      imageHtml = `<div class="grid grid-cols-1 md:grid-cols-2 gap-1 my-2">${imgTags}</div>`;
+    }
+
+    let linksHtml = "";
+    if (game.playUrl) {
+      linksHtml += `<a href="${game.playUrl}" class="link hl" target="_blank">${t.play_link_label || "→ Play"} ${game.playLabel}</a><br>`;
+    }
+    if (game.githubUrl) {
+      linksHtml += `<a href="${game.githubUrl}" class="link" target="_blank">→ ${game.githubLabel}</a>`;
+    }
+    if (game.branch) {
+      linksHtml = `<span class="mono" style="font-size:13px">branch: <span class="hl">${game.branch}</span> | <a href="${game.branchUrl}" class="link" target="_blank">${t.showcase_view_label || "→ view"}</a></span>`;
+    }
+
+    const divider = idx < SHOWCASE.length - 1 ? '<div class="divider"></div>' : "";
+    return `
+      <div class="showcase-item">
+        <div>
+          <span class="${game.titleColor} hl">${game.title}</span>
+          <span class="showcase-meta">${meta}</span>
+        </div>
+        ${imageHtml}
+        <div>${topic}${desc}${linksHtml}</div>
+      </div>${divider}`;
+  });
+
+  container.innerHTML = items.join("");
+}
 
 // ---------------------------------------------------------------------------
 // BCP 47 language-tag mapping (for the HTML `lang` attribute).
@@ -322,4 +455,5 @@ function setLang(lang) {
     btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
   });
   document.documentElement.lang = LANG_TAG[lang] || lang;
+  renderShowcase(lang);
 }
