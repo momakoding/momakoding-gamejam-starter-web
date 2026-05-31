@@ -20,7 +20,19 @@ const i18n = {
     why_q3: "Q: 队里的策划或 AI 不会 Phaser，怎么参与？",
     why_a3:
       "AGENTS.md 把场景键、事件键、资源键、调参常量登记成一张活表。非程序员或 AI 只要改 contents/constants.ts 里的重力、初速度、关卡数值就能调手感；改 game-info/ 里的标题、说明、团队信息，主页和关于页同步刷新。完全绕开 Phaser 的类继承细节。",
-
+    why_q4: "Q: 我完全不会写代码，也能用吗？",
+    why_a4:
+      "能。配合 Cursor、Claude Code、Kilo Code 这类 AI 助手，你只描述「跳起来要更轻盈」「金币减到 5 个」，它来改代码。脚手架还会把你的玩法描述沉淀进 docs/vibe/spec-game.md，作为后续所有迭代的唯一设计源——AI 不会每次都从零理解你的脑洞。",
+    box_who: "WHO IT'S FOR / 它为谁而造",
+    who1_t: "程序员",
+    who1_d:
+      "fork 之后跳过搭架子的半天，菜单、暂停、路由、构建链全配好，第一行代码就写在玩法里。",
+    who2_t: "策划 / 产品 / 设计师",
+    who2_d:
+      "不用学 Phaser，不用读源码。改占位文案、调数值、靠 AI 把「手感」翻译成代码，当天就能在浏览器里玩到自己的想法。",
+    who3_t: "人 + AI 混编团队",
+    who3_d:
+      "spec-game.md 当设计契约，AGENTS.md 当工程契约。AI 改代码前先对账，人类负责定义体验，分工不打架。",
     box_features: "FEATURES / 特性",
     f1_t: "开箱即用",
     f1_d: "标题菜单、占位关卡、暂停/恢复/退出、Hash 路由全部就绪。pnpm i && pnpm dev 即开始迭代玩法，省下半天搭架子的成本。",
@@ -28,8 +40,10 @@ const i18n = {
     f2_d: "engine / contents / runtime / pages 单向依赖，main 分支永远纯净。重构不会牵一发动全身。",
     f3_t: "AI 协作友好",
     f3_d: "AGENTS.md 作为机制契约：登记表 + Read-before-write checklist + 决策日志，让 AI 在改代码前先对账，少幻觉、少返工。",
-    f4_t: "双语文档",
-    f4_d: "README、上手指南、AGENTS.md 中英双轨，海外评委看 EN，本地队友看 ZH，无需翻译往返。",
+    f4_t: "占位优先",
+    f4_d: "无美术也能跑：纯色矩形即占位，game-info/ 集中管理标题、说明、团队信息。先把玩法跑通，美术后补，节奏不被资源卡死。",
+    f5_t: "可路演 / 可上线",
+    f5_d: "pnpm build 出的是真生产物，不是 demo 残留。Hash 路由适配 GitHub Pages、itch.io、Vercel 等静态托管，无需服务端配置。路演时扔一个 URL 就行——不用打包 exe，不用现场连本地，评委扫码即玩，作品上线即归档。",
 
     box_showcase: "SHOWCASE / 实例展示",
     showcase_neon_meta: "本框架官方教程 Demo",
@@ -62,7 +76,19 @@ const i18n = {
     why_q3: "Q: 隊裡的策劃或 AI 不會 Phaser，怎麼參與？",
     why_a3:
       "AGENTS.md 把場景鍵、事件鍵、資源鍵、調參常量登記成一張活表。非程式設計師或 AI 只要改 contents/constants.ts 裡的重力、初速度、關卡數值就能調手感；改 game-info/ 裡的標題、說明、團隊資訊，主頁和關於頁同步刷新。完全繞開 Phaser 的類別繼承細節。",
-
+    why_q4: "Q: 我完全不會寫程式碼，也能用嗎？",
+    why_a4:
+      "能。搭配 Cursor、Claude Code、Kilo Code 這類 AI 助手，你只描述「跳起來要更輕盈」「金幣減到 5 個」，它來改程式碼。腳手架還會把你的玩法描述沉澱進 docs/vibe/spec-game.md，作為後續所有迭代的唯一設計源——AI 不會每次都從零理解你的腦洞。",
+    box_who: "WHO IT'S FOR / 它為誰而造",
+    who1_t: "程式設計師",
+    who1_d:
+      "fork 之後跳過搭架子的半天，選單、暫停、路由、建置鏈全配好，第一行程式碼就寫在玩法裡。",
+    who2_t: "策劃 / 產品 / 設計師",
+    who2_d:
+      "不用學 Phaser，不用讀原始碼。改佔位文案、調數值、靠 AI 把「手感」翻譯成程式碼，當天就能在瀏覽器裡玩到自己的想法。",
+    who3_t: "人 + AI 混編團隊",
+    who3_d:
+      "spec-game.md 當設計契約，AGENTS.md 當工程契約。AI 改程式碼前先對帳，人類負責定義體驗，分工不打架。",
     box_features: "FEATURES / 特性",
     f1_t: "開箱即用",
     f1_d: "標題選單、佔位關卡、暫停/恢復/退出、Hash 路由全部就緒。pnpm i && pnpm dev 即開始迭代玩法，省下半天搭架子的成本。",
@@ -70,8 +96,10 @@ const i18n = {
     f2_d: "engine / contents / runtime / pages 單向依賴，main 分支永遠純淨。重構不會牽一髮動全身。",
     f3_t: "AI 協作友善",
     f3_d: "AGENTS.md 作為機制契約：登記表 + Read-before-write checklist + 決策日誌，讓 AI 在改程式碼前先對帳，少幻覺、少返工。",
-    f4_t: "雙語文件",
-    f4_d: "README、上手指南、AGENTS.md 中英雙軌，海外評審看 EN，本地隊友看 ZH，無需翻譯往返。",
+    f4_t: "佔位優先",
+    f4_d: "無美術也能跑：純色矩形即佔位，game-info/ 集中管理標題、說明、團隊資訊。先把玩法跑通，美術後補，節奏不被資源卡死。",
+    f5_t: "可路演 / 可上線",
+    f5_d: "pnpm build 出的是真正的生產產物，不是 demo 殘留。Hash 路由適配 GitHub Pages、itch.io、Vercel 等靜態託管，無需伺服端設定。路演時丟一個 URL 就行——不用打包 exe，不用現場連本地，評審掃碼即玩，作品上線即歸檔。",
 
     box_showcase: "SHOWCASE / 實例展示",
     showcase_neon_meta: "本框架官方教程 Demo",
@@ -92,7 +120,8 @@ const i18n = {
     title_tag: "Title",
     time_tag: "Time",
     main_title: "[Tool] Web Game Jam Starter: Rapid Game Prototype Scaffold",
-    hero_desc: "Ready-to-use scaffold for Game Jams, designed for Web developers.",
+    hero_desc:
+      "Ready-to-use scaffold for Game Jams, designed for Web developers.",
 
     box_why: "WHY THIS STARTER / 为什么选它？",
     why_q1: "Q: Why not just go all-in on Phaser?",
@@ -106,7 +135,19 @@ const i18n = {
       "Q: Designers or AI on the team don't know Phaser. How do they contribute?",
     why_a3:
       "AGENTS.md registers every scene key, event key, asset key, and tuning constant in a single living table. Non-coders or AI assistants tweak gravity, initial velocity, and level values in contents/constants.ts to dial in feel; edit titles, instructions, and team info in game-info/, and the home and about pages update in lockstep. Zero Phaser class hierarchy required.",
-
+    why_q4: "Q: I can't code at all. Can I still use this?",
+    why_a4:
+      "Yes. Pair it with an AI assistant like Cursor, Claude Code, or Kilo Code. You describe the feel — 'make the jump lighter,' 'cut coins from ten to five' — the AI writes the code. The scaffold also captures your game idea into docs/vibe/spec-game.md as the single source of truth, so the AI doesn't relearn your concept on every iteration.",
+    box_who: "WHO IT'S FOR / 它为谁而造",
+    who1_t: "Developers",
+    who1_d:
+      "Skip half a day of scaffolding. Menus, pause, routing, and the build pipeline are wired up — your first line of code goes straight into gameplay.",
+    who2_t: "Designers / PMs / Writers",
+    who2_d:
+      "No Phaser, no source diving. Edit placeholder copy, tune numbers, let the AI translate 'feel' into code. Play your idea in the browser the same day.",
+    who3_t: "Human + AI Hybrid Teams",
+    who3_d:
+      "spec-game.md is the design contract; AGENTS.md is the engineering contract. AI reconciles before writing, humans own the experience — no turf wars.",
     box_features: "FEATURES / 特性",
     f1_t: "Ready Out of the Box",
     f1_d: "Title menu, placeholder level, pause/resume/exit, and hash routing all wired up. pnpm i && pnpm dev and you're iterating gameplay — no half-day of scaffolding lost.",
@@ -114,8 +155,10 @@ const i18n = {
     f2_d: "engine / contents / runtime / pages with one-way deps; main always stays clean. Refactors don't ripple through the whole tree.",
     f3_t: "AI-Collaboration Friendly",
     f3_d: "AGENTS.md is the mechanical contract: registries, a read-before-write checklist, and a decision log. Agents reconcile state before writing — fewer hallucinations, fewer rollbacks.",
-    f4_t: "Bilingual Docs",
-    f4_d: "README, onboarding guide, and AGENTS.md ship in both EN and ZH. International judges read EN, local teammates read ZH, no translation round-trips.",
+    f4_t: "Placeholder-First",
+    f4_d: "Runs without a single art asset — colored rectangles stand in for sprites; game-info/ centralizes titles, instructions, and team info. Ship the loop first, art later. Resources never block the rhythm.",
+    f5_t: "Demo-Ready & Production-Ready",
+    f5_d: "pnpm build emits a real production bundle, not a dev leftover. Hash routing runs on any static host — GitHub Pages, itch.io, Vercel — with zero server config. For a pitch, share a URL: no exe to ship, no localhost to babysit. Judges open it in a browser and play; the game stays live as a portfolio piece long after the jam ends.",
 
     box_showcase: "SHOWCASE",
     showcase_neon_meta: "Official tutorial demo of this framework",
